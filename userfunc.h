@@ -203,8 +203,10 @@ string packet3 =
    // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
     SendPacket(2, packet, peer);
     sleep(3);
+    connectClient();
     SendPacket(2, packet2, peer);
     sleep(3);
+    connectClient();
     SendPacket(2, packet3, peer);
 	currentWorld = "";
 }
@@ -675,8 +677,7 @@ void GrowtopiaBot::userLoop() {
 
 void GrowtopiaBot::userInit() {
 	connectClient();
-	connectClient();
-	connectClient();
+	
 	cout << flush;
 }
 
