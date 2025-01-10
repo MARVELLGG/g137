@@ -367,9 +367,13 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
+	if (bubbleText.find("!spk ") != string::npos)
+	{
+		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
+	}
 	if (bubbleText.find("!go ") != string::npos)
 	{
-		sendPacket(3, "action|quit_to_exit")
+		sendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
         }
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
