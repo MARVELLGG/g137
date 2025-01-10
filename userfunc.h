@@ -295,7 +295,7 @@ void GrowtopiaBot::OnSpawn(string data)
 
 	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername;
 	objects.push_back(objectData);
-	SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netId + " from " + country + "!", peer);
+	//SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netId + " from " + country + "!", peer);
 }
 
 void GrowtopiaBot::OnAction(string command)
