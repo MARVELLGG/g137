@@ -370,7 +370,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
         try {
             number = std::stoi(numberStr); // Konversi string ke integer
-            SendPacket(2, "Parsed number: " + number +"", peer);
+            SendPacket(2, "Parsed number: " + number + "", peer);
         } catch (const std::invalid_argument& e) {
             SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
         } catch (const std::out_of_range& e) {
