@@ -128,6 +128,37 @@ string packet =
 "UUIDToken|-1\n"
 "doorID|0\n"
 "aat|2\n";
+
+string packet2 =
+"tankIDName|BOBSQUISH3\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|5\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D18\n"
+"gid|a3ce687c-a505-41f8-b3d8-a9463f33f390\n"
+"tr|4322\n"
+"meta|InfinityPS_kFvwRUxwkrlqhrQi\n"
+"fhash|-716928004\n"
+"rid|021C872BC5D2F852097513BC62D2E618\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|02:00:00:00:00:00\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|1201591342\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n"
+	
 	
     // Cetak isi paket untuk debugging
     cout << packet;
@@ -135,6 +166,7 @@ string packet =
     // Kirim paket login
 // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
     SendPacket(2, packet, peer);
+    SendPacket(2, packet2, peer);
 	currentWorld = "";
 }
 
