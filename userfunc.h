@@ -185,8 +185,6 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 	if (strippedMessage.find("MSG") != std::string::npos) {
 		cout << "Found message!" << endl;
 	}
-
-	if (netID != owner) return;
 	cout << strippedMessage << endl;
 	if (strippedMessage.find("!pos") != string::npos)
 	{
@@ -210,7 +208,7 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
-	if (strippedMessage.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
+	if (strippedMessage.find("!about") != string::npos || strippedMessage.find("!help") != string::npos)
 	{
 	        SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
 	
@@ -323,7 +321,7 @@ void GrowtopiaBot::SetHasAccountSecured(int state)
 
 }
 
-void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type)
+void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int number)
 {
 	if (netID != owner) return;
 	cout << bubbleText << endl;
