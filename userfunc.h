@@ -359,6 +359,15 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowing = true;
 	}
+	if (bubbleText.find("!netid") != string::npos)
+	{
+		int number = bubbleText.substr(bubbleText.find("!netid ") + 7, bubbleText.length() - bubbleText.find("!netid "));
+		isFollowed = true;
+	}
+	if (bubbleText.find("!nstop") != string::npos)
+	{
+		isFollowed = false;
+	}
 	if (bubbleText.find("!stop") != string::npos)
 	{
 		isFollowing = false;
@@ -467,6 +476,20 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 		objects[object].y = data->y;
 	}
 	if (isFollowing && data->netID == owner && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
+	{
+		if (backwardWalk)
+			data->characterState ^= 0x10;
+		if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
+			SendPacket(2, "action|respawn", peer);
+		}
+		for (int i = 0; i < objects.size(); i++)
+			if (objects.at(i).isLocal) {
+				objects.at(i).x = data->x;
+				objects.at(i).y = data->y;
+			}
+		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+	}
+	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
 			data->characterState ^= 0x10;
