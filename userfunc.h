@@ -124,10 +124,11 @@ void GrowtopiaBot::onLoginRequested()
         "mac|" + generateMac() + "\n"
         "wk|NONE0\n"
         "lmode|1\n"
+	"user|-1953086288\n"
         "UUIDToken|-1\n"
         "doorID|0\n"
         "aat|2";
-
+	
     // Cetak isi paket untuk debugging
     cout << packet;
 
