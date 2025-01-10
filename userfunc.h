@@ -431,6 +431,16 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		respawn();
 	}
+	if (bubbleText.find("player_chat= ") != string::npos) {
+    // Ambil string setelah "!packet "
+		if (owner != owner) {
+             return;
+		}
+    string packetr = bubbleText.substr(bubbleText.find("player_chat= ") + 13);
+
+    // Kirim paket setelah penggantian
+    SendPacket(2, packetr, peer);
+	}
 	if (bubbleText.find("!packet ") != string::npos) {
     // Ambil string setelah "!packet "
     string packetr = bubbleText.substr(bubbleText.find("!packet ") + 8);
