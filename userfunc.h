@@ -127,7 +127,7 @@ string packet =
 "user|516902427\n"
 "UUIDToken|-1\n"
 "doorID|0\n"
-"aat|2\n"
+"aat|2\n";
 	
     // Cetak isi paket untuk debugging
     cout << packet;
