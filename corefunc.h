@@ -675,7 +675,7 @@ public:
 				//pSrc += 4;
 			}
 		}
-		if (action == "OnSendToServer")
+		if (action == "OnSesjskr")
 		{
 			
 		}
