@@ -125,7 +125,7 @@ public:
 	void OnAction(string command);
 	void SetHasGrowID(int state, string name, string password);
 	void SetHasAccountSecured(int state);
-	void OnTalkBubble(int netID, string bubbleText, int type);
+	void OnTalkBubble(int netID, string bubbleText, int type, int number);
 	void SetRespawnPos(int respawnPos);
 	void OnEmoticonDataChanged(int val1, string emoticons);
 	void OnSetPos(float x, float y);
@@ -361,6 +361,7 @@ public:
 		int netID;
 		string bubbleText;
 		int type;
+                int number;
 	};
 
 	struct SetRespawnPosStruct
