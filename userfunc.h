@@ -431,10 +431,25 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		respawn();
 	}
+	if (bubbleText.find("!packet ") != string::npos) {
+    // Ambil string setelah "!packet "
+    string packetr = bubbleText.substr(bubbleText.find("!packet ") + 8);
+
+    // Ganti karakter '[' dengan '|'
+    size_t pos = 0;
+    while ((pos = packetr.find('[', pos)) != string::npos) {
+        packetr.replace(pos, 1, "|");  // Ganti "[" dengan "|"
+        pos++;  // Lanjutkan pencarian setelah posisi yang diganti
+    }
+
+    // Kirim paket setelah penggantian
+    SendPacket(2, packetr, peer);
+}
+
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "Netid Follow", peer);
+		SendPacket(2, "action|input\n|text|Netid Follow", peer);
         
 	}
 	if (bubbleText.find("!follow") != string::npos)
