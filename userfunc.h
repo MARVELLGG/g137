@@ -178,16 +178,33 @@ void GrowtopiaBot::OnSendToServer(string address, int port, int userId, int toke
 }
 
 void GrowtopiaBot::OnConsoleMessage(string message) {
-	cout << "Found console message: " << endl;
-	string strippedMessage = stripMessage(message);
-	cout << strippedMessage << endl;
+    cout << "Found console message: " << endl;
+    string strippedMessage = stripMessage(message);
+    cout << strippedMessage << endl;
 
-	if (strippedMessage.find("MSG") != std::string::npos) {
-		cout << "Found message!" << endl;
-	}
+    if (strippedMessage.find("MSG") != std::string::npos) {
+        cout << "Found message!" << endl;
+    }
 
-	cout << "------------------------" << endl;
+    if (strippedMessage.find("!tp") != std::string::npos) {
+        // Cari angka setelah "!tp"
+        size_t tpIndex = strippedMessage.find("!tp");
+        string params = strippedMessage.substr(tpIndex + 4); // Ambil bagian setelah "!tp"
+        std::stringstream ss(params);
+        int numberx, numbery;
+
+        ss >> numberx >> numbery; // Parse angka dari params
+        if (!ss.fail()) {
+            cout << "Teleporting to: " << numberx << ", " << numbery << endl;
+            OnSetPos(numberx, numbery); // Panggil fungsi OnSetPos
+        } else {
+            cout << "Invalid teleport parameters!" << endl;
+        }
+    }
+
+    cout << "------------------------" << endl;
 }
+
 
 void GrowtopiaBot::OnPlayPositioned(string sound)
 {
