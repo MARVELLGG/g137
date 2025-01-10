@@ -186,7 +186,37 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 		cout << "Found message!" << endl;
 	}
 
+	if (netID != owner) return;
+	cout << strippedMessage << endl;
+	if (strippedMessage.find("!pos") != string::npos)
+	{
+		for (ObjectData x : objects)
+		{
+			if (owner == x.netId)
+			{
+				SendPacket(2, "action|input\n|text|Owner pos is " + std::to_string(x.x) + ":" + std::to_string(x.y) + ".", peer);
+			}
+		}
+	}
+	if (strippedMessage.find("!follow") != string::npos)
+	{
+		isFollowing = true;
+	}
+	if (strippedMessage.find("!stop") != string::npos)
+	{
+		isFollowing = false;
+	}
+	if (strippedMessage.find("!dance") != string::npos)
+	{
+		SendPacket(2, "action|input\n|text|/dance", peer);
+	}
+	if (strippedMessage.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
+	{
+	        SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
+	
+
 	cout << "------------------------" << endl;
+}
 }
 
 void GrowtopiaBot::OnPlayPositioned(string sound)
