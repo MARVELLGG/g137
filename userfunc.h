@@ -354,6 +354,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 			}
 		}
 	}
+	if (bubbleText.find("!respawn") != string::npos)
+	{
+		GrowtopiaBot::respawn()
+	}
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
