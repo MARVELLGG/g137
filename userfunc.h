@@ -373,7 +373,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("!go ") != string::npos)
 	{
-		sendPacket(3, "action|quit_to_exit", peer);
+		SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
         }
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
