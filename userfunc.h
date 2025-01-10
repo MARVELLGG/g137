@@ -266,10 +266,10 @@ void GrowtopiaBot::OnSpawn(string data)
 		else if (id == "netID") 
 		{
 		        int netID = std::stoi(act);
-			if (actuallyOwner) {	       
+			if (actuallyOwner == true) {	       
 		        objectData.netId = netID;
 		        owner = netID; // Simpan netID sebagai owner
-		        std::cout << "SUCCCES netID updated to " << owner << std::endl;
+		        cout << "SUCCCES netID updated to " << owner << ")\n";
 			}
 		}
 		else if (id == "userID")
@@ -297,7 +297,7 @@ void GrowtopiaBot::OnSpawn(string data)
 
 	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername;
 	objects.push_back(objectData);
-	//SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netid + " from " + country + "! Your Growtopia ID is "+uid, peer);
+	SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netId + " from " + country + "!", peer);
 }
 
 void GrowtopiaBot::OnAction(string command)
