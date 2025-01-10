@@ -188,7 +188,6 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 
 	cout << "------------------------" << endl;
 }
-}
 
 void GrowtopiaBot::OnPlayPositioned(string sound)
 {
