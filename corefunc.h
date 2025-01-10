@@ -677,7 +677,7 @@ public:
 		}
 		if (action == "OnSendToServer")
 		{
-			OnSendToServer(((OnSendToServerStruct*)dataStruct)->address, ((OnSendToServerStruct*)dataStruct)->port, ((OnSendToServerStruct*)dataStruct)->userId, ((OnSendToServerStruct*)dataStruct)->token);
+			
 		}
 		else if (action == "OnConsoleMessage")
 		{
