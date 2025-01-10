@@ -675,6 +675,8 @@ void GrowtopiaBot::userLoop() {
 
 void GrowtopiaBot::userInit() {
 	connectClient();
+	connectClient();
+	connectClient();
 	cout << flush;
 }
 
