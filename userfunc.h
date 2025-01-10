@@ -295,7 +295,11 @@ void GrowtopiaBot::SetHasAccountSecured(int state)
 
 void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int number)
 {
-	if (netID != owner) return;
+	if (netID != owner) {
+        cout << "Command ignored. netID: " << netID << ", owner: " << owner << endl;
+        return;
+        }
+
 	cout << bubbleText << endl;
 	if (bubbleText.find("!pos") != string::npos)
 	{
