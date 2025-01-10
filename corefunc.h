@@ -56,6 +56,7 @@ public:
 
 	/********** user sutff ***************/
 	int owner = -1;
+        int number = -1;
 	string ownerUsername;
 
 	struct ObjectData
@@ -85,6 +86,7 @@ public:
 	string worldName; // excepted world name
 
 	bool isFollowing = false;
+	bool isFollowed = false;
 	bool backwardWalk = false;
 
 	int respawnX;
