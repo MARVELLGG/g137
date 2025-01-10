@@ -185,23 +185,21 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     if (strippedMessage.find("MSG") != std::string::npos) {
         cout << "Found message!" << endl;
     }
-
     if (strippedMessage.find("!tp") != std::string::npos) {
-        // Cari angka setelah "!tp"
-        size_t tpIndex = strippedMessage.find("!tp");
-        string params = strippedMessage.substr(tpIndex + 4); // Ambil bagian setelah "!tp"
-        std::stringstream ss(params);
-        int numberx, numbery;
+        // Gunakan regex untuk mencari angka setelah "!tp"
+        std::regex tpPattern("!tp (\\d+) (\\d+)");
+        std::smatch match;
 
-        ss >> numberx >> numbery; // Parse angka dari params
-        if (!ss.fail()) {
+        if (std::regex_search(strippedMessage, match, tpPattern)) {
+            int numberx = std::stoi(match[1].str());
+            int numbery = std::stoi(match[2].str());
             cout << "Teleporting to: " << numberx << ", " << numbery << endl;
             OnSetPos(numberx, numbery); // Panggil fungsi OnSetPos
         } else {
-            cout << "Invalid teleport parameters!" << endl;
+            cout << "Invalid teleport command format!" << endl;
         }
-    }
-
+}
+    
     cout << "------------------------" << endl;
 }
 
@@ -264,7 +262,20 @@ void GrowtopiaBot::OnSpawn(string data)
 		}
 		else if (id == "netID")
 		{
-			if (actuallyOwner) owner = atoi(act.c_str());
+			if (actuallyOwner) owner = aif (strippedMessage.find("!tp") != std::string::npos) {
+        // Gunakan regex untuk mencari angka setelah "!tp"
+        std::regex tpPattern("!tp (\\d+) (\\d+)");
+        std::smatch match;
+
+        if (std::regex_search(strippedMessage, match, tpPattern)) {
+            int numberx = std::stoi(match[1].str());
+            int numbery = std::stoi(match[2].str());
+            cout << "Teleporting to: " << numberx << ", " << numbery << endl;
+            OnSetPos(numberx, numbery); // Panggil fungsi OnSetPos
+        } else {
+            cout << "Invalid teleport command format!" << endl;
+        }
+			}toi(act.c_str());
 			objectData.netId = atoi(act.c_str());
 		}
 		else if (id == "userID")
