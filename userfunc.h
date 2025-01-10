@@ -361,7 +361,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("!netid") != string::npos)
 	{
-		int number = bubbleText.substr(bubbleText.find("!netid ") + 7, bubbleText.length() - bubbleText.find("!netid "));
+		number = bubbleText.substr(bubbleText.find("!netid ") + 7, bubbleText.length() - bubbleText.find("!netid "));
 		isFollowed = true;
 	}
 	if (bubbleText.find("!nstop") != string::npos)
