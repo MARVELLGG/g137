@@ -262,20 +262,7 @@ void GrowtopiaBot::OnSpawn(string data)
 		}
 		else if (id == "netID")
 		{
-			if (actuallyOwner) owner = aif (strippedMessage.find("!tp") != std::string::npos) {
-        // Gunakan regex untuk mencari angka setelah "!tp"
-        std::regex tpPattern("!tp (\\d+) (\\d+)");
-        std::smatch match;
-
-        if (std::regex_search(strippedMessage, match, tpPattern)) {
-            int numberx = std::stoi(match[1].str());
-            int numbery = std::stoi(match[2].str());
-            cout << "Teleporting to: " << numberx << ", " << numbery << endl;
-            OnSetPos(numberx, numbery); // Panggil fungsi OnSetPos
-        } else {
-            cout << "Invalid teleport command format!" << endl;
-        }
-			}toi(act.c_str());
+			if (actuallyOwner) owner = atoi(act.c_str());
 			objectData.netId = atoi(act.c_str());
 		}
 		else if (id == "userID")
