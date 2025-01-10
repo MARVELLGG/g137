@@ -91,20 +91,49 @@ string stripMessage(string msg) {
 
 void GrowtopiaBot::onLoginRequested()
 {
-	cout << "Logging on..." << endl;
-	string token;
-	if (!login_user && !login_token) {
-		token = "";
-	} else {
-		token = "\nuser|" + std::to_string(login_user) + "\ntoken|" + std::to_string(login_token);
-	}
-	string ver = gameVersion;
-	string hash = std::to_string((unsigned int)rand());
-	string hash2 = std::to_string((unsigned int)rand());
-	string packet = "tankIDName|" + uname + "\ntankIDPass|" + upass + "\nrequestedName|SmileZero\nf|1\nprotocol|84\ngame_version|" + ver + "\nfz|5367464\nlmode|0\ncbits|0\nplayer_age|18\nGDPR|1\nhash2|" + hash2 + "\nmeta|" + generateMeta() + "\nfhash|-716928004\nrid|" + generateRid() + "\nplatformID|0\ndeviceVersion|0\ncountry|us\nhash|" + hash + "\nmac|" + generateMac() + "\nwk|" + generateRid() + "\nzf|-496303939" + token;
-	cout << packet;
-	SendPacket(2, "tankIDName|" + uname + "\ntankIDPass|" + upass + "\nrequestedName|SmileZero\nf|1\nprotocol|84\ngame_version|" + ver + "\nfz|5367464\nlmode|0\ncbits|0\nplayer_age|18\nGDPR|1\nhash2|" + hash2 + "\nmeta|" + generateMeta() + "\nfhash|-716928004\nrid|" + generateRid() + "\nplatformID|0\ndeviceVersion|0\ncountry|us\nhash|" + hash + "\nmac|" + generateMac() + "\nwk|" + generateRid() + "\nzf|-496303939" + token, peer);
+    cout << "Logging on..." << endl;
 
+    // Data login bot
+    string ver = gameVersion;
+    string hash = std::to_string((unsigned int)rand());
+    string hash2 = std::to_string((unsigned int)rand());
+    
+    // Format paket login sesuai permintaan
+    string packet = 
+        "tankIDName|" + uname + "\n"
+        "tankIDPass|" + upass + "\n"
+        "requestedName|\n"
+        "f|1\n"
+        "protocol|212\n"
+        "game_version|" + ver + "\n"
+        "cbits|1024\n"
+        "player_age|6\n"
+        "GDPR|2\n"
+        "category|GROWMINES_3586\n"
+        "totalPlaytime|0\n"
+        "klv|90EE392D2F9D8BC997EEA41175FCD9DA\n"
+        "gid|a3ce687c-a505-41f8-b3d8-a9463f33f390\n"
+        "tr|4322\n"
+        "meta|InfinityPS_TqAEFCENhRIKvkzX\n"
+        "fhash|-716928004\n"
+        "rid|" + generateRid() + "\n"
+        "platformID|4\n"
+        "deviceVersion|0\n"
+        "country|id\n"
+        "hash|" + hash + "\n"
+        "mac|" + generateMac() + "\n"
+        "wk|NONE0\n"
+        "lmode|1\n"
+        "UUIDToken|-1\n"
+        "doorID|0\n"
+        "aat|2";
+
+    // Cetak isi paket untuk debugging
+    cout << packet;
+
+    // Kirim paket login
+ SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
+    SendPacket(2, packet, peer);
 	currentWorld = "";
 }
 
