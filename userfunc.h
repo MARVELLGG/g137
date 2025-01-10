@@ -263,15 +263,13 @@ void GrowtopiaBot::OnSpawn(string data)
 		        std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
 			}
 		}
-		else if (id == "netID")
+		else if (id == "netID") 
 		{
-			int netID = std::stoi(act);
-			std::cout << "Found's netID:" << netID << std::endl;
-			
+		        int netID = std::stoi(act);
+		        objectData.netId = netID;
 			if (actuallyOwner) {
-			owner = atoi(act.c_str());
-			objectData.netId = atoi(act.c_str());
-			std::cout << "Owner's netID updated to " << owner << std::endl;
+		        owner = netID; // Simpan netID sebagai owner
+		        std::cout << "Owner's netID updated to " << owner << std::endl;
 			}
 		}
 		else if (id == "userID")
