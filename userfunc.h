@@ -361,8 +361,17 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("!netid") != string::npos)
 	{
-		number = bubbleText.substr(bubbleText.find("!netid ") + 7, bubbleText.length() - bubbleText.find("!netid "));
-		isFollowed = true;
+        // Ambil substring setelah "!netid " dan konversi menjadi int
+        string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
+        try {
+            number = std::stoi(numberStr); // Konversi string ke integer
+            isFollowed = true;
+            std::cout << "Parsed number: " << number << std::endl;
+        } catch (const std::invalid_argument& e) {
+            SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
+        } catch (const std::out_of_range& e) {
+            SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
+          }
 	}
 	if (bubbleText.find("!nstop") != string::npos)
 	{
