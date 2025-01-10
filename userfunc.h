@@ -315,10 +315,10 @@ void GrowtopiaBot::SetHasAccountSecured(int state)
 
 void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int number)
 {
-	std::cout << "Debug: netID = " << netID << ", owner = " << owner << std::endl;
+	std::cout << "Debug: netID = " << ((OnTalkBubbleStruct*)dataStruct)->netID << ", owner = " << owner << std::endl;
 	
-	if (netID != owner) {
-        cout << "Command ignored. netID: " << netID << ", owner: " << owner << endl;
+	if (((OnTalkBubbleStruct*)dataStruct)->netID != owner) {
+        cout << "Command ignored. netID: " << ((OnTalkBubbleStruct*)dataStruct)->netID << ", owner: " << owner << endl;
         return;
         }
 
