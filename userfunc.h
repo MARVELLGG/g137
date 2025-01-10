@@ -331,6 +331,30 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 			}
 		}
 	}
+	if (bubbleText.find("!playercount") != string::npos && netID==owner)
+	{
+		int i=0;
+		for (ObjectData x : objects)
+		{
+			if (!x.isGone)
+			{
+				i++;
+			}
+		}
+		SendPacket(2, "action|input\n|text|There is " + std::to_string(i)+ " players.", peer);
+	}
+	if (bubbleText.find("!owner") != string::npos && publicOwnership)
+	{	
+		for (ObjectData x : objects)
+		{
+			if (netID == x.netId)
+			{
+				SendPacket(2, "action|input\n|text|Owner is " + x.name + ".", peer);
+				owner = netID;
+			}
+		}
+	}
+	
 	if (bubbleText.find("!follow") != string::npos)
 	{
 		isFollowing = true;
@@ -343,7 +367,11 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
-	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
+	if (bubbleText.find("!go ") != string::npos)
+	{
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
+        worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
+	}if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
 	}
