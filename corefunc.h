@@ -714,7 +714,7 @@ public:
 		}
 		else if (action == "OnTalkBubble")
 		{
-			OnTalkBubble(((OnTalkBubbleStruct*)dataStruct)->netID, ((OnTalkBubbleStruct*)dataStruct)->bubbleText, ((OnTalkBubbleStruct*)dataStruct)->type);
+			OnTalkBubble(((OnTalkBubbleStruct*)dataStruct)->netID, ((OnTalkBubbleStruct*)dataStruct)->bubbleText, ((OnTalkBubbleStruct*)dataStruct)->type, ((OnTalkBubbleStruct*)dataStruct)->number);
 		}
 		else if (action == "SetRespawnPos")
 		{
