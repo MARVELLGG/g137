@@ -257,8 +257,10 @@ void GrowtopiaBot::OnSpawn(string data)
 		}
 		else if (id == "name")
 		{
-			if (stripMessage(act) == ownerUsername) actuallyOwner = true;
-			objectData.name = act;
+		        if (stripMessage(act) == ownerUsername) {
+			actuallyOwner = true;
+		        std::cout << "Owner detected: " << ownerUsername << " (" << act << ")\n";
+			}
 		}
 		else if (id == "netID")
 		{
