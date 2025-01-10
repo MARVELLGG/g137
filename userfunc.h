@@ -343,7 +343,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		}
 		SendPacket(2, "action|input\n|text|There is " + std::to_string(i)+ " players.", peer);
 	}
-	if (bubbleText.find("!owner") != string::npos && publicOwnership)
+	if (bubbleText.find("!owner") != string::npos)
 	{	
 		for (ObjectData x : objects)
 		{
@@ -370,8 +370,8 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (bubbleText.find("!go ") != string::npos)
 	{
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
-        worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
-	}if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
+        }
+	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
 	}
