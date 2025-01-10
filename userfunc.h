@@ -195,7 +195,7 @@ string packet3 =
     cout << packet;
 	sleep(3);
 	cout << packet2;
-	sleep(3):
+	sleep(3);
 	cout << packet3;
 
     // Kirim paket login
