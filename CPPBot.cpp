@@ -43,8 +43,28 @@ int main() {
 	bot.userInit();
 	bots.push_back(bot);
 
-	while (true) {
-		bot.eventLoop();
-		bot.userLoop();
-	}
+	std::thread inputThread([&]() {
+        while (true) {
+            string userInput;
+            cout << "Masukkan perintah untuk dikirimkan sebagai paket: ";
+            std::getline(cin, userInput);
+
+            if (!userInput.empty()) {
+                bot.SendPacket(2, userInput, bot.peer);
+                cout << "Paket dikirim: " << userInput << endl;
+            }
+        }
+    });
+
+    // Loop utama untuk bot
+    while (true) {
+        bot.eventLoop();
+        bot.userLoop();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Hindari penggunaan CPU tinggi
+    }
+
+    // Pastikan thread berjalan paralel (detach digunakan untuk tidak blocking)
+    inputThread.detach();
+
+    return 0;
 }
