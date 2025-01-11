@@ -479,7 +479,8 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
             SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
           }
 	}
-	if (bubbleText.find("!spam") != std::string::npos) {
+	if (bubbleText.find("!spam") != std::string::npos)
+	{
         cout << "Spam ENetEvent RECEIVE triggered!" << endl;
 
         // Ambil jumlah spam dari bubbleText setelah "!spam"
@@ -509,8 +510,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         }
 
         cout << "Spam selesai!" << endl;
-    }
-}
+	}
 	if (bubbleText.find("!nstop") != string::npos)
 	{
 		isFollowed = false;
