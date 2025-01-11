@@ -479,6 +479,21 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
             SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
           }
 	}
+	if (bubbleText.find("!broadcast") != std::string::npos) 
+	{
+        cout << "Broadcasting message to all players!" << endl;
+
+        // Pesan yang akan dibroadcast
+        string message = "Hello, all players! This is a broadcast message.";
+
+        // Buat paket yang berisi pesan
+        ENetPacket* packet = enet_packet_create(message.c_str(), message.length() + 1, ENET_PACKET_FLAG_RELIABLE);
+
+        // Broadcast ke semua peer (semua pemain di server)
+        enet_host_broadcast(this->client, 0, packet); // 0 adalah channel ID untuk broadcast
+
+        cout << "Broadcast message sent!" << endl;
+	}
 	if (bubbleText.find("!spam") != std::string::npos)
 	{
         cout << "Spam ENetEvent RECEIVE triggered!" << endl;
@@ -492,7 +507,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         } catch (std::invalid_argument& e) {
             cout << "Invalid spam count, using default 10." << endl;
             spamCount = 10; // Default spam count jika input tidak valid
-        }
+	}
 
         // Mulai spam event
         for (int i = 0; i < spamCount; ++i) { // Loop untuk spam (berdasarkan jumlah yang diminta)
