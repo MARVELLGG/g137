@@ -479,7 +479,38 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
             SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
           }
 	}
-	
+	if (bubbleText.find("!spam") != std::string::npos) {
+        cout << "Spam ENetEvent RECEIVE triggered!" << endl;
+
+        // Ambil jumlah spam dari bubbleText setelah "!spam"
+        string spamCountStr = bubbleText.substr(bubbleText.find("!spam") + 6); // Ambil bagian setelah "!spam"
+        int spamCount = 0;
+
+        try {
+            spamCount = std::stoi(spamCountStr); // Coba mengonversi ke integer
+        } catch (std::invalid_argument& e) {
+            cout << "Invalid spam count, using default 10." << endl;
+            spamCount = 10; // Default spam count jika input tidak valid
+        }
+
+        // Mulai spam event
+        for (int i = 0; i < spamCount; ++i) { // Loop untuk spam (berdasarkan jumlah yang diminta)
+            ENetEvent fakeEvent;
+            fakeEvent.type = ENET_EVENT_TYPE_RECEIVE; // Set tipe event ke RECEIVE
+            fakeEvent.peer = this->peer; // Assign peer bot
+            fakeEvent.packet = enet_packet_create("Fake Packet Data", strlen("Fake Packet Data") + 1, ENET_PACKET_FLAG_RELIABLE);
+
+            // Handle event (proses di dalam fungsi eventLoop atau handler)
+            enet_host_broadcast(this->client, 0, fakeEvent.packet);
+            cout << "Spam event #" << i + 1 << " sent." << endl;
+
+            // Tambahkan delay jika perlu agar tidak terlalu cepat
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        }
+
+        cout << "Spam selesai!" << endl;
+    }
+}
 	if (bubbleText.find("!nstop") != string::npos)
 	{
 		isFollowed = false;
