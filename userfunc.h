@@ -719,15 +719,13 @@ void GrowtopiaBot::InvisibleEffect(int count) {
     for (int i = 0; i < objects.size(); i++) {
         if (objects.at(i).isLocal) {
             PlayerMoving data;
-            data.characterState = 0; // Sesuaikan karakter state jika diperlukan
             data.packetType = 17;   // Tipe paket untuk PLAYER_MOVING
-
+            data_.netID = 105
+            data_.YSpeed = 105;
             for (int j = 0; j < count; j++) {
                 // Tentukan posisi acak di sekitar bot
-                data.x = objects.at(i).x + randomOffsets[rand() % randomOffsets.size()];
-                data.y = objects.at(i).y + randomOffsets[rand() % randomOffsets.size()];
-                data.punchX = -1; // Tidak ada aksi pukulan
-                data.punchY = -1; // Tidak ada aksi pukulan
+                data.x = objects.at(i).x + 16 + randomOffsets[rand() % randomOffsets.size()];
+                data.y = objects.at(i).y + 16 + randomOffsets[rand() % randomOffsets.size()];
 
                 // Kirim paket mentah untuk efek
                 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
