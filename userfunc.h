@@ -568,7 +568,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         MoveBotRaw(1, 0); // Gerak ke kanan
     }
     if (bubbleText.find("!test") != string::npos) {
-        MoveBotRandom(0, -1); // Gerak ke atas
+        MoveBotRandom(5, 1, -1); // Gerak ke atas
      }
     if (bubbleText.find("!nazi") != string::npos) {
    SpamSmoke();
