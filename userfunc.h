@@ -340,6 +340,8 @@ void GrowtopiaBot::OnSpawn(string data)
 }
 		else if (id == "netID") 
 {
+	std::cout << "Debugging: id is " << id << std::endl; // Debugging id
+    std::cout << "Debugging: actuallyOwner is " << actuallyOwner << std::endl; // Debugging actuallyOwner
     if (actuallyOwner) {  // Pastikan netID hanya diperbarui jika owner terdeteksi
         int netID = std::stoi(act);       
         objectData.netId = netID;
