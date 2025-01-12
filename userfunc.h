@@ -335,7 +335,7 @@ void GrowtopiaBot::OnSpawn(string data)
         actuallyOwner = true;
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
         std::cout << "[Dbugging: actuallyOwner is " << actuallyOwner << std::endl; // Debugging actuallyOwner
-        
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Delay 100ms
     } else {
         std::cout << "Owner not detected, strippedMessage: " << strippedMessage << std::endl;
     }
@@ -376,7 +376,7 @@ void GrowtopiaBot::OnSpawn(string data)
 		}
 	}
 
-	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername;
+	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername << "Actuallyowner " << actuallyOwner;
 	objects.push_back(objectData);
 	//SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netId + " from " + country + "!", peer);
 }
