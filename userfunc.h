@@ -567,6 +567,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     } else if (bubbleText.find("!right") != string::npos) {
         MoveBotRaw(1, 0); // Gerak ke kanan
     }
+    if (bubbleText.find("!moveSpam") != string::npos) {
+        sendRawPacketWithMovement(); // Spam dengan pergerakan dalam rentang -10 hingga 10
+    }
+}
 	
 	if (bubbleText.find("!stop") != string::npos)
 	{
@@ -689,7 +693,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 			}
 		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
-	if (isFollowed && data->netID == netcopy && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
+	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
 			data->characterState ^= 0x10;
@@ -704,6 +708,37 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
+
+void GrowtopiaBot::sendRawPacketWithMovement()
+{
+    // Tentukan rentang pergerakan
+    const float range = 10.0f;
+
+    // Loop untuk mengirimkan paket dengan pergerakan spam
+    for (int i = 0; i < 10; i++) // 10 kali spam
+    {
+        // Cari objek lokal yang sedang dikendalikan
+        for (ObjectData& obj : objects)
+        {
+            if (obj.isLocal)  // Jika objek ini adalah objek lokal
+            {
+                // Variasi acak untuk X dan Y
+                float randomX = obj.x + ((rand() % 21) - 10);  // Rentang -10 hingga 10
+                float randomY = obj.y + ((rand() % 21) - 10);  // Rentang -10 hingga 10
+
+                // Mengirimkan paket raw dengan perubahan posisi
+                SendPacketRaw(4, packPlayerMoving(data, randomX, randomY), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+
+                // Tunggu sedikit sebelum mengirim paket berikutnya (untuk simulasi pergerakan)
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));  // 100ms delay antar paket
+
+                // Bisa tambahkan log untuk debug atau memastikan objek yang tepat dipilih
+                std::cout << "Spam Movement to: " << randomX << ", " << randomY << " for local object\n";
+            }
+        }
+    }
+}
+
 
 void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
     // Ambil objek bot lokal
