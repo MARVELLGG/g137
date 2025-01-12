@@ -596,6 +596,11 @@ public:
 				{
 					((OnSendToServerStruct*)dataStruct)->userId = v;
 				}
+				else if (action == "OnTalkBubble" && index == 1)
+				{
+					((OnTalkBubbleStruct*)dataStruct)->netID = v;
+					std::cout << "Setting netID to: " << v << std::endl;
+        		}
 				else if (action == "OnEmoticonDataChanged" && index == 1)
 				{
 					((OnEmoticonDataChangedStruct*)dataStruct)->val1 = v;
