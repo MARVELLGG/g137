@@ -204,7 +204,7 @@ public:
 
 ENetHost* clients[3];
 ENetPeer* peers[3];
-void connectClients(string hostName, int port) {
+void connectClient(string hostName, int port) {
     for (int i = 0; i < 3; i++) { // Hardcoded untuk 3 bot
         cout << "Connecting bot " << i + 1 << " to " << hostName << ":" << port << endl;
         clients[i] = enet_host_create(NULL, 3, 2, 0, 0);
