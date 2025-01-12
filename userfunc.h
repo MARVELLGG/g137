@@ -337,10 +337,8 @@ void GrowtopiaBot::OnSpawn(string data)
         actuallyOwner = true;
         nameProcessed = true;  // Tandai bahwa 'name' telah diproses
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
-        for (ObjectData x : objects)
-		{
-        x.name = strippedMessage;
-        }
+        
+        objectData.name = strippedMessage;
         // Jika ada netID yang sudah terbuffer sebelumnya, proses sekarang
         if (bufferedNetID != -1) {
             std::cout << "Processing buffered netID: " << bufferedNetID << std::endl;
@@ -495,19 +493,20 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		isFollowing = true;
 	}
 	if (bubbleText.find("!netid ") != string::npos) {
-    // Ambil substring setelah "!netid " dan konversi menjadi int
-    string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
-    try {
-    	int numbers = std::stoi(numberStr); // Konversi string ke integer dan simpan ke 'number'
-        number = numbers; // Konversi string ke integer dan simpan ke 'number'
-        std::cout << "Parsed number: " << number << std::endl;
-    } catch (const std::invalid_argument& e) {
-        SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
-    } catch (const std::out_of_range& e) {
-        SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
-    }
-}
+        string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
+        try {
+            number = std::stoi(numberStr); // Konversi string ke integer dan simpan ke 'number'
+            std::cout << "Parsed netID: " << number << std::endl;
 
+            // Jika ingin menyimpan dalam kelas, update variabel 'number' pada objek GrowtopiaBot
+            this->number = number;  // Menyimpan hasil ke properti 'number' di dalam kelas
+
+        } catch (const std::invalid_argument& e) {
+            SendPacket(2, "Invalid input for number: " + numberStr, peer);
+        } catch (const std::out_of_range& e) {
+            SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr, peer);
+        }
+    }
 	if (bubbleText.find("!broadcast") != std::string::npos) 
 	{
         cout << "Broadcasting message to all players!" << endl;
@@ -690,7 +689,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 			}
 		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
-	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
+	if (isFollowed && data->netID == netcopy && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
 			data->characterState ^= 0x10;
