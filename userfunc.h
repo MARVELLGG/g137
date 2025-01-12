@@ -332,17 +332,21 @@ void GrowtopiaBot::OnSpawn(string data)
 		{
 			string strippedMessage = stripMessage(act);
 		        if (stripMessage(act) == ownerUsername) {
-			actuallyOwner = true;
+		    	actuallyOwner = true;
 		        std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
 			}
 		}
 		else if (id == "netID") 
-		{
-		        int netID = std::stoi(act);       
-		        objectData.netId = netID;
-		        owner = netID; // Simpan netID sebagai owner
-		        cout << "SUCCCES netID updated to " << owner << ")\n";
-		}
+{
+    if (actuallyOwner) {  // Pastikan netID hanya diperbarui jika owner terdeteksi
+        int netID = std::stoi(act);       
+        objectData.netId = netID;
+        owner = netID; // Simpan netID sebagai owner
+        std::cout << "SUCCESS: netID updated to " << owner << "\n";
+    } else {
+        std::cout << "Owner not detected. Skipping netID update.\n";
+    }
+}
 		else if (id == "userID")
 		{
 			objectData.userId = atoi(act.c_str());
@@ -433,7 +437,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("player_chat= ") != string::npos) {
     // Ambil string setelah "!packet "
-		if (owner != owner) {
+		if (netID != owner) {
              return;
 		}
     string packetr = bubbleText.substr(bubbleText.find("player_chat= ") + 13);
