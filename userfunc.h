@@ -720,7 +720,7 @@ void GrowtopiaBot::InvisibleEffect(int count) {
         if (objects.at(i).isLocal) {
             PlayerMoving data;
             data.packetType = 17;   // Tipe paket untuk PLAYER_MOVING
-            data_.netID = 105
+            data_.netID = 105;
             data_.YSpeed = 105;
             for (int j = 0; j < count; j++) {
                 // Tentukan posisi acak di sekitar bot

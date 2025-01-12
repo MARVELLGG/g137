@@ -805,37 +805,42 @@ public:
 		WorldThingStruct* specials;
 	};
 
-	BYTE* packPlayerMoving(PlayerMoving* dataStruct, int size_ = 56, int some_extra = 0) {
-	BYTE* data = new BYTE[size_];
-	memset(data, 0, size_);
-	memcpy(data + 0, &dataStruct->packetType, 4);
-	memcpy(data + 3, &some_extra, 4);
-	memcpy(data + 4, &dataStruct->netID, 4);
-	memcpy(data + 12, &dataStruct->characterState, 4);
-	memcpy(data + 20, &dataStruct->plantingTree, 4);
-	memcpy(data + 24, &dataStruct->x, 4);
-	memcpy(data + 28, &dataStruct->y, 4);
-	memcpy(data + 32, &dataStruct->XSpeed, 4);
-	memcpy(data + 36, &dataStruct->YSpeed, 4);
-	memcpy(data + 40, &dataStruct->packet_int_40, 4);
-	memcpy(data + 44, &dataStruct->punchX, 4);
-	memcpy(data + 48, &dataStruct->punchY, 4);
-	return data;
-}
-	PlayerMoving* unpackPlayerMoving(BYTE* data) {
-	PlayerMoving* dataStruct = new PlayerMoving;
-	memcpy(&dataStruct->packetType, data, 4);
-	memcpy(&dataStruct->netID, data + 4, 4);
-	memcpy(&dataStruct->characterState, data + 12, 4);
-	memcpy(&dataStruct->plantingTree, data + 20, 4);
-	memcpy(&dataStruct->x, data + 24, 4);
-	memcpy(&dataStruct->y, data + 28, 4);
-	memcpy(&dataStruct->XSpeed, data + 32, 4);
-	memcpy(&dataStruct->YSpeed, data + 36, 4);
-	memcpy(&dataStruct->punchX, data + 44, 4);
-	memcpy(&dataStruct->punchY, data + 48, 4);
-	return dataStruct;
-}
+	BYTE* packPlayerMoving(PlayerMoving* dataStruct)
+	{
+		BYTE* data = new BYTE[56];
+		for (int i = 0; i < 56; i++)
+		{
+			data[i] = 0;
+		}
+		memcpy(data + 0, &dataStruct->packetType, 4);
+		memcpy(data + 4, &dataStruct->netID, 4);
+		memcpy(data + 12, &dataStruct->characterState, 4);
+		memcpy(data + 20, &dataStruct->plantingTree, 4);
+		memcpy(data + 24, &dataStruct->x, 4);
+		memcpy(data + 28, &dataStruct->y, 4);
+		memcpy(data + 32, &dataStruct->XSpeed, 4);
+		memcpy(data + 36, &dataStruct->YSpeed, 4);
+		memcpy(data + 44, &dataStruct->punchX, 4);
+		memcpy(data + 48, &dataStruct->punchY, 4);
+		return data;
+	}
+
+	PlayerMoving* unpackPlayerMoving(BYTE* data)
+	{
+		PlayerMoving* dataStruct = new PlayerMoving;
+	    memcpy(&dataStruct->packetType, data, 4);
+    	memcpy(&dataStruct->netID, data + 4, 4);
+		memcpy(&dataStruct->characterState, data + 12, 4);
+		memcpy(&dataStruct->plantingTree, data + 20, 4);
+		memcpy(&dataStruct->x, data + 24, 4);
+		memcpy(&dataStruct->y, data + 28, 4);
+		memcpy(&dataStruct->XSpeed, data + 32, 4);
+		memcpy(&dataStruct->YSpeed, data + 36, 4);
+		memcpy(&dataStruct->punchX, data + 44, 4);
+		memcpy(&dataStruct->punchY, data + 48, 4);
+		return dataStruct;
+	}
+
 	WorldStruct* world = NULL;
 
 	//ProcessTankUpdatePacket(0, NULL, tankUpdatePacket);
