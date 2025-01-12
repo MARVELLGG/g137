@@ -95,18 +95,11 @@ public:
 
 	/*********** structs declaration *********/
 	struct PlayerMoving {
-		int packetType;
-		int netID;
-		float x;
-		float y;
-		int characterState;
-		int plantingTree;
-		float XSpeed;
-		float YSpeed;
-		int punchX;
-		int punchY;
-
-	};
+	int32_t netID, effect_flags_check;
+	int packetType, characterState, plantingTree, punchX, punchY, secondnetID;
+	float x, y, XSpeed, YSpeed;
+	int packet_3, packet_int_40 = 0;
+};
 	/*********** structs declaration *********/
 
 
