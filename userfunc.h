@@ -328,14 +328,16 @@ void GrowtopiaBot::OnSpawn(string data)
 		{
 			objectData.country = act;
 		}
-		else if (id == "name")
-		{
-			string strippedMessage = stripMessage(act);
-		        if (stripMessage(act) == ownerUsername) {
-		    	actuallyOwner = true;
-		        std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
-			}
-		}
+		else if (id == "name") 
+{
+    string strippedMessage = stripMessage(act);  // Panggil stripMessage hanya sekali
+    if (strippedMessage == ownerUsername) {
+        actuallyOwner = true;
+        std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
+    } else {
+        std::cout << "Owner not detected, strippedMessage: " << strippedMessage << std::endl;
+    }
+}
 		else if (id == "netID") 
 {
     if (actuallyOwner) {  // Pastikan netID hanya diperbarui jika owner terdeteksi
