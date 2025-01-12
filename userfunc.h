@@ -413,8 +413,6 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 {
 	std::cout << "Received netID: " << netID << std::endl;  // Cek nilai netID di sini
 	if (netID != owner) {
-        SendPacket(2, "action|input\n|text|Only `2BOBSQUISH can do this command.", peer);
-	  
    return;
         }
     
