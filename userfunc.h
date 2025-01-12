@@ -413,7 +413,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 {
 	std::cout << "Received netID: " << netID << std::endl;  // Cek nilai netID di sini
 	if (netID != owner) {
-             return;
+        SendPacket(2, "action|input\n|text|Only `2BOBSQUISH can do this command.", peer);
+	  
+   return;
         }
     
 	cout << bubbleText << endl;
@@ -423,8 +425,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		{
 			if (owner == x.netId)
 			{
-				SendPacket(2, "action|input\n|text|Owner pos is " + std::to_string(x.x) + ":" + std::to_string(x.y) + ".", peer);
-			}
+				SendPacket(2, "action|input\n|text|Owner pos is " + 
+           std::to_string(static_cast<int>(x.x)) + ":" + 
+           std::to_string(static_cast<int>(x.y)) + ".", peer);
+		}
 		}
 	}
 	if (bubbleText.find("!playercount") != string::npos && netID==owner)
@@ -482,7 +486,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "action|input\n|text|Netid Follow", peer);
+		SendPacket(2, "action|input\n|text|Netid Follow " + number, peer);
         
 	}
 	if (bubbleText.find("!follow") != string::npos)
@@ -553,6 +557,16 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowed = false;
 	}
+	if (bubbleText.find("!up") != string::npos) {
+        MoveBotRaw(0, -1); // Gerak ke atas
+    } else if (bubbleText.find("!down") != string::npos) {
+        MoveBotRaw(0, 1); // Gerak ke bawah
+    } else if (bubbleText.find("!left") != string::npos) {
+        MoveBotRaw(-1, 0); // Gerak ke kiri
+    } else if (bubbleText.find("!right") != string::npos) {
+        MoveBotRaw(1, 0); // Gerak ke kanan
+    }
+	
 	if (bubbleText.find("!stop") != string::npos)
 	{
 		isFollowing = false;
@@ -572,7 +586,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         }
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified by BOBSQUISH", peer);
+		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
 	}
 }
 
@@ -689,6 +703,34 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
+
+void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
+    // Ambil objek bot lokal
+    for (int i = 0; i < objects.size(); i++) {
+        if (objects.at(i).isLocal) {
+            // Perbarui posisi X dan Y
+            objects.at(i).x += deltaX * 32; // 32 adalah skala posisi di server Growtopia
+            objects.at(i).y += deltaY * 32;
+
+            // Buat paket `PLAYER_MOVING`
+            PlayerMoving data;
+            data.packetType = 0x14;  // PLAYER_MOVING
+            data.characterState = 0; // Sesuaikan jika diperlukan
+            data.x = objects.at(i).x;
+            data.y = objects.at(i).y;
+            data.punchX = -1;
+            data.punchY = -1;
+
+            // Kirim paket mentah
+            SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+
+            // Debugging
+            std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
+            break;
+        }
+    }
+}
+
 
 void GrowtopiaBot::AtAvatarSetIconState(int netID, int state) // if player goes BRB, etc...
 {
