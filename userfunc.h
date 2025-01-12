@@ -337,7 +337,7 @@ void GrowtopiaBot::OnSpawn(string data)
         actuallyOwner = true;
         nameProcessed = true;  // Tandai bahwa 'name' telah diproses
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
-        
+        name = strippedMessage;
         // Jika ada netID yang sudah terbuffer sebelumnya, proses sekarang
         if (bufferedNetID != -1) {
             std::cout << "Processing buffered netID: " << bufferedNetID << std::endl;
@@ -484,26 +484,26 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "action|input\n|text|Netid Follow " + number, peer);
+		SendPacket(2, "action|input\n|text|Netid Follow " + number + "", peer);
         
 	}
 	if (bubbleText.find("!follow") != string::npos)
 	{
 		isFollowing = true;
 	}
-	if (bubbleText.find("!netid ") != string::npos)
-	{
-        // Ambil substring setelah "!netid " dan konversi menjadi int
-        string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
-        try {
-            number = std::stoi(numberStr); // Konversi string ke integer
-            std::cout << "Parsed number: " << number << std::endl;
-        } catch (const std::invalid_argument& e) {
-            SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
-        } catch (const std::out_of_range& e) {
-            SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
-          }
-	}
+	if (bubbleText.find("!netid ") != string::npos) {
+    // Ambil substring setelah "!netid " dan konversi menjadi int
+    string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
+    try {
+        numbers = numberStr; // Konversi string ke integer dan simpan ke 'number'
+        std::cout << "Parsed number: " << number << std::endl;
+    } catch (const std::invalid_argument& e) {
+        SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
+    } catch (const std::out_of_range& e) {
+        SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr + "", peer);
+    }
+}
+
 	if (bubbleText.find("!broadcast") != std::string::npos) 
 	{
         cout << "Broadcasting message to all players!" << endl;
@@ -800,9 +800,8 @@ void GrowtopiaBot::userLoop() {
     if ((counter % 1800) == 0) {
         string name = "";
         float distance = std::numeric_limits<float>::infinity();
-        float ownerX = -1.0f;  // Pastikan variabel terinisialisasi
-        float ownerY = -1.0f;  // Pastikan variabel terinisialisasi
-        
+        float ownerX;
+		float ownerY;
         // Cari objek yang sesuai dengan owner
         for (ObjectData& x : objects) {  // Perhatikan penggunaan reference (&) untuk menghindari copy
             if (x.netId == owner) {
