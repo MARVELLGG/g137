@@ -50,10 +50,8 @@ int main() {
             std::getline(cin, userInput);
 
             if (!userInput.empty()) {
-                bot.SendPacket(2, userInput, bot.peers[0]);
-		    bot.SendPacket(2, userInput, bot.peers[1]);
-           bot.SendPacket(2, userInput, bot.peers[2]);
-           
+                bot.SendPacket(2, userInput, bot.peer);
+		 
                 cout << "Paket dikirim: " << userInput << endl;
             }
         }
