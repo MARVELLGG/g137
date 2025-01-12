@@ -571,7 +571,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         MoveBotRandom(5, 1, -1); // Gerak ke atas
      }
     if (bubbleText.find("!nazi") != string::npos) {
-   SpamSmoke();
+   InvisibleEffect(6);
     }
 	
 	if (bubbleText.find("!stop") != string::npos)
@@ -711,38 +711,33 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 	}
 }
 
-void GrowtopiaBot::SpamSmoke() {
-    // Tentukan jumlah spam dan interval waktu (misalnya 500ms)
-    int spamCount = 10; // Jumlah paket yang ingin dikirimkan
-    int intervalMs = 500; // Interval waktu dalam milidetik (500ms = 0.5 detik)
+void GrowtopiaBot::InvisibleEffect(int count) {
+    // Daftar offset acak untuk menciptakan efek di sekitar bot
+    std::vector<int> randomOffsets{ 32, 64, -32, -64, 0, 0 };
 
+    // Cari objek bot lokal
     for (int i = 0; i < objects.size(); i++) {
         if (objects.at(i).isLocal) {
-            // Dapatkan posisi awal bot
-            int startX = objects.at(i).x;
-            int startY = objects.at(i).y;
-    // Spam paket "smoke" dengan interval dan jarak yang berbeda
-    for (int i = 0; i < spamCount; i++) {
-        // Siapkan data untuk paket "smoke"
-        PlayerMoving data;
-        data.characterState = 32; // Status karakter (sesuaikan sesuai kebutuhan)
-        // Set koordinat dengan jarak bertambah untuk setiap paket
-        data.x = startX + (i * 10); // Setiap paket bergerak sejauh 10 unit X
-        data.y = startY + (i * 10); // Setiap paket bergerak sejauh 10 unit Y
+            PlayerMoving data;
+            data.characterState = 0; // Sesuaikan karakter state jika diperlukan
+            data.packetType = 17;   // Tipe paket untuk PLAYER_MOVING
 
-        // Kirim paket raw
-        SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            for (int j = 0; j < count; j++) {
+                // Tentukan posisi acak di sekitar bot
+                data.x = objects.at(i).x + randomOffsets[rand() % randomOffsets.size()];
+                data.y = objects.at(i).y + randomOffsets[rand() % randomOffsets.size()];
+                data.punchX = -1; // Tidak ada aksi pukulan
+                data.punchY = -1; // Tidak ada aksi pukulan
 
-        // Debugging untuk spam smoke
-        std::cout << "Spam Smoke #" << (i + 1) << " sent. X: " << data.x << ", Y: " << data.y << ", CharacterState: " << data.characterState << std::endl;
+                // Kirim paket mentah untuk efek
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
-        // Tunggu interval sebelum mengirim paket berikutnya
-        std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs));
+                // Debugging
+                std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
+            }
+            break;
+        }
     }
-
-    std::cout << "Spam Smoke completed!" << std::endl;
-}
-}
 }
 
 void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
