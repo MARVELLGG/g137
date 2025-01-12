@@ -202,15 +202,15 @@ public:
 		connectClient(SERVER_HOST, SERVER_PORT);
 	}
 
-void connectClient(string hostName, int port)
+	void connectClient(string hostName, int port)
 	{
 		cout << "Connecting bot to " << hostName << ":" << port << endl;
 		client = enet_host_create(NULL /* create a client host */,
-			1 /* only allow 1 outgoing connection */,
+			3 /* only allow 1 outgoing connection */,
 			2 /* allow up 2 channels to be used, 0 and 1 */,
 			0 /* 56K modem with 56 Kbps downstream bandwidth */,
 			0 /* 56K modem with 14 Kbps upstream bandwidth */);
-		client->usingNewPacket = true;
+		client->usingNewPacket = false;
 		if (client == NULL)
 		{
 			cout << "An error occurred while trying to create an ENet client host.\n";
@@ -234,7 +234,6 @@ void connectClient(string hostName, int port)
 		}
 		enet_host_flush(client);
 	}
-
 	/******************* enet core *********************/
 
 
