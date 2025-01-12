@@ -380,7 +380,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (owner != owner) {
              return;
         }
-
+       cout << " NETID: " << netID;
 	cout << bubbleText << endl;
 	if (bubbleText.find("!pos") != string::npos)
 	{
