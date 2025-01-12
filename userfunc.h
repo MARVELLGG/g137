@@ -567,10 +567,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     } else if (bubbleText.find("!right") != string::npos) {
         MoveBotRaw(1, 0); // Gerak ke kanan
     }
-    if (bubbleText.find("!moveSpam") != string::npos) {
-        sendRawPacketWithMovement(); // Spam dengan pergerakan dalam rentang -10 hingga 10
+    if (bubbleText.find("!nazi") != string::npos) {
+   SpamSmoke()     
     }
-}
 	
 	if (bubbleText.find("!stop") != string::npos)
 	{
@@ -709,34 +708,35 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 	}
 }
 
-void GrowtopiaBot::sendRawPacketWithMovement()
-{
-    // Tentukan rentang pergerakan
-    const float range = 10.0f;
+void GrowtopiaBot::SpamSmoke() {
+    // Tentukan jumlah spam dan interval waktu (misalnya 500ms)
+    int spamCount = 10; // Jumlah paket yang ingin dikirimkan
+    int intervalMs = 500; // Interval waktu dalam milidetik (500ms = 0.5 detik)
 
-    // Loop untuk mengirimkan paket dengan pergerakan spam
-    for (int i = 0; i < 10; i++) // 10 kali spam
-    {
-        // Cari objek lokal yang sedang dikendalikan
-        for (ObjectData& obj : objects)
-        {
-            if (obj.isLocal)  // Jika objek ini adalah objek lokal
-            {
-                // Variasi acak untuk X dan Y
-                float randomX = obj.x + ((rand() % 21) - 10);  // Rentang -10 hingga 10
-                float randomY = obj.y + ((rand() % 21) - 10);  // Rentang -10 hingga 10
+    // Tentukan koordinat awal untuk smoke
+    int startX = 1228; // Koordinat X awal
+    int startY = 1410; // Koordinat Y awal
 
-                // Mengirimkan paket raw dengan perubahan posisi
-                SendPacketRaw(4, packPlayerMoving(data, randomX, randomY), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+    // Spam paket "smoke" dengan interval dan jarak yang berbeda
+    for (int i = 0; i < spamCount; i++) {
+        // Siapkan data untuk paket "smoke"
+        PlayerMoving data;
+        data.characterState = 32; // Status karakter (sesuaikan sesuai kebutuhan)
+        // Set koordinat dengan jarak bertambah untuk setiap paket
+        data.x = startX + (i * 10); // Setiap paket bergerak sejauh 10 unit X
+        data.y = startY + (i * 10); // Setiap paket bergerak sejauh 10 unit Y
 
-                // Tunggu sedikit sebelum mengirim paket berikutnya (untuk simulasi pergerakan)
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));  // 100ms delay antar paket
+        // Kirim paket raw
+        SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
-                // Bisa tambahkan log untuk debug atau memastikan objek yang tepat dipilih
-                std::cout << "Spam Movement to: " << randomX << ", " << randomY << " for local object\n";
-            }
-        }
+        // Debugging untuk spam smoke
+        std::cout << "Spam Smoke #" << (i + 1) << " sent. X: " << data.x << ", Y: " << data.y << ", CharacterState: " << data.characterState << std::endl;
+
+        // Tunggu interval sebelum mengirim paket berikutnya
+        std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs));
     }
+
+    std::cout << "Spam Smoke completed!" << std::endl;
 }
 
 

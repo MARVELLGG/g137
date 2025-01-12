@@ -56,7 +56,7 @@ public:
 
 	/********** user sutff ***************/
 	int owner = -1;
-    int number = -1;
+    int netcopy = -1;
 	string ownerUsername;
 
 	struct ObjectData
@@ -125,6 +125,7 @@ public:
 	void OnRemove(string data);
 	void OnSpawn(string data);
 	void MoveBotRaw(int deltaX, int deltaY);
+    void SpamSmoke();
 	void OnAction(string command);
 	void SetHasGrowID(int state, string name, string password);
 	void SetHasAccountSecured(int state);
