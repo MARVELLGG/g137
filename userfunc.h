@@ -779,34 +779,44 @@ vector<string> explode(const string &delimiter, const string &str)
 }
 
 void GrowtopiaBot::userLoop() {
-	if (timeFromWorldEnter > 200 && currentWorld != worldName) {
-		if (worldName == "" || worldName == "-") {
-			timeFromWorldEnter = 0;
-		} else {
-			SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
-			objects.clear();
-		}
-		timeFromWorldEnter = 0;
-		currentWorld = worldName;
-	}
-	timeFromWorldEnter++;
-	counter++;
-	if ((counter % 1800) == 0)
-	{
-		string name = "";
-		float distance = std::numeric_limits<float>::infinity();
-		float ownerX;
-		float ownerY;
-		for (ObjectData x : objects)
-		{
-			if (x.netId == owner)
-			{
-				ownerX = x.x;
-				ownerY = x.y;
-			}
-		}
-	}
+    // Berganti world jika sudah waktunya
+    if (timeFromWorldEnter > 200 && currentWorld != worldName) {
+        if (worldName == "" || worldName == "-") {
+            timeFromWorldEnter = 0; // Reset waktu
+        } else {
+            // Kirim permintaan untuk bergabung ke world baru
+            SendPacket(3, "action|join_request\nname|" + worldName, peer);
+            // Jangan clear objek, biarkan objek tetap ada untuk referensi jika diperlukan
+            // objects.clear();  // Jangan hapus objek jika masih diperlukan di world lain
+        }
+        timeFromWorldEnter = 0;  // Reset waktu
+        currentWorld = worldName;  // Perbarui dunia saat ini
+    }
+
+    timeFromWorldEnter++;  // Increment waktu sejak masuk dunia
+    counter++;  // Increment counter untuk melakukan aksi periodik
+    
+    // Setiap 1800 iterasi (30 menit)
+    if ((counter % 1800) == 0) {
+        string name = "";
+        float distance = std::numeric_limits<float>::infinity();
+        float ownerX = -1.0f;  // Pastikan variabel terinisialisasi
+        float ownerY = -1.0f;  // Pastikan variabel terinisialisasi
+        
+        // Cari objek yang sesuai dengan owner
+        for (ObjectData& x : objects) {  // Perhatikan penggunaan reference (&) untuk menghindari copy
+            if (x.netId == owner) {
+                ownerX = x.x;
+                ownerY = x.y;
+                break;  // Jika sudah ditemukan, keluar dari loop lebih cepat
+            }
+        }
+
+        // Lakukan sesuatu dengan ownerX dan ownerY jika perlu
+        // Misalnya, hitung jarak ke objek lain, atau kirim packet lain
+    }
 }
+
 
 void GrowtopiaBot::userInit() {
 	connectClient();
