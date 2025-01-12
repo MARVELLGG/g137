@@ -208,7 +208,7 @@ void connectClient(string hostName, int port) {
     for (int i = 0; i < 3; i++) { // Hardcoded untuk 3 bot
         cout << "Connecting bot " << i + 1 << " to " << hostName << ":" << port << endl;
         clients[i] = enet_host_create(NULL, 3, 2, 0, 0);
-        client->usingNewPacket = false;
+        clients[i]->usingNewPacket = false;
         if (clients[i] == NULL) {
             cout << "An error occurred while trying to create an ENet client host for bot " << i + 1 << endl;
             exit(EXIT_FAILURE);
