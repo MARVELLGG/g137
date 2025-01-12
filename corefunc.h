@@ -175,6 +175,31 @@ public:
 			enet_peer_send(enetPeer, 0, v3);
 		}
 	}
+	
+	void SendPacketRaw2(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag)
+	{
+		ENetPacket *p;
+
+		if (peer) // check if we have it setup
+		{
+			if (a1 == 4 && *((BYTE *)packetData + 12) & 8)
+			{
+				p = enet_packet_create(0, packetDataSize + *((DWORD *)packetData + 13) + 5, packetFlag);
+				int four = 4;
+				memcpy(p->data, &four, 4);
+				memcpy((char *)p->data + 4, packetData, packetDataSize);
+				memcpy((char *)p->data + packetDataSize + 4, a4, *((DWORD *)packetData + 13));
+				enet_peer_send(peer, 0, p);
+			}
+			else
+			{
+				p = enet_packet_create(0, packetDataSize + 5, packetFlag);
+				memcpy(p->data, &a1, 4);
+				memcpy((char *)p->data + 4, packetData, packetDataSize);
+				enet_peer_send(peer, 0, p);
+			}
+		}
+	}
 
 	void SendPacketRaw(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag, int delay = 0)
 	{

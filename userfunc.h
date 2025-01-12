@@ -903,7 +903,7 @@ void GrowtopiaBot::respawn()
 			data.x = objects.at(i).x;
 			data.y = objects.at(i).y;
 			data.netID = objects.at(i).netId;
-			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw2(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 			cout << "Send" << endl;
 			break;
 		}
