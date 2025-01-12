@@ -193,9 +193,7 @@ string packet3 =
 	
     // Cetak isi paket untuk debugging
     cout << packet;
-    SendPacket(2, packet, peers[0]);
-    SendPacket(2, packet, peers[1]);
-    SendPacket(2, packet, peers[2]);
+    SendPacket(2, packet, peer);
     
     cout << "All bots logged in!" << endl;
     currentWorld = "";
@@ -711,10 +709,7 @@ void GrowtopiaBot::userLoop() {
 		if (worldName == "" || worldName == "-") {
 			timeFromWorldEnter = 0;
 		} else {
-			SendPacket(3, "action|join_request\nname|" + worldName, peers[0]); // MARRKS
-			SendPacket(3, "action|join_request\nname|" + worldName, peers[1]); // MARRKS
-			SendPacket(3, "action|join_request\nname|" + worldName, peers[2]); // MARRKS
-			
+			SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
 			objects.clear();
 		}
 		timeFromWorldEnter = 0;
@@ -749,10 +744,8 @@ void GrowtopiaBot::respawn()
 {
 	PlayerMoving data;
 	data.characterState = 0x924; // animation
-	SendPacket(2, "action|respawn", peers[0]); // respawn request
-	SendPacket(2, "action|respawn", peers[1]); // respawn request
-	SendPacket(2, "action|respawn", peers[2]); // respawn request
-	for (int i = 0; i < objects.size(); i++)
+	SendPacket(2, "action|respawn", peer); // respawn request
+		for (int i = 0; i < objects.size(); i++)
 		if (objects.at(i).isLocal)
 		{
 			data.x = objects.at(i).x;
