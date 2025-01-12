@@ -48,7 +48,6 @@ int main() {
             string userInput;
             cout << "Masukkan perintah untuk dikirimkan sebagai paket: ";
             std::getline(cin, userInput);
-
             if (!userInput.empty()) {
                 bot.SendPacket(2, userInput, bot.peer);
 		 
