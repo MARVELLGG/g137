@@ -812,7 +812,6 @@ public:
 		{
 			data[i] = 0;
 		}
-		memcpy(data + 0, &dataStruct->packetType, 4);
 		memcpy(data + 4, &dataStruct->netID, 4);
 		memcpy(data + 12, &dataStruct->characterState, 4);
 		memcpy(data + 20, &dataStruct->plantingTree, 4);
@@ -828,8 +827,7 @@ public:
 	PlayerMoving* unpackPlayerMoving(BYTE* data)
 	{
 		PlayerMoving* dataStruct = new PlayerMoving;
-	    memcpy(&dataStruct->packetType, data, 4);
-    	memcpy(&dataStruct->netID, data + 4, 4);
+	    memcpy(&dataStruct->netID, data + 4, 4);
 		memcpy(&dataStruct->characterState, data + 12, 4);
 		memcpy(&dataStruct->plantingTree, data + 20, 4);
 		memcpy(&dataStruct->x, data + 24, 4);
