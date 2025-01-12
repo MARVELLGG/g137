@@ -328,29 +328,42 @@ void GrowtopiaBot::OnSpawn(string data)
 		{
 			objectData.country = act;
 		}
-		else if (id == "name") 
-{
-    string strippedMessage = stripMessage(act);  // Panggil stripMessage hanya sekali
+bool nameProcessed = false; // Flag untuk melacak apakah 'name' telah diproses
+int bufferedNetID = -1; // Buffer untuk menyimpan netID sementara
+
+else if (id == "name") {
+    string strippedMessage = stripMessage(act);  
     if (strippedMessage == ownerUsername) {
         actuallyOwner = true;
+        nameProcessed = true;  // Tandai bahwa 'name' telah diproses
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
-        std::cout << "[Dbugging: actuallyOwner is " << actuallyOwner << std::endl; // Debugging actuallyOwner
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Delay 100ms
+        
+        // Jika ada netID yang sudah terbuffer sebelumnya, proses sekarang
+        if (bufferedNetID != -1) {
+            std::cout << "Processing buffered netID: " << bufferedNetID << std::endl;
+            owner = bufferedNetID;
+            objectData.netId = bufferedNetID;
+            std::cout << "SUCCESS: netID updated to " << objectData.netId << "\n";
+            bufferedNetID = -1; // Reset bufferedNetID
+        }
     } else {
         std::cout << "Owner not detected, strippedMessage: " << strippedMessage << std::endl;
     }
 }
-		else if (id == "netID") 
-{
-	std::cout << "Debugging: id is " << id << std::endl; // Debugging id
-    std::cout << "Debugging: actuallyOwner is " << actuallyOwner << std::endl; // Debugging actuallyOwner
-    if (actuallyOwner) {  // Pastikan netID hanya diperbarui jika owner terdeteksi
+
+else if (id == "netID") {
+    std::cout << "Received netID: " << act << std::endl;
+    
+    // Jika 'name' belum diproses, simpan netID terlebih dahulu
+    if (!nameProcessed) {
+        bufferedNetID = std::stoi(act); // Simpan netID untuk diproses nanti
+        std::cout << "Buffered netID: " << bufferedNetID << std::endl;
+    } else {
+        // Jika 'name' sudah diproses, langsung proses netID
         int netID = std::stoi(act);       
         objectData.netId = netID;
-        owner = netID; // Simpan netID sebagai owner
+        owner = netID;
         std::cout << "SUCCESS: netID updated to " << owner << "\n";
-    } else {
-        std::cout << "Owner not detected. Skipping netID update.\n";
     }
 }
 		else if (id == "userID")
