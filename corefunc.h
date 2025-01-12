@@ -560,7 +560,8 @@ public:
 				else if (action == "OnTalkBubble" && index == 1)
 				{
 					((OnTalkBubbleStruct*)dataStruct)->netID = v;
-				}
+					std::cout << "Setting netID to: " << v << std::endl;
+        		}
 				else if (action == "OnTalkBubble" && index == 3)
 				{
 					((OnTalkBubbleStruct*)dataStruct)->type = v;
@@ -716,7 +717,8 @@ public:
 		}
 		else if (action == "OnTalkBubble")
 		{
-			OnTalkBubble(((OnTalkBubbleStruct*)dataStruct)->netID, ((OnTalkBubbleStruct*)dataStruct)->bubbleText, ((OnTalkBubbleStruct*)dataStruct)->type, ((OnTalkBubbleStruct*)dataStruct)->number);
+			std::cout << "Calling OnTalkBubble with netID: " << ((OnTalkBubbleStruct*)dataStruct)->netID << std::endl;
+           OnTalkBubble(((OnTalkBubbleStruct*)dataStruct)->netID, ((OnTalkBubbleStruct*)dataStruct)->bubbleText, ((OnTalkBubbleStruct*)dataStruct)->type, ((OnTalkBubbleStruct*)dataStruct)->number);
 		}
 		else if (action == "SetRespawnPos")
 		{
