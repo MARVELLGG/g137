@@ -337,7 +337,10 @@ void GrowtopiaBot::OnSpawn(string data)
         actuallyOwner = true;
         nameProcessed = true;  // Tandai bahwa 'name' telah diproses
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
-        name = strippedMessage;
+        for (ObjectData x : objects)
+		{
+        x.name = strippedMessage;
+        }
         // Jika ada netID yang sudah terbuffer sebelumnya, proses sekarang
         if (bufferedNetID != -1) {
             std::cout << "Processing buffered netID: " << bufferedNetID << std::endl;
@@ -493,9 +496,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("!netid ") != string::npos) {
     // Ambil substring setelah "!netid " dan konversi menjadi int
-    int numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
+    string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
     try {
-        number = numberStr; // Konversi string ke integer dan simpan ke 'number'
+    	int numbers = std::stoi(numberStr); // Konversi string ke integer dan simpan ke 'number'
+        number = numbers; // Konversi string ke integer dan simpan ke 'number'
         std::cout << "Parsed number: " << number << std::endl;
     } catch (const std::invalid_argument& e) {
         SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
