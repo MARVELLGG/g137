@@ -572,7 +572,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         }
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
+		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified by BOBSQUISH", peer);
 	}
 }
 
