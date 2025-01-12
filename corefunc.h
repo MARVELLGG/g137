@@ -56,7 +56,7 @@ public:
 
 	/********** user sutff ***************/
 	int owner = -1;
-    int netcopy = -1;
+    int number = -1;
 	string ownerUsername;
 
 	struct ObjectData
