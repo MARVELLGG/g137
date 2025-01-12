@@ -334,6 +334,8 @@ void GrowtopiaBot::OnSpawn(string data)
     if (strippedMessage == ownerUsername) {
         actuallyOwner = true;
         std::cout << "Owner detected: " << ownerUsername << " (" << strippedMessage << ")\n";
+        std::cout << "[Dbugging: actuallyOwner is " << actuallyOwner << std::endl; // Debugging actuallyOwner
+        
     } else {
         std::cout << "Owner not detected, strippedMessage: " << strippedMessage << std::endl;
     }
