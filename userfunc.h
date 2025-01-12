@@ -484,7 +484,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "action|input\n|text|Netid Follow " + number + "", peer);
+		SendPacket(2, "action|input\n|text|Netid Follow " + number + ".", peer);
         
 	}
 	if (bubbleText.find("!follow") != string::npos)
@@ -493,9 +493,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	}
 	if (bubbleText.find("!netid ") != string::npos) {
     // Ambil substring setelah "!netid " dan konversi menjadi int
-    string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
+    int numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
     try {
-        numbers = numberStr; // Konversi string ke integer dan simpan ke 'number'
+        number = numberStr; // Konversi string ke integer dan simpan ke 'number'
         std::cout << "Parsed number: " << number << std::endl;
     } catch (const std::invalid_argument& e) {
         SendPacket(2, "Invalid input for number: " + numberStr + "", peer);
