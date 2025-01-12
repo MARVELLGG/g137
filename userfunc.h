@@ -388,11 +388,11 @@ void GrowtopiaBot::SetHasAccountSecured(int state)
 
 void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int number)
 {
-	
-	if (owner != owner) {
+	std::cout << "Received netID: " << netID << std::endl;  // Cek nilai netID di sini
+	if (netID != owner) {
              return;
         }
-
+    
 	cout << bubbleText << endl;
 	if (bubbleText.find("!pos") != string::npos)
 	{
