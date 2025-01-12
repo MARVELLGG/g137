@@ -487,8 +487,8 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "action|input\n|text|Netid Follow " + number + ".", peer);
-        
+		SendPacket(2, "action|input\n|text|Netid Follow " + std::to_string(number) + ".", peer);
+
 	}
 	if (bubbleText.find("!follow") != string::npos)
 	{
