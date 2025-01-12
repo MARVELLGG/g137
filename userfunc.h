@@ -714,7 +714,6 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
 
             // Buat paket `PLAYER_MOVING`
             PlayerMoving data;
-            data.packetType = 0x14;  // PLAYER_MOVING
             data.characterState = 0; // Sesuaikan jika diperlukan
             data.x = objects.at(i).x;
             data.y = objects.at(i).y;
