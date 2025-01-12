@@ -193,10 +193,8 @@ string packet3 =
 	
     // Cetak isi paket untuk debugging
     cout << packet;
-    SendPacket(2, packet, peers[0]);
-    SendPacket(2, packet2, peers[1]);
-    SendPacket(2, packet3, peers[2]);
-
+    SendPacket(2, packet, peers[1]);
+    
     cout << "All bots logged in!" << endl;
     currentWorld = "";
 }
