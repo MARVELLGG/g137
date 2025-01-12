@@ -320,6 +320,9 @@ void GrowtopiaBot::OnSpawn(string data)
 	cout << data;
 	ObjectData objectData;
 	bool actuallyOwner = false;
+	bool nameProcessed = false; // Flag untuk melacak apakah 'name' telah diproses
+    int bufferedNetID = -1; // Buffer untuk menyimpan netID sementara
+ 
 
 	while (std::getline(ss, to, '\n')) {
 		string id = to.substr(0, to.find("|"));
@@ -328,10 +331,7 @@ void GrowtopiaBot::OnSpawn(string data)
 		{
 			objectData.country = act;
 		}
-bool nameProcessed = false; // Flag untuk melacak apakah 'name' telah diproses
-int bufferedNetID = -1; // Buffer untuk menyimpan netID sementara
-
-else if (id == "name") {
+      else if (id == "name") {
     string strippedMessage = stripMessage(act);  
     if (strippedMessage == ownerUsername) {
         actuallyOwner = true;
