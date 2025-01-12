@@ -89,7 +89,6 @@ string stripMessage(string msg) {
 	return result;
 }
 
-ENetPeer* botPeers[3]; // Menyimpan koneksi untuk 3 bot
 void GrowtopiaBot::onLoginRequested()
 {
     cout << "Logging on..." << endl;
@@ -194,14 +193,14 @@ string packet3 =
 	
     // Cetak isi paket untuk debugging
     cout << packet;
-    SendPacket(2, packet, botPeers[0]);
-    SendPacket(2, packet2, botPeers[1]);
-    SendPacket(2, packet3, botPeers[2]);
+    SendPacket(2, packet, peers[0]);
+    SendPacket(2, packet2, peers[1]);
+    SendPacket(2, packet3, peers[2]);
 
     cout << "All bots logged in!" << endl;
-	currentWorld = "";
+    currentWorld = "";
 }
-
+  
 void GrowtopiaBot::packet_type3(string text)
 {
 	dbgPrint("Some text is here: " + text);
