@@ -567,6 +567,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     } else if (bubbleText.find("!right") != string::npos) {
         MoveBotRaw(1, 0); // Gerak ke kanan
     }
+    if (bubbleText.find("!test") != string::npos) {
+        MoveBotRandom(0, -1); // Gerak ke atas
+     }
     if (bubbleText.find("!nazi") != string::npos) {
    SpamSmoke();
     }
@@ -713,10 +716,11 @@ void GrowtopiaBot::SpamSmoke() {
     int spamCount = 10; // Jumlah paket yang ingin dikirimkan
     int intervalMs = 500; // Interval waktu dalam milidetik (500ms = 0.5 detik)
 
-    // Tentukan koordinat awal untuk smoke
-    int startX = 1228; // Koordinat X awal
-    int startY = 1410; // Koordinat Y awal
-
+    for (int i = 0; i < objects.size(); i++) {
+        if (objects.at(i).isLocal) {
+            // Dapatkan posisi awal bot
+            int startX = objects.at(i).x;
+            int startY = objects.at(i).y;
     // Spam paket "smoke" dengan interval dan jarak yang berbeda
     for (int i = 0; i < spamCount; i++) {
         // Siapkan data untuk paket "smoke"
@@ -738,6 +742,43 @@ void GrowtopiaBot::SpamSmoke() {
 
     std::cout << "Spam Smoke completed!" << std::endl;
 }
+}
+}
+
+void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
+    // Ambil objek bot lokal
+    for (int i = 0; i < objects.size(); i++) {
+        if (objects.at(i).isLocal) {
+            // Dapatkan posisi awal bot
+            int startX = objects.at(i).x;
+            int startY = objects.at(i).y;
+
+            // Loop untuk mengirimkan gerakan raw sebanyak repeatCount
+            for (int j = 0; j < repeatCount; j++) {
+                // Buat pergerakan acak dengan offset
+                int randomX = startX + offsetX + (rand() % 32);
+                int randomY = startY + offsetY + (rand() % 32);
+
+                // Buat paket `PLAYER_MOVING`
+                PlayerMoving data;
+                data.characterState = 0; // Sesuaikan jika diperlukan
+                data.x = randomX;
+                data.y = randomY;
+                data.punchX = -1;
+                data.punchY = -1;
+
+                // Kirim paket mentah
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+
+                // Debugging
+                std::cout << "Sent raw movement to X: " << data.x / 32 << ", Y: " << data.y / 32 << " (" << j + 1 << "/" << repeatCount << ")" << std::endl;
+            }
+
+            break; // Bot lokal sudah ditemukan, hentikan loop
+        }
+    }
+}
+
 
 
 void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {

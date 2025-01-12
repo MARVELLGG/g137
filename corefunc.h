@@ -126,6 +126,7 @@ public:
 	void OnSpawn(string data);
 	void MoveBotRaw(int deltaX, int deltaY);
     void SpamSmoke();
+    void MoveBotRandom(int repeatCount, int offsetX, int offsetY);
 	void OnAction(string command);
 	void SetHasGrowID(int state, string name, string password);
 	void SetHasAccountSecured(int state);
