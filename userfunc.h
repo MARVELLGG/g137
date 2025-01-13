@@ -253,20 +253,17 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     if (strippedMessage.find("MSG") != std::string::npos) {
         cout << "Found message!" << endl;
     }
-    if (strippedMessage.find("!tp") != std::string::npos) {
-        // Gunakan regex untuk mencari angka setelah "!tp"
-        std::regex tpPattern("!tp (\\d+) (\\d+)");
-        std::smatch match;
-
-        if (std::regex_search(strippedMessage, match, tpPattern)) {
-            int numberx = std::stoi(match[1].str());
-            int numbery = std::stoi(match[2].str());
-            cout << "Teleporting to: " << numberx << ", " << numbery << endl;
-            OnSetPos(numberx, numbery); // Panggil fungsi OnSetPos
-        } else {
-            cout << "Invalid teleport command format!" << endl;
-        }
-}
+    
+    if (message.find("`` left, `w") != string::npos)
+	{
+		string::size_type loc = message.find("`` left,", 0);
+		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just left"), peer);
+	}
+	else if (message.find("`` entered, `w") != string::npos)
+	{
+		string::size_type loc = message.find("`` entered,", 0);
+		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just joined"), peer);
+	}
     
     cout << "------------------------" << endl;
 }
@@ -573,6 +570,31 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowing = false;
 	}
+	if (bubbleText.find("!tp ") != string::npos) {
+    size_t pos = bubbleText.find("!tp ") + 4; // Position after "!tp "
+    std::string coordinates = bubbleText.substr(pos);
+    size_t spacePos = coordinates.find(" ");
+
+    if (spacePos != std::string::npos) {
+        // Extract numberx and numbery
+        std::string numberx = coordinates.substr(0, spacePos);
+        std::string numbery = coordinates.substr(spacePos + 1);
+
+        try {
+            float x = std::stof(numberx); // Convert to float
+            float y = std::stof(numbery); // Convert to float
+
+            // Call OnSetPos with the extracted coordinates
+            OnSetPos(x, y);
+        } catch (const std::exception& e) {
+            // Handle invalid input
+            SendPacket(3, "action|input\n|text|Invalid teleport coordinates!", peer);
+        }
+    } else {
+        // Handle missing coordinates
+        SendPacket(3, "action|input\n|text|Usage: !tp numberx numbery", peer);
+    }
+}
 	if (bubbleText.find("!dance") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
