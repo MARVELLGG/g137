@@ -389,7 +389,7 @@ else if (id == "netID") {
 
 void GrowtopiaBot::OnAction(string command)
 {
-	//SendPacket(2, "action|input\n|text|Why do you "+command.substr(1, command.length())+"?", peer);
+	SendPacket(2, "action|input\n|text|Why do you "+command.substr(1, command.length())+"?", peer);
 }
 
 void GrowtopiaBot::SetHasGrowID(int state, string name, string password)
@@ -832,7 +832,7 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             data.punchY = -1;
 
             // Kirim paket mentah
-            SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
