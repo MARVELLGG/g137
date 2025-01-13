@@ -712,7 +712,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
     }
 
     // Check if we are following the player (owner) and additional conditions
-    if (isFollowing && data->netID == owner && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0)
+    if (isFollowing && data->netID == owner && data->plantingTree == 0)
     {
         // Handle backward walking and character state changes
         if (backwardWalk)
