@@ -98,6 +98,7 @@ public:
 
 	/*********** structs declaration *********/
 	struct PlayerMoving {
+    int packetType;
 	int netID;
 	float x;
 	float y;
