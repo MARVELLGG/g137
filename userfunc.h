@@ -686,34 +686,62 @@ void GrowtopiaBot::AtApplyLock(int x, int y, int itemId) // ApplyLockFromGamePac
 
 void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 {
-	int object = -1;
-	//cout << std::hex << data->characterState << "; " << data->x << "; " << data->y << "; "<< data->XSpeed << "; "<< data->plantingTree << endl;
-	for (int i = 0; i < objects.size(); i++)
-	{
-		if (objects.at(i).netId == data->netID)
-		{
-			object = i;
-		}
-	}
-	if (object != -1)
-	{
-		objects[object].x = data->x;
-		objects[object].y = data->y;
-	}
-	if (isFollowing && data->netID == owner && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
-	{
-		if (backwardWalk)
-			data->characterState ^= 0x10;
-		if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
-			SendPacket(2, "action|respawn", peer);
-		}
-		for (int i = 0; i < objects.size(); i++)
-			if (objects.at(i).isLocal) {
-				objects.at(i).x = data->x;
-				objects.at(i).y = data->y;
-			}
-		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
-	}
+    int object = -1;
+    
+    // Loop through all objects to find the corresponding object by netID
+    for (int i = 0; i < objects.size(); i++)
+    {
+        if (objects.at(i).netId == data->netID)
+        {
+            object = i;
+        }
+    }
+
+    if (object != -1)
+    {
+        // Update object coordinates
+        objects[object].x = data->x;
+        objects[object].y = data->y;
+
+        // Update punch position if the object has a valid punch (i.e., non-negative values)
+        if (data->punchX != -1 && data->punchY != -1)
+        {
+            objects[object].punchX = data->punchX;
+            objects[object].punchY = data->punchY;
+        }
+    }
+
+    // Check if we are following the player (owner) and additional conditions
+    if (isFollowing && data->netID == owner && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0)
+    {
+        // Handle backward walking and character state changes
+        if (backwardWalk)
+            data->characterState ^= 0x10;
+
+        // Check for respawn conditions
+        if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
+            SendPacket(2, "action|respawn", peer);
+        }
+
+        // Update local objects position
+        for (int i = 0; i < objects.size(); i++)
+        {
+            if (objects.at(i).isLocal)
+            {
+                objects.at(i).x = data->x;
+                objects.at(i).y = data->y;
+                // If the object is punching, update the punch position as well
+                if (data->punchX != -1 && data->punchY != -1)
+                {
+                    objects.at(i).punchX = data->punchX;
+                    objects.at(i).punchY = data->punchY;
+                }
+            }
+        }
+
+        // Send movement data, including punch position if available
+        SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+    }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
