@@ -824,14 +824,15 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             objects.at(i).y += deltaY * 32;
 
             // Buat paket `PLAYER_MOVING`
+            PlayerMoving data;
             data.characterState = 0; // Sesuaikan jika diperlukan
             data.x = objects.at(i).x;
             data.y = objects.at(i).y;
             data.punchX = -1;
             data.punchY = -1;
-
+            	BYTE* raw = packPlayerMoving(&data);
             // Kirim paket mentah
-            SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
