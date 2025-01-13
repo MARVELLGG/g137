@@ -908,7 +908,8 @@ void GrowtopiaBot::userLoop()
 				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
 				{
 					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
-					name = x.name;
+				string x.name = x.name;	
+               name = x.name;
 				}
                 if(x.netId==owner && x.isGone)
                     goto NO_OWNER_MESSAGE;
