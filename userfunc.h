@@ -597,11 +597,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 }
 if (bubbleText.find("!go ") != string::npos)
 	{
-#ifdef WORLD_GO
 SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
         worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
-#endif
 	}
 	if (bubbleText.find("!dance") != string::npos)
 	{
@@ -919,7 +917,7 @@ void GrowtopiaBot::userLoop()
 				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
 			}
 			else {
-				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
+				SendPacket(2, "action|input\n|text|Closest player is " + x.name + " with distance " + std::to_string(sqrt(distance)), peer);
             }
 		}
 	}
