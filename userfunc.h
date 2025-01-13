@@ -873,6 +873,7 @@ vector<string> explode(const string &delimiter, const string &str)
 
 void GrowtopiaBot::userLoop()
 {
+	
     if(timeFromWorldEnter>200 && currentWorld!=worldName)
     {
         if(worldName==""||worldName=="-")
@@ -908,8 +909,7 @@ void GrowtopiaBot::userLoop()
 				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
 				{
 					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
-				string x.name = x.name;	
-               name = x.name;
+               x.name = x.name;
 				}
                 if(x.netId==owner && x.isGone)
                     goto NO_OWNER_MESSAGE;
