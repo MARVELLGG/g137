@@ -42,7 +42,7 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	ENetHost * client;
+	ENetHost *client;
 
 	int login_user = 0;
 	int login_token = 0;
@@ -95,10 +95,16 @@ public:
 
 	/*********** structs declaration *********/
 	struct PlayerMoving {
-	int32_t netID, effect_flags_check;
-	int packetType, characterState, plantingTree, punchX, punchY, secondnetID;
-	float x, y, XSpeed, YSpeed;
-	int packet_3, packet_int_40 = 0;
+	int netID;
+	float x;
+	float y;
+	int characterState;
+	int plantingTree;
+	float XSpeed;
+	float YSpeed;
+	int punchX;
+	int punchY;
+
 };
 	/*********** structs declaration *********/
 
@@ -226,41 +232,42 @@ public:
 
 	// Connect with default value
 	void connectClient() {
-		connectClient(SERVER_HOST, SERVER_PORT);
+		connectClient(SERVER_HOST, SERVER_PORT, 3);
 	}
 
-	void connectClient(string hostName, int port)
-	{
-		cout << "Connecting bot to " << hostName << ":" << port << endl;
-		client = enet_host_create(NULL /* create a client host */,
-			3 /* only allow 1 outgoing connection */,
-			2 /* allow up 2 channels to be used, 0 and 1 */,
-			0 /* 56K modem with 56 Kbps downstream bandwidth */,
-			0 /* 56K modem with 14 Kbps upstream bandwidth */);
-		client->usingNewPacket = false;
-		if (client == NULL)
-		{
-			cout << "An error occurred while trying to create an ENet client host.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		ENetAddress address;
+	void connectClient(const string& hostName, int port, int botCount) {
+        cout << "Connecting " << botCount << " bots to " << hostName << ":" << port << endl;
 
-		client->checksum = enet_crc32;
-		enet_host_compress_with_range_coder(client);
-		enet_address_set_host(&address, hostName.c_str());
-		address.port = port;
+        // Membuat host client untuk bot
+        client = enet_host_create(NULL, botCount /* Jumlah koneksi yang diizinkan */, 
+                                  2 /* Dua channel: 0 dan 1 */, 0, 0);
+        if (client == NULL) {
+            cout << "An error occurred while trying to create an ENet client host.\n";
+            exit(EXIT_FAILURE);
+        }
 
-		/* Initiate the connection, allocating the two channels 0 and 1. */
-		peer = enet_host_connect(client, &address, 2, 0);
-		if (peer == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		enet_host_flush(client);
-	}
+        client->checksum = enet_crc32;
+        enet_host_compress_with_range_coder(client);
+
+        ENetAddress address;
+        enet_address_set_host(&address, hostName.c_str());
+        address.port = port;
+
+        // Menghubungkan bot satu per satu
+        for (int i = 0; i < botCount; ++i) {
+            ENetPeer* peers = enet_host_connect(client, &address, 2, 0);
+            if (peers == NULL) {
+                cout << "No available peers for initiating an ENet connection for bot " << i + 1 << ".\n";
+                exit(EXIT_FAILURE);
+            }
+            peer.push_back(peers); // Menyimpan peer untuk bot
+            cout << "Bot " << i + 1 << " connected.\n";
+        }
+
+        // Pastikan semua paket dikirimkan
+        enet_host_flush(client);
+    }
+};
 	/******************* enet core *********************/
 
 
@@ -327,12 +334,14 @@ public:
 		}
 		return result;
 	}
+	
+
 
 	char* GetTextPointerFromPacket(ENetPacket* packet)
 	{
 		char zero = 0;
 		memcpy(packet->data + packet->dataLength - 1, &zero, 1);
-		return (char*)(packet->data + 4);
+ 	  return (char*)(packet->data + 4);
 	}
 
 	struct OnSendToServerStruct
@@ -828,11 +837,13 @@ public:
 		WorldThingStruct* specials;
 	};
 
-BYTE* packPlayerMoving(PlayerMoving* dataStruct, int size_ = 56, int some_extra = 0) {
-	BYTE* data = new BYTE[size_];
-	memset(data, 0, size_);
-	memcpy(data + 0, &dataStruct->packetType, 4);
-	memcpy(data + 3, &some_extra, 4);
+BYTE* packPlayerMoving(PlayerMoving* dataStruct)
+{
+	BYTE* data = new BYTE[56];
+	for (int i = 0; i < 56; i++)
+	{
+		data[i] = 0;
+	}
 	memcpy(data + 4, &dataStruct->netID, 4);
 	memcpy(data + 12, &dataStruct->characterState, 4);
 	memcpy(data + 20, &dataStruct->plantingTree, 4);
@@ -840,14 +851,14 @@ BYTE* packPlayerMoving(PlayerMoving* dataStruct, int size_ = 56, int some_extra 
 	memcpy(data + 28, &dataStruct->y, 4);
 	memcpy(data + 32, &dataStruct->XSpeed, 4);
 	memcpy(data + 36, &dataStruct->YSpeed, 4);
-	memcpy(data + 40, &dataStruct->packet_int_40, 4);
 	memcpy(data + 44, &dataStruct->punchX, 4);
 	memcpy(data + 48, &dataStruct->punchY, 4);
 	return data;
 }
-	PlayerMoving* unpackPlayerMoving(BYTE* data) {
+
+PlayerMoving* unpackPlayerMoving(BYTE* data)
+{
 	PlayerMoving* dataStruct = new PlayerMoving;
-	memcpy(&dataStruct->packetType, data, 4);
 	memcpy(&dataStruct->netID, data + 4, 4);
 	memcpy(&dataStruct->characterState, data + 12, 4);
 	memcpy(&dataStruct->plantingTree, data + 20, 4);
@@ -859,6 +870,7 @@ BYTE* packPlayerMoving(PlayerMoving* dataStruct, int size_ = 56, int some_extra 
 	memcpy(&dataStruct->punchY, data + 48, 4);
 	return dataStruct;
 }
+
 
 	WorldStruct* world = NULL;
 
@@ -1278,6 +1290,7 @@ BYTE* packPlayerMoving(PlayerMoving* dataStruct, int size_ = 56, int some_extra 
 			break;
 		}
 	}
+	
 
 	void eventLoop()
 	{
