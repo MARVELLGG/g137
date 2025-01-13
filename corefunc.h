@@ -42,8 +42,7 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	ENetPeer *peer;
-	ENetHost * client;
+	ENetHost *client;
 
 	int login_user = 0;
 	int login_token = 0;
