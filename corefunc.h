@@ -73,6 +73,8 @@ public:
 		int rectY; // collision stuff
 		int rectWidth; // collision stuff
 		int rectHeight; // collision stuff
+		int punchX;
+		int punchY;
 		bool isMod = false;
 		bool isLocal = false;
 	};
