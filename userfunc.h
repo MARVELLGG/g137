@@ -824,7 +824,6 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             objects.at(i).y += deltaY * 32;
 
             // Buat paket `PLAYER_MOVING`
-            PlayerMoving data;
             data.characterState = 0; // Sesuaikan jika diperlukan
             data.x = objects.at(i).x;
             data.y = objects.at(i).y;
