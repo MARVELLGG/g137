@@ -702,13 +702,9 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
         // Update object coordinates
         objects[object].x = data->x;
         objects[object].y = data->y;
-
-        // Update punch position if the object has a valid punch (i.e., non-negative values)
-        if (data->punchX != -1 && data->punchY != -1)
-        {
             objects[object].punchX = data->punchX;
             objects[object].punchY = data->punchY;
-        }
+        
     }
 
     // Check if we are following the player (owner) and additional conditions
@@ -730,12 +726,10 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
             {
                 objects.at(i).x = data->x;
                 objects.at(i).y = data->y;
-                // If the object is punching, update the punch position as well
-                if (data->punchX != -1 && data->punchY != -1)
-                {
+    
                     objects.at(i).punchX = data->punchX;
                     objects.at(i).punchY = data->punchY;
-                }
+                
             }
         }
 
