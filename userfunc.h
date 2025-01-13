@@ -595,6 +595,15 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         SendPacket(3, "action|input\n|text|Usage: !tp numberx numbery", peer);
     }
 }
+if (bubbleText.find("!go ") != string::npos && netID==owner)
+	{
+#ifdef WORLD_GO
+SendPacket(3, "action|quit_to_exit", peer);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
+        worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
+#endif
+	}
+}
 	if (bubbleText.find("!dance") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
@@ -603,14 +612,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
 	}
-	if (bubbleText.find("!go ") != string::npos)
-	{
-		SendPacket(3, "action|quit_to_exit", peer);
-		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
-        }
+	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified my DrOreo002", peer);
+		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer);
 	}
 }
 
@@ -867,42 +872,59 @@ vector<string> explode(const string &delimiter, const string &str)
 	return arr;
 }
 
-void GrowtopiaBot::userLoop() {
-    // Berganti world jika sudah waktunya
-    if (timeFromWorldEnter > 200 && currentWorld != worldName) {
-        if (worldName == "" || worldName == "-") {
-            timeFromWorldEnter = 0; // Reset waktu
+void GrowtopiaBot::userLoop()
+{
+    if(timeFromWorldEnter>200 && currentWorld!=worldName)
+    {
+        if(worldName==""||worldName=="-")
+        {
+            timeFromWorldEnter=0;
         } else {
-            // Kirim permintaan untuk bergabung ke world baru
-            SendPacket(3, "action|join_request\nname|" + worldName, peer);
-            // Jangan clear objek, biarkan objek tetap ada untuk referensi jika diperlukan
-            // objects.clear();  // Jangan hapus objek jika masih diperlukan di world lain
+            SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
+            cout << currentWorld << "; " << worldName << endl;
+            objects.clear();
         }
-        timeFromWorldEnter = 0;  // Reset waktu
-        currentWorld = worldName;  // Perbarui dunia saat ini
+        timeFromWorldEnter=0;
     }
-
-    timeFromWorldEnter++;  // Increment waktu sejak masuk dunia
-    counter++;  // Increment counter untuk melakukan aksi periodik
-    
-    // Setiap 1800 iterasi (30 menit)
-    if ((counter % 1800) == 0) {
-        string name = "";
-        float distance = std::numeric_limits<float>::infinity();
-        float ownerX;
+    timeFromWorldEnter++;
+	counter++;
+	if ((counter % 1800) == 0)
+	{
+		string name = "";
+		float distance = std::numeric_limits<float>::infinity();
+		float ownerX;
 		float ownerY;
-        // Cari objek yang sesuai dengan owner
-        for (ObjectData& x : objects) {  // Perhatikan penggunaan reference (&) untuk menghindari copy
-            if (x.netId == owner) {
-                ownerX = x.x;
-                ownerY = x.y;
-                break;  // Jika sudah ditemukan, keluar dari loop lebih cepat
+		for (ObjectData x : objects)
+		{
+			if (x.netId == owner)
+			{
+				ownerX=x.x;
+				ownerY=x.y;
+			}
+		}
+		if (owner != -1)
+		{
+            for (ObjectData x : objects)
+			{
+				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
+				{
+					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
+					name = x.name;
+				}
+                if(x.netId==owner && x.isGone)
+                    goto NO_OWNER_MESSAGE;
+			}
+			if (distance == std::numeric_limits<float>::infinity())
+			{
+				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
+			}
+			else {
+				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
             }
-        }
-
-        // Lakukan sesuatu dengan ownerX dan ownerY jika perlu
-        // Misalnya, hitung jarak ke objek lain, atau kirim packet lain
-    }
+		}
+	}
+    NO_OWNER_MESSAGE:
+    return;
 }
 
 
