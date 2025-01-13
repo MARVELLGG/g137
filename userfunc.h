@@ -907,7 +907,7 @@ void GrowtopiaBot::userLoop()
 				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
 				{
 					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
-               x.name = x.name;
+               name = x.name;
 				}
                 if(x.netId==owner && x.isGone)
                     goto NO_OWNER_MESSAGE;
@@ -917,7 +917,7 @@ void GrowtopiaBot::userLoop()
 				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
 			}
 			else {
-				SendPacket(2, "action|input\n|text|Closest player is " + x.name + " with distance " + std::to_string(sqrt(distance)), peer);
+				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
             }
 		}
 	}
