@@ -42,7 +42,8 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	ENetHost *client;
+	ENetPeer *peer;
+	ENetHost * client;
 
 	int login_user = 0;
 	int login_token = 0;
@@ -232,42 +233,41 @@ public:
 
 	// Connect with default value
 	void connectClient() {
-		connectClient(SERVER_HOST, SERVER_PORT, 3);
+		connectClient(SERVER_HOST, SERVER_PORT);
 	}
 
-	void connectClient(const string& hostName, int port, int botCount) {
-        cout << "Connecting " << botCount << " bots to " << hostName << ":" << port << endl;
+	void connectClient(string hostName, int port)
+	{
+		cout << "Connecting bot to " << hostName << ":" << port << endl;
+		client = enet_host_create(NULL /* create a client host */,
+			3 /* only allow 1 outgoing connection */,
+			2 /* allow up 2 channels to be used, 0 and 1 */,
+			0 /* 56K modem with 56 Kbps downstream bandwidth */,
+			0 /* 56K modem with 14 Kbps upstream bandwidth */);
+		client->usingNewPacket = false;
+		if (client == NULL)
+		{
+			cout << "An error occurred while trying to create an ENet client host.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+		ENetAddress address;
 
-        // Membuat host client untuk bot
-        client = enet_host_create(NULL, botCount /* Jumlah koneksi yang diizinkan */, 
-                                  2 /* Dua channel: 0 dan 1 */, 0, 0);
-        if (client == NULL) {
-            cout << "An error occurred while trying to create an ENet client host.\n";
-            exit(EXIT_FAILURE);
-        }
+		client->checksum = enet_crc32;
+		enet_host_compress_with_range_coder(client);
+		enet_address_set_host(&address, hostName.c_str());
+		address.port = port;
 
-        client->checksum = enet_crc32;
-        enet_host_compress_with_range_coder(client);
-
-        ENetAddress address;
-        enet_address_set_host(&address, hostName.c_str());
-        address.port = port;
-
-        // Menghubungkan bot satu per satu
-        for (int i = 0; i < botCount; ++i) {
-            ENetPeer* peers = enet_host_connect(client, &address, 2, 0);
-            if (peers == NULL) {
-                cout << "No available peers for initiating an ENet connection for bot " << i + 1 << ".\n";
-                exit(EXIT_FAILURE);
-            }
-            peer.push_back(peers); // Menyimpan peer untuk bot
-            cout << "Bot " << i + 1 << " connected.\n";
-        }
-
-        // Pastikan semua paket dikirimkan
-        enet_host_flush(client);
-    }
-};
+		/* Initiate the connection, allocating the two channels 0 and 1. */
+		peer = enet_host_connect(client, &address, 2, 0);
+		if (peer == NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+		enet_host_flush(client);
+	}
 	/******************* enet core *********************/
 
 
