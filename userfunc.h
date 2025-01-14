@@ -735,7 +735,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
         }
 
         // Send movement data, including punch position if available
-        SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+        SendPacketRaw1(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
@@ -749,7 +749,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 				objects.at(i).x = data->x;
 				objects.at(i).y = data->y;
 			}
-		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw1(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -869,7 +869,7 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             data.punchY = -1;
             	BYTE* raw = packPlayerMoving(&data);
             // Kirim paket mentah
-            SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            SendPacketRaw1(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
