@@ -100,8 +100,8 @@ void GrowtopiaBot::onLoginRequested()
     
     // Format paket login sesuai permintaan
 string packet = 
-"tankIDName|BOBSQUISH\n"
-"tankIDPass|12345678\n"
+"tankIDName|\n"
+"tankIDPass|\n"
 "requestedName|\n"
 "f|1\n"
 "protocol|212\n"
@@ -384,7 +384,7 @@ else if (id == "netID") {
 
 	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername << "Actuallyowner " << actuallyOwner;
 	objects.push_back(objectData);
-	SendPacket(2, "action|input\n|text|`3Hello " + objectData.name + " `3with id " + objectData.netId + " from " + objectData.country + "!", peer);
+//	SendPacket(2, "action|input\n|text|`3Hello " + objectData.name + " `3with id " + objectData.netId + " from " + objectData.country + "!", peer);
 }
 
 void GrowtopiaBot::OnAction(string command)
