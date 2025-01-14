@@ -836,10 +836,9 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 data.punchY = -1;
 
                 // Paket mentah
-                BYTE* raw = packPlayerMoving(&data);
-
+                
                 // Kirim paket mentah
-                SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
