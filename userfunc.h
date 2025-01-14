@@ -770,7 +770,7 @@ void GrowtopiaBot::InvisibleEffect(int count) {
                 data.y = objects.at(i).y + 16 + randomOffsets[rand() % randomOffsets.size()];
 
                 // Kirim paket mentah untuk efek
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE);
+                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
                 // Debugging
                 std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
@@ -803,7 +803,7 @@ void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
                 data.punchY = -1;
 
                 // Kirim paket mentah
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE);
+                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
 						
                 // Debugging
                 std::cout << "Sent raw movement to X: " << data.x / 32 << ", Y: " << data.y / 32 << " (" << j + 1 << "/" << repeatCount << ")" << std::endl;
@@ -838,7 +838,7 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 // Paket mentah
                 
                 // Kirim paket mentah
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE);
+                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
 						
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
