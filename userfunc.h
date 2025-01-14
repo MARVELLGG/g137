@@ -100,9 +100,9 @@ void GrowtopiaBot::onLoginRequested()
     
     // Format paket login sesuai permintaan
 string packet = 
-"tankIDName|\n"
-"tankIDPass|\n"
-"requestedName|@EZ_NAME\n"
+"tankIDName|BOBSQUISH\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
 "f|1\n"
 "protocol|212\n"
 "game_version|5.02\n"
