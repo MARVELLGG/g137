@@ -287,7 +287,7 @@ public:
 		BYTE ten = 10;
 		memcpy(data + 0, &ten, 1);
 		memcpy(data + 20, &item, 1);
-		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
+		SendPacketRaw1(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -302,7 +302,7 @@ public:
 		memcpy(data + 0, &eighteen, 1);
 		memcpy(data + 4, &netID, 4); // (a1+40)
 		memcpy(data + 44, &state, 4);
-		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
+		SendPacketRaw1(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -315,7 +315,7 @@ public:
 		}
 		BYTE twentytwo = 22;
 		memcpy(data + 0, &twentytwo, 1);
-		SendPacketRaw(4, data, 56, 0, peer, 1);
+		SendPacketRaw1(4, data, 56, 0, peer, 1);
 		free(data);
 	}
 
