@@ -384,7 +384,7 @@ else if (id == "netID") {
 
 	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername << "Actuallyowner " << actuallyOwner;
 	objects.push_back(objectData);
-	//SendPacket(2, "action|input\n|text|`3Hello " + name + " `3with id " + netId + " from " + country + "!", peer);
+	SendPacket(2, "action|input\n|text|`3Hello " + objectData.name + " `3with id " + objectData.netId + " from " + objectData.country + "!", peer);
 }
 
 void GrowtopiaBot::OnAction(string command)
@@ -825,6 +825,7 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
 
             // Buat paket `PLAYER_MOVING`
             PlayerMoving data;
+            data.packetType = 0;
             data.characterState = 0; // Sesuaikan jika diperlukan
             data.x = objects.at(i).x;
             data.y = objects.at(i).y;
@@ -893,7 +894,10 @@ vector<string> explode(const string &delimiter, const string &str)
 
 void GrowtopiaBot::userLoop()
 {
-	
+	if (!worldName.empty()) {
+        std::transform(worldName.begin(), worldName.end(), worldName.begin(), ::toupper);
+    }
+    
     if(timeFromWorldEnter>200 && currentWorld!=worldName)
     {
         if(worldName==""||worldName=="-")
@@ -965,7 +969,7 @@ void GrowtopiaBot::respawn()
 			data.x = objects.at(i).x;
 			data.y = objects.at(i).y;
 			data.netID = objects.at(i).netId;
-			SendPacketRaw2(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 			cout << "Send" << endl;
 			break;
 		}
