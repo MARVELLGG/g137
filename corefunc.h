@@ -206,9 +206,8 @@ public:
 	delete (char*)packetData;
 }
 
-	void SendPacketRaw(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag, int delay = 0)
-	{
-		ENetPacket* p;
+	void SendPacketRaw(ENetPeer* peer, int a1, void* packetData, int packetDataSize, int packetFlag, int delay = 0) {
+	ENetPacket* p;
 	if (peer) {
 		if (a1 == 4 && *((BYTE*)packetData + 12) & 8) {
 			p = enet_packet_create(0, packetDataSize + *((DWORD*)packetData + 13) + 5, packetFlag);
@@ -235,7 +234,6 @@ public:
 		enet_peer_send(peer, 0, p);
 	}
 }
-
 	// Connect with default value
 	void connectClient() {
 		connectClient(SERVER_HOST, SERVER_PORT);
