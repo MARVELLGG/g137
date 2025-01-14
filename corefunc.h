@@ -110,6 +110,19 @@ public:
     int packetType;
 
 };
+struct PlayerMoving2 {
+	int netID;
+	float x;
+	float y;
+	int characterState;
+	int plantingTree;
+	float XSpeed;
+	float YSpeed;
+	int punchX;
+	int punchY;
+    int packetType;
+
+};
 	/*********** structs declaration *********/
 
 
@@ -839,6 +852,43 @@ public:
 		__int16_t* background;
 		WorldThingStruct* specials;
 	};
+	
+	BYTE* packPlayerMoving2(PlayerMoving2* dataStruct)
+{
+	BYTE* data = new BYTE[56];
+	for (int i = 0; i < 56; i++)
+	{
+		data[i] = 0;
+	}
+	memcpy(data + 0, &dataStruct->packetType, 4);
+	memcpy(data + 4, &dataStruct->netID, 4);
+	memcpy(data + 12, &dataStruct->characterState, 4);
+	memcpy(data + 20, &dataStruct->plantingTree, 4);
+	memcpy(data + 24, &dataStruct->x, 4);
+	memcpy(data + 28, &dataStruct->y, 4);
+	memcpy(data + 32, &dataStruct->XSpeed, 4);
+	memcpy(data + 36, &dataStruct->YSpeed, 4);
+	memcpy(data + 44, &dataStruct->punchX, 4);
+	memcpy(data + 48, &dataStruct->punchY, 4);
+	return data;
+}
+
+PlayerMoving2* unpackPlayerMoving(BYTE* data)
+{
+	PlayerMoving2* dataStruct = new PlayerMoving2;
+    memcpy(&dataStruct->packetType, data, 4);
+	memcpy(&dataStruct->netID, data + 4, 4);
+	memcpy(&dataStruct->characterState, data + 12, 4);
+	memcpy(&dataStruct->plantingTree, data + 20, 4);
+	memcpy(&dataStruct->x, data + 24, 4);
+	memcpy(&dataStruct->y, data + 28, 4);
+	memcpy(&dataStruct->XSpeed, data + 32, 4);
+	memcpy(&dataStruct->YSpeed, data + 36, 4);
+	memcpy(&dataStruct->punchX, data + 44, 4);
+	memcpy(&dataStruct->punchY, data + 48, 4);
+	return dataStruct;
+}
+
 
 BYTE* packPlayerMoving(PlayerMoving* dataStruct)
 {
@@ -847,7 +897,6 @@ BYTE* packPlayerMoving(PlayerMoving* dataStruct)
 	{
 		data[i] = 0;
 	}
-	memcpy(data + 0, &dataStruct->packetType, 4);
 	memcpy(data + 4, &dataStruct->netID, 4);
 	memcpy(data + 12, &dataStruct->characterState, 4);
 	memcpy(data + 20, &dataStruct->plantingTree, 4);
