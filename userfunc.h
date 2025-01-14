@@ -100,8 +100,8 @@ void GrowtopiaBot::onLoginRequested()
     
     // Format paket login sesuai permintaan
 string packet = 
-"tankIDName|\n"
-"tankIDPass|\n"
+"tankIDName|BOBSQUISH\n"
+"tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
 "protocol|212\n"
@@ -894,9 +894,7 @@ vector<string> explode(const string &delimiter, const string &str)
 
 void GrowtopiaBot::userLoop()
 {
-	if (!worldName.empty()) {
-        std::transform(worldName.begin(), worldName.end(), worldName.begin(), ::toupper);
-    }
+	
     
     if(timeFromWorldEnter>200 && currentWorld!=worldName)
     {
