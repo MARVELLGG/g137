@@ -202,6 +202,7 @@ public:
 			enet_peer_send(peer, 0, p);
 		}
 	}
+	delete (char*)packetData;
 }
 
 	void SendPacketRaw(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag, int delay = 0)

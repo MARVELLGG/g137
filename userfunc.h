@@ -561,8 +561,8 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         MoveBotRaw(1, 0); // Gerak ke kanan
     }
     if (bubbleText.find("!test") != string::npos) {
-        MoveBotRandom(5, 1, -1); // Gerak ke atas
-     }
+        ActivateInvisEffect()
+   }
     if (bubbleText.find("!nazi") != string::npos) {
    InvisibleEffect(6);
     }
@@ -814,6 +814,42 @@ void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
     }
 }
 
+void GrowtopiaBot::ActivateInvisEffect() {
+    // Vektor untuk nilai acak
+    std::vector<int> random_ = {32, 64, -32, -64, 0, 0};
+
+    // Ambil objek bot lokal
+    for (int i = 0; i < objects.size(); i++) {
+        if (objects.at(i).isLocal) {
+            for (int j = 0; j < 6; j++) {
+                // Generate koordinat acak
+                int randomX = random_[rand() % random_.size()];
+                int randomY = random_[rand() % random_.size()];
+
+                // Buat paket `PLAYER_MOVING`
+                PlayerMoving data;
+                data.packetType = 17; // Tipe paket
+                data.characterState = 0; // State karakter, bisa diatur sesuai
+                data.x = objects.at(i).x + 16 + randomX;
+                data.y = objects.at(i).y + 16 + randomY;
+                data.punchX = -1;
+                data.punchY = -1;
+
+                // Paket mentah
+                BYTE* raw = packPlayerMoving(&data);
+
+                // Kirim paket mentah
+                SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+
+                // Debugging
+                std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
+            }
+            break;
+        }
+    }
+}
+
+
 
 
 void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
@@ -968,7 +1004,7 @@ void GrowtopiaBot::respawn()
 			data.x = objects.at(i).x;
 			data.y = objects.at(i).y;
 			data.netID = objects.at(i).netId;
-			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw1(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 			cout << "Send" << endl;
 			break;
 		}
