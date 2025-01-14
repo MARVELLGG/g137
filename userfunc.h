@@ -125,6 +125,7 @@ string packet =
 "wk|NONE0\n"
 "lmode|1\n"
 "user|516902427\n"
+"token|-1\n"
 "UUIDToken|-1\n"
 "doorID|0\n"
 "aat|2\n";
