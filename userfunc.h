@@ -100,8 +100,8 @@ void GrowtopiaBot::onLoginRequested()
     
     // Format paket login sesuai permintaan
 string packet = 
-"tankIDName|\n"
-"tankIDPass|\n"
+"tankIDName|" + uname + "\n"
+"tankIDPass|" + upass + "\n"
 "requestedName|TESTED\n"
 "f|1\n"
 "protocol|212\n"
@@ -112,16 +112,16 @@ string packet =
 "category|GROWMINES_3586\n"
 "totalPlaytime|0\n"
 "klv|90EE392D2F9D8BC997EEA41175FCD9DA\n"
-"gid|a3ce687c-a505-41f8-b3d8-a9463f33f390\n"
+"gid|" + generateRid() + "\n"
 "tr|4322\n"
 "meta|InfinityPS_tXaWXoSUrGdcuETl\n"
 "fhash|-716928004\n"
-"rid|0215550A8186857D087474187ADCDDAF\n"
+"rid|" + generateRid() + "\n"
 "platformID|4\n"
 "deviceVersion|0\n"
 "country|id\n"
 "hash|1275125224\n"
-"mac|02:00:00:00:00:00\n"
+"mac|" + generateMac() + "\n"
 "wk|NONE0\n"
 "lmode|1\n"
 "user|516902427\n"
@@ -831,8 +831,8 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 data.characterState = 0; // State karakter, bisa diatur sesuai
                 data.x = objects.at(i).x + 16 + randomX;
                 data.y = objects.at(i).y + 16 + randomY;
-                data.punchX = -1;
-                data.punchY = -1;
+                data.punchX = 50;
+                data.punchY = 40;
 
                 // Paket mentah
                 
