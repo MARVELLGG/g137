@@ -180,7 +180,7 @@ public:
 		}
 	}
 	
-	void SendPacketRaw1(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag)
+	void SendPacketRaw(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag)
 {
 	ENetPacket *p;
 
@@ -206,34 +206,7 @@ public:
 	delete (char*)packetData;
 }
 
-	void SendPacketRaw(ENetPeer* peer, int a1, void* packetData, int packetDataSize, int packetFlag, int delay = 0) {
-	ENetPacket* p;
-	if (peer) {
-		if (a1 == 4 && *((BYTE*)packetData + 12) & 8) {
-			p = enet_packet_create(0, packetDataSize + *((DWORD*)packetData + 13) + 5, packetFlag);
-			int four = 4;
-			memcpy(p->data, &four, 4);
-			memcpy((char*)p->data + 4, packetData, packetDataSize);
-			memcpy((char*)p->data + packetDataSize + 4, 0, *((DWORD*)packetData + 13));
-			if (delay != 0) {
-				int deathFlag = 0x19;
-				memcpy(p->data + 24, &delay, 4);
-				memcpy(p->data + 56, &deathFlag, 4);
-			}
-		}
-		else {
-			p = enet_packet_create(0, packetDataSize + 5, packetFlag);
-			memcpy(p->data, &a1, 4);
-			memcpy((char*)p->data + 4, packetData, packetDataSize);
-			if (delay != 0) {
-				int deathFlag = 0x19;
-				memcpy(p->data + 24, &delay, 4);
-				memcpy(p->data + 56, &deathFlag, 4);
-			}
-		}
-		enet_peer_send(peer, 0, p);
-	}
-}
+	
 	// Connect with default value
 	void connectClient() {
 		connectClient(SERVER_HOST, SERVER_PORT);
@@ -287,7 +260,7 @@ public:
 		BYTE ten = 10;
 		memcpy(data + 0, &ten, 1);
 		memcpy(data + 20, &item, 1);
-		SendPacketRaw1(4, data, 0x38u, 0, peer, 1);
+		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -302,7 +275,7 @@ public:
 		memcpy(data + 0, &eighteen, 1);
 		memcpy(data + 4, &netID, 4); // (a1+40)
 		memcpy(data + 44, &state, 4);
-		SendPacketRaw1(4, data, 0x38u, 0, peer, 1);
+		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -315,7 +288,7 @@ public:
 		}
 		BYTE twentytwo = 22;
 		memcpy(data + 0, &twentytwo, 1);
-		SendPacketRaw1(4, data, 56, 0, peer, 1);
+		SendPacketRaw(4, data, 56, 0, peer, 1);
 		free(data);
 	}
 

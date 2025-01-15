@@ -100,9 +100,9 @@ void GrowtopiaBot::onLoginRequested()
     
     // Format paket login sesuai permintaan
 string packet = 
-"tankIDName|BOBSQUISH\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
+"tankIDName|\n"
+"tankIDPass|\n"
+"requestedName|TESTED\n"
 "f|1\n"
 "protocol|212\n"
 "game_version|5.02\n"
@@ -735,7 +735,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
         }
 
         // Send movement data, including punch position if available
-        SendPacketRaw1(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+        SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
@@ -749,7 +749,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 				objects.at(i).x = data->x;
 				objects.at(i).y = data->y;
 			}
-		SendPacketRaw1(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -770,8 +770,8 @@ void GrowtopiaBot::InvisibleEffect(int count) {
                 data.y = objects.at(i).y + 16 + randomOffsets[rand() % randomOffsets.size()];
 
                 // Kirim paket mentah untuk efek
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
-                // Debugging
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+   // Debugging
                 std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
             break;
@@ -803,8 +803,8 @@ void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
                 data.punchY = -1;
 
                 // Kirim paket mentah
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
-						
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+					
                 // Debugging
                 std::cout << "Sent raw movement to X: " << data.x / 32 << ", Y: " << data.y / 32 << " (" << j + 1 << "/" << repeatCount << ")" << std::endl;
             }
@@ -837,8 +837,8 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 // Paket mentah
                 
                 // Kirim paket mentah
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE);
-						
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+	
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
@@ -866,9 +866,8 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             data.y = objects.at(i).y;
             data.punchX = -1;
             data.punchY = -1;
-            	BYTE* raw = packPlayerMoving(&data);
             // Kirim paket mentah
-            SendPacketRaw1(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
@@ -1002,8 +1001,8 @@ void GrowtopiaBot::respawn()
 			data.x = objects.at(i).x;
 			data.y = objects.at(i).y;
 			data.netID = objects.at(i).netId;
-			SendPacketRaw1(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
-			cout << "Send" << endl;
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+	cout << "Send" << endl;
 			break;
 		}
 }
