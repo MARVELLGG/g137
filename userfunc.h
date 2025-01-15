@@ -828,7 +828,6 @@ void GrowtopiaBot::ActivateInvisEffect() {
 
                 // Buat paket `PLAYER_MOVING`
                 PlayerMoving data;
-                data.packetType = 17; // Tipe paket
                 data.characterState = 0; // State karakter, bisa diatur sesuai
                 data.x = objects.at(i).x + 16 + randomX;
                 data.y = objects.at(i).y + 16 + randomY;
@@ -838,7 +837,7 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 // Paket mentah
                 
                 // Kirim paket mentah
-                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE, 0);
+                SendPacketRaw(peer, 4, packPlayerMoving(&data), 56, ENET_PACKET_FLAG_RELIABLE);
 						
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
