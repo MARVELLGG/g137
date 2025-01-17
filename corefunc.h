@@ -42,9 +42,10 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	ENetPeer *peer2;
-	ENetPeer *peer3;
+	std::vector<ENetPeer*> peers;  // Vektor untuk menyimpan banyak peer
 	ENetHost *client;
+	int maxBots = 10;  // Jumlah bot default, bisa diatur manual
+	
 
 	int login_user = 0;
 	int login_token = 0;
@@ -182,6 +183,8 @@ public:
 		}
 	}
 	
+	
+	
 	void SendPacketRaw(int a1, void *packetData, size_t packetDataSize, void *a4, ENetPeer* peer, int packetFlag)
 {
 	ENetPacket *p;
@@ -213,52 +216,69 @@ public:
 	void connectClient() {
 		connectClient(SERVER_HOST, SERVER_PORT);
 	}
+	
+	
 
-	void connectClient(string hostName, int port)
-	{
-		cout << "Connecting bot to " << hostName << ":" << port << endl;
-		client = enet_host_create(NULL /* create a client host */,
-			3 /* only allow 1 outgoing connection */,
-			2 /* allow up 2 channels to be used, 0 and 1 */,
-			0 /* 56K modem with 56 Kbps downstream bandwidth */,
-			0 /* 56K modem with 14 Kbps upstream bandwidth */);
-		client->usingNewPacket = false;
-		if (client == NULL)
-		{
-			cout << "An error occurred while trying to create an ENet client host.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		ENetAddress address;
+	
+    
+    // Fungsi untuk menyambungkan banyak bot ke server
+    void connectClient(string hostName, int port) {
+        cout << "Connecting " << maxBots << " bots to " << hostName << ":" << port << endl;
+        
+        // Membuat client host
+        client = enet_host_create(NULL /* create a client host */,
+                                  maxBots /* Maximum number of outgoing connections */,
+                                  2 /* only allow 2 channels to be used, 0 and 1 */,
+                                  0 /* 56K modem with 56 Kbps downstream bandwidth */,
+                                  0 /* 56K modem with 14 Kbps upstream bandwidth */);
+        if (client == NULL) {
+            cout << "An error occurred while trying to create an ENet client host.\n";
+            exit(EXIT_FAILURE);
+        }
+        
+        // Menyiapkan koneksi untuk masing-masing bot
+        ENetAddress address;
+        enet_address_set_host(&address, hostName.c_str());
+        address.port = port;
 
-		client->checksum = enet_crc32;
-		enet_host_compress_with_range_coder(client);
-		enet_address_set_host(&address, hostName.c_str());
-		address.port = port;
+        // Inisialisasi koneksi untuk setiap bot
+        for (int i = 0; i < maxBots; ++i) {
+            ENetPeer* peer = enet_host_connect(client, &address, 2, 0);
+            if (peer == NULL) {
+                cout << "No available peers for initiating an ENet connection for bot " << i << ".\n";
+                exit(EXIT_FAILURE);
+            }
+            peers.push_back(peer);  // Menambahkan peer ke vektor
+            cout << "Bot " << i << " connected." << endl;
+        }
 
-		/* Initiate the connection, allocating the two channels 0 and 1. */
-		peer = enet_host_connect(client, &address, 2, 0);
-		if (peer == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		enet_host_flush(client);
-		peer2 = enet_host_connect(client, &address, 2, 0);
-		if (peer2 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		enet_host_flush(client);
-	}
+        enet_host_flush(client);  // Flush untuk memastikan koneksi
+    }
+    
+    // Fungsi untuk mengirim paket ke semua bot
+    
+
 	/******************* enet core *********************/
 
 
 
 	/*************** sender sutff **************/
+
+    void sendPacketToAll(int type, const std::string& message, ENetPeer* /*peer*/) {
+    for (ENetPeer* peer : peers) {
+        if (peer != nullptr) {
+            SendPacket(type, message, peer);
+        }
+    }
+}
+
+void sendPacketToAllRaw(int packetType, BYTE* data, int dataSize, int number, ENetPeer* /*peer*/, int flags) {
+    for (ENetPeer* peer : peers) {  // Iterasi semua peer dalam daftar peers
+        if (peer != nullptr) {
+            SendPacketRaw(packetType, data, dataSize, number, peer, flags);  // Kirim paket ke peer
+        }
+    }
+}
 
 	void RequestItemActivate(unsigned int item)
 	{
@@ -270,7 +290,7 @@ public:
 		BYTE ten = 10;
 		memcpy(data + 0, &ten, 1);
 		memcpy(data + 20, &item, 1);
-		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
+		sendPacketToAllRaw(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -285,7 +305,7 @@ public:
 		memcpy(data + 0, &eighteen, 1);
 		memcpy(data + 4, &netID, 4); // (a1+40)
 		memcpy(data + 44, &state, 4);
-		SendPacketRaw(4, data, 0x38u, 0, peer, 1);
+		sendPacketToAllRaw(4, data, 0x38u, 0, peer, 1);
 		free(data);
 	}
 
@@ -298,7 +318,7 @@ public:
 		}
 		BYTE twentytwo = 22;
 		memcpy(data + 0, &twentytwo, 1);
-		SendPacketRaw(4, data, 56, 0, peer, 1);
+		sendPacketToAllRaw(4, data, 56, 0, peer, 1);
 		free(data);
 	}
 
@@ -917,7 +937,7 @@ PlayerMoving* unpackPlayerMoving(BYTE* data)
 		case 0x16:
 		{
 			dbgPrint("We need to send packet raw response!");
-			// SendPacketRaw(4, &v205, 0x38u, 0, peer, 1);
+			// sendPacketToAllRaw(4, &v205, 0x38u, 0, peer, 1);
 		}
 		break;
 		case 0x12:

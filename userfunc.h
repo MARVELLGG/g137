@@ -131,7 +131,7 @@ string packet =
 
 
 string packet2 =
-"tankIDName|BOBSQUISH6\n"
+"tankIDName|BOBSQUISH3\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -161,7 +161,7 @@ string packet2 =
 "aat|2\n";
 
 string packet3 =
-"tankIDName|BOBSQUISH4\n"
+"tankIDName|BOBSQUISH7\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -200,10 +200,12 @@ string packet3 =
 	//cout << packet3;
 
     // Kirim paket login
-// SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
-   // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
-    SendPacket(2, packet, peer);
-    SendPacket(2, packet2, peer2);
+// sendPacketToAll(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
+   // sendPacketToAll(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
+    SendPacket(2, packet, peers[0]);  // Kirim paket login untuk bot pertama
+    SendPacket(2, packet2, peers[1]);  // Kirim paket login untuk bot kedua
+    SendPacket(2, packet3, peers[2]);  // Kirim paket login untuk bot ketiga
+
 	currentWorld = "";
 }
 
@@ -229,7 +231,7 @@ void GrowtopiaBot::packet_type3(string text)
 void GrowtopiaBot::packet_type6(string text)
 {
 	//dbgPrint("Some text is here: " + text);
-	SendPacket(2, "action|enter_game\n", peer);
+	sendPacketToAll(2, "action|enter_game\n", peer);
 	enet_host_flush(client);
 }
 
@@ -258,12 +260,12 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     if (message.find("`` left, `w") != string::npos)
 	{
 		string::size_type loc = message.find("`` left,", 0);
-		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just left"), peer);
+		sendPacketToAll(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just left"), peer);
 	}
 	else if (message.find("`` entered, `w") != string::npos)
 	{
 		string::size_type loc = message.find("`` entered,", 0);
-		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just joined"), peer);
+		sendPacketToAll(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just joined"), peer);
 	}
     
     cout << "------------------------" << endl;
@@ -303,7 +305,7 @@ void GrowtopiaBot::OnRemove(string data) // "netID|x\n"
 			objectData.isGone = true;
 		}
 	}
-	//SendPacket(2, "action|input\n|text|Bye bye ::((", peer);
+	//sendPacketToAll(2, "action|input\n|text|Bye bye ::((", peer);
 }
 
 void GrowtopiaBot::OnSpawn(string data)
@@ -385,12 +387,12 @@ else if (id == "netID") {
 
 	if (actuallyOwner) cout << "Owner netID has been updated to " << objectData.netId << " username is " << ownerUsername << "Actuallyowner " << actuallyOwner;
 	objects.push_back(objectData);
-//	SendPacket(2, "action|input\n|text|`3Hello " + objectData.name + " `3with id " + objectData.netId + " from " + objectData.country + "!", peer);
+//	sendPacketToAll(2, "action|input\n|text|`3Hello " + objectData.name + " `3with id " + objectData.netId + " from " + objectData.country + "!", peer);
 }
 
 void GrowtopiaBot::OnAction(string command)
 {
-	SendPacket(2, "action|input\n|text|Why do you "+command.substr(1, command.length())+"?", peer);
+	sendPacketToAll(2, "action|input\n|text|Why do you "+command.substr(1, command.length())+"?", peer);
 }
 
 void GrowtopiaBot::SetHasGrowID(int state, string name, string password)
@@ -417,7 +419,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		{
 			if (owner == x.netId)
 			{
-				SendPacket(2, "action|input\n|text|Owner pos is " + 
+				sendPacketToAll(2, "action|input\n|text|Owner pos is " + 
            std::to_string(static_cast<int>(x.x)) + ":" + 
            std::to_string(static_cast<int>(x.y)) + ".", peer);
 		}
@@ -433,45 +435,15 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 				i++;
 			}
 		}
-		SendPacket(2, "action|input\n|text|There is " + std::to_string(i)+ " players.", peer);
+		sendPacketToAll(2, "action|input\n|text|There is " + std::to_string(i)+ " players.", peer);
 	}
-	if (bubbleText.find("!tp ") != std::string::npos) {
-    std::string name = bubbleText.substr(4); // Ambil nama setelah "!tp "
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower); // Ubah nama ke huruf kecil
-
-    for (ObjectData& player : objects) {
-        if (!player.isGone) {
-            std::string playerName = player.name;
-            std::transform(playerName.begin(), playerName.end(), playerName.begin(), ::tolower); // Ubah nama pemain ke huruf kecil
-
-            if (playerName.find(name) == 0) { // Cocokkan nama
-                SendPacket(2, "action|input\n|text|Teleporting to " + player.name, peer);
-
-                // Update posisi bot ke posisi pemain
-                PlayerMoving data;
-                data.characterState = 0;
-                data.x = player.x;
-                data.y = player.y;
-                data.punchX = -1;
-                data.punchY = -1;
-
-                BYTE* raw = packPlayerMoving(&data);
-                SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
-
-                std::cout << "Teleported to " << player.name << " at X: " << player.x / 32 << ", Y: " << player.y / 32 << std::endl;
-                break;
-            }
-        }
-    }
-}
-
 	if (bubbleText.find("!owner") != string::npos)
 	{	
 		for (ObjectData x : objects)
 		{
 			if (owner == x.netId)
 			{
-				SendPacket(2, "action|input\n|text|Owner is " + x.name + ".", peer);
+				sendPacketToAll(2, "action|input\n|text|Owner is " + x.name + ".", peer);
 				owner = netID;
 			}
 		}
@@ -488,7 +460,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     string packetr = bubbleText.substr(bubbleText.find("player_chat= ") + 13);
 
     // Kirim paket setelah penggantian
-    SendPacket(2, "action|input\n|text|" + packetr, peer);
+    sendPacketToAll(2, "action|input\n|text|" + packetr, peer);
 	}
 	if (bubbleText.find("!packet ") != string::npos) {
     // Ambil string setelah "!packet "
@@ -502,13 +474,13 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     }
 
     // Kirim paket setelah penggantian
-    SendPacket(2, packetr, peer);
+    sendPacketToAll(2, packetr, peer);
 }
 
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
 		isFollowed = true;
-		SendPacket(2, "action|input\n|text|Netid Follow .", peer);
+		sendPacketToAll(2, "action|input\n|text|Netid Follow .", peer);
 
 	}
 	if (bubbleText.find("!follow") != string::npos)
@@ -525,9 +497,9 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
             this->number = number;  // Menyimpan hasil ke properti 'number' di dalam kelas
 
         } catch (const std::invalid_argument& e) {
-            SendPacket(2, "Invalid input for number: " + numberStr, peer);
+            sendPacketToAll(2, "Invalid input for number: " + numberStr, peer);
         } catch (const std::out_of_range& e) {
-            SendPacket(2, "NUMBER OUT OF RANGE: " + numberStr, peer);
+            sendPacketToAll(2, "NUMBER OUT OF RANGE: " + numberStr, peer);
         }
     }
 	if (bubbleText.find("!broadcast") != std::string::npos) 
@@ -597,25 +569,53 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
    InvisibleEffect(6);
     }
 	
-	
+	if (bubbleText.find("!stop") != string::npos)
+	{
+		isFollowing = false;
+	}
+	if (bubbleText.find("!tp ") != string::npos) {
+    size_t pos = bubbleText.find("!tp ") + 4; // Position after "!tp "
+    std::string coordinates = bubbleText.substr(pos);
+    size_t spacePos = coordinates.find(" ");
+
+    if (spacePos != std::string::npos) {
+        // Extract numberx and numbery
+        std::string numberx = coordinates.substr(0, spacePos);
+        std::string numbery = coordinates.substr(spacePos + 1);
+
+        try {
+            float x = std::stof(numberx); // Convert to float
+            float y = std::stof(numbery); // Convert to float
+
+            // Call OnSetPos with the extracted coordinates
+            OnSetPos(x, y);
+        } catch (const std::exception& e) {
+            // Handle invalid input
+            sendPacketToAll(3, "action|input\n|text|Invalid teleport coordinates!", peer);
+        }
+    } else {
+        // Handle missing coordinates
+        sendPacketToAll(3, "action|input\n|text|Usage: !tp numberx numbery", peer);
+    }
+}
 if (bubbleText.find("!go ") != string::npos)
 	{
-SendPacket(3, "action|quit_to_exit", peer);
-		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
+sendPacketToAll(3, "action|quit_to_exit", peer);
+		sendPacketToAll(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer);
         worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
 	}
 	if (bubbleText.find("!dance") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|/dance", peer);
+		sendPacketToAll(2, "action|input\n|text|/dance", peer);
 	}
 	if (bubbleText.find("!spk ") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
+		sendPacketToAll(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
 	}
 	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
-		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer);
+		sendPacketToAll(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer);
 	}
 }
 
@@ -684,7 +684,7 @@ void GrowtopiaBot::AtApplyTileDamage(int x, int y, int damge)
 
 void GrowtopiaBot::AtApplyLock(int x, int y, int itemId) // ApplyLockFromGamePacket TODO: *(int*)(data + 4)
 {
-	SendPacket(2, "action|input\n|text|Lock " + std::to_string(itemId) + " applied at X:" + std::to_string(x) + " Y: " + std::to_string(y), peer);
+	sendPacketToAll(2, "action|input\n|text|Lock " + std::to_string(itemId) + " applied at X:" + std::to_string(x) + " Y: " + std::to_string(y), peer);
 }
 
 void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
@@ -719,7 +719,7 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
 
         // Check for respawn conditions
         if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
-            SendPacket(2, "action|respawn", peer);
+            sendPacketToAll(2, "action|respawn", peer);
         }
 
         // Update local objects position
@@ -737,21 +737,21 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
         }
 
         // Send movement data, including punch position if available
-        SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+        sendPacketToAllRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
 			data->characterState ^= 0x10;
 		if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
-			SendPacket(2, "action|respawn", peer);
+			sendPacketToAll(2, "action|respawn", peer);
 		}
 		for (int i = 0; i < objects.size(); i++)
 			if (objects.at(i).isLocal) {
 				objects.at(i).x = data->x;
 				objects.at(i).y = data->y;
 			}
-		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+		sendPacketToAllRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -772,7 +772,7 @@ void GrowtopiaBot::InvisibleEffect(int count) {
                 data.y = objects.at(i).y + 16 + randomOffsets[rand() % randomOffsets.size()];
 
                 // Kirim paket mentah untuk efek
-                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+                sendPacketToAllRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
    // Debugging
                 std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
@@ -805,7 +805,7 @@ void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
                 data.punchY = -1;
 
                 // Kirim paket mentah
-                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+                sendPacketToAllRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 					
                 // Debugging
                 std::cout << "Sent raw movement to X: " << data.x / 32 << ", Y: " << data.y / 32 << " (" << j + 1 << "/" << repeatCount << ")" << std::endl;
@@ -839,7 +839,7 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 // Paket mentah
                 
                 // Kirim paket mentah
-                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+                sendPacketToAllRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
@@ -869,7 +869,7 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             data.punchX = -1;
             data.punchY = -1;
             // Kirim paket mentah
-            SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+            sendPacketToAllRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
@@ -938,9 +938,7 @@ void GrowtopiaBot::userLoop()
         {
             timeFromWorldEnter=0;
         } else {
-            SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
-       
+            sendPacketToAll(3, "action|join_request\nname|" + worldName, peer); // MARRKS
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
@@ -976,16 +974,17 @@ void GrowtopiaBot::userLoop()
 			}
 			if (distance == std::numeric_limits<float>::infinity())
 			{
-				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
+				sendPacketToAll(2, "action|input\n|text|There are no other players:(", peer);
 			}
 			else {
-				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
+				sendPacketToAll(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
             }
 		}
 	}
     NO_OWNER_MESSAGE:
     return;
 }
+
 
 
 void GrowtopiaBot::userInit() {
@@ -998,14 +997,14 @@ void GrowtopiaBot::respawn()
 {
 	PlayerMoving data;
 	data.characterState = 0x924; // animation
-	SendPacket(2, "action|respawn", peer); // respawn request
+	sendPacketToAll(2, "action|respawn", peer); // respawn request
 	for (int i = 0; i < objects.size(); i++)
 		if (objects.at(i).isLocal)
 		{
 			data.x = objects.at(i).x;
 			data.y = objects.at(i).y;
 			data.netID = objects.at(i).netId;
-			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+			sendPacketToAllRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 	cout << "Send" << endl;
 			break;
 		}
