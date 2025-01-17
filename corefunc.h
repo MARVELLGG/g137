@@ -249,7 +249,7 @@ public:
                 exit(EXIT_FAILURE);
             }
             peers[i] = peer;  // Menambahkan ke array
-               cout << "Bot " << i << " connected." << endl;
+                    cout << "Bot " << i << " connected." << endl;
         }
 
         enet_host_flush(client);  // Flush untuk memastikan koneksi
