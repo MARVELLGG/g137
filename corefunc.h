@@ -1332,10 +1332,10 @@ PlayerMoving* unpackPlayerMoving(BYTE* data)
 			}
 		}
 		userLoop();
-		ENetEvent event;
-		while (enet_host_service(client2, &event, 0) > 0)
+		ENetEvent event2;
+		while (enet_host_service(client2, &event2, 0) > 0)
 		{
-			switch (event.type)
+			switch (event2.type)
 			{
 			case ENET_EVENT_TYPE_NONE:
 				cout << "No event???" << endl;
