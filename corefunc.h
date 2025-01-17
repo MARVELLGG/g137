@@ -265,16 +265,19 @@ public:
 	/*************** sender sutff **************/
 
     void sendPacketToAll(int type, const std::string& message, ENetPeer* /*peer*/) {
-    for (ENetPeer* peer : peers) {
-        if (peer != nullptr) {
+    for (int i = 0; i < maxBots; ++i) {  // Iterasi berdasarkan jumlah bot
+        ENetPeer* peer = peers[i];  // Akses setiap peer dari array
+        if (peer != nullptr) {  // Validasi apakah peer bukan nullptr
             SendPacket(type, message, peer);
         }
     }
 }
 
+
 void sendPacketToAllRaw(int packetType, void *data, size_t dataSize, void *number, ENetPeer* /*peer*/, int flags) {
-    for (ENetPeer* peer : peers) {  // Iterasi semua peer dalam daftar peers
-        if (peer != nullptr) {
+    for (int i = 0; i < maxBots; ++i) {  // Iterasi berdasarkan jumlah bot
+        ENetPeer* peer = peers[i];  // Akses setiap peer dari array
+        if (peer != nullptr) {  // Validasi apakah peer bukan nullptr
             SendPacketRaw(packetType, data, dataSize, number, peer, flags);  // Kirim paket ke peer
         }
     }

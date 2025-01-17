@@ -43,24 +43,24 @@ int main() {
 	bot.userInit();
 	bots.push_back(bot);
 
-	std::thread inputThread([&]() {
+	std::thread inputThread([&bot]() {
         while (true) {
             string userInput;
             cout << "Masukkan perintah untuk dikirimkan sebagai paket: ";
             std::getline(cin, userInput);
 
             if (!userInput.empty()) {
-                for (ENetPeer* peer : peers) {
-    if (peer != nullptr) {
-        SendPacket(2, userInput, peer);
-
-                 cout << "Paket dikirim: " << userInput << endl;
+                // Kirim paket ke semua bot
+                for (int i = 0; i < bot.maxBots; ++i) {
+                    ENetPeer* peer = bot.peers[i];
+                    if (peer != nullptr) {
+                        bot.SendPacket(2, userInput, peer);
+                    }
+                }
+                cout << "Paket dikirim: " << userInput << endl;
             }
         }
-        }
-        }
     });
-
     // Loop utama untuk bot
     while (true) {
         bot.eventLoop();
