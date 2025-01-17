@@ -417,9 +417,9 @@ string packet10 =
     SendPacket(2, packet5, peer5);
       SendPacket(2, packet6, peer6);
       SendPacket(2, packet7, peer7);
-    SendPacket(2, packet8, peer8);
+    */SendPacket(2, packet8, peer8);
       SendPacket(2, packet9, peer9);
-      SendPacket(2, packet10, peer10);
+      SendPacket(2, packet10, peer10);*/
 	currentWorld = "";
 }
 
@@ -812,13 +812,13 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer6);
          SendPacket(3, "action|quit_to_exit", peer7);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer7);
-     SendPacket(3, "action|quit_to_exit", peer8);
+   /*  SendPacket(3, "action|quit_to_exit", peer8);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer8);
     SendPacket(3, "action|quit_to_exit", peer9);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer9);
          SendPacket(3, "action|quit_to_exit", peer10);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer10);
-         
+         */
   worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
 	}
 	if (bubbleText.find("!dance") != string::npos)
@@ -834,10 +834,10 @@ SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk "
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer5);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer6);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer7);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer8);
+/*SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer8);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer9);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer10);
-	
+	*/
 }
 	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
@@ -849,10 +849,10 @@ SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer5);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer6);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer7);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer8);
+/*SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer8);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer9);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer10);
-
+*/
 
 	}
 }
@@ -964,9 +964,9 @@ SendPacket(2, "action|respawn", peer4);
 SendPacket(2, "action|respawn", peer5);
 SendPacket(2, "action|respawn", peer6);
 SendPacket(2, "action|respawn", peer7);
-SendPacket(2, "action|respawn", peer8);
+/*SendPacket(2, "action|respawn", peer8);
 SendPacket(2, "action|respawn", peer9);
-SendPacket(2, "action|respawn", peer10);
+SendPacket(2, "action|respawn", peer10);*/
         }
 
         // Update local objects position
@@ -991,9 +991,9 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+/*SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);*/
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
@@ -1016,10 +1016,10 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+/*SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
-	}
+*/	}
 }
 
 
@@ -1248,10 +1248,10 @@ void GrowtopiaBot::userLoop()
             SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
+    /*        SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
-       
+      */ 
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
