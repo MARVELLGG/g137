@@ -45,7 +45,6 @@ public:
 	ENetPeer *peer2;
 	ENetPeer *peer3;
 	ENetHost *client;
-	ENetHost *client2;
 
 	int login_user = 0;
 	int login_token = 0;
@@ -219,7 +218,7 @@ public:
 	{
 		cout << "Connecting bot to " << hostName << ":" << port << endl;
 		client = enet_host_create(NULL /* create a client host */,
-			3 /* only allow 1 outgoing connection */,
+			4 /* only allow 1 outgoing connection */,
 			3 /* allow up 2 channels to be used, 0 and 1 */,
 			0 /* 56K modem with 56 Kbps downstream bandwidth */,
 			0 /* 56K modem with 14 Kbps upstream bandwidth */);
@@ -237,25 +236,6 @@ public:
 		enet_address_set_host(&address, hostName.c_str());
 		address.port = port;
 
-        client2 = enet_host_create(NULL /* create a client host */,
-			3 /* only allow 1 outgoing connection */,
-			3 /* allow up 2 channels to be used, 0 and 1 */,
-			0 /* 56K modem with 56 Kbps downstream bandwidth */,
-			0 /* 56K modem with 14 Kbps upstream bandwidth */);
-		client2->usingNewPacket = false;
-		if (client2 == NULL)
-		{
-			cout << "An error occurred while trying to create an ENet client host.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		ENetAddress address2;
-
-		client2->checksum = enet_crc32;
-		enet_host_compress_with_range_coder(client2);
-		enet_address_set_host(&address2, hostName.c_str());
-		address2.port = port;
-		
 		/* Initiate the connection, allocating the two channels 0 and 1. */
 		peer = enet_host_connect(client, &address, 2, 0);
 		if (peer == NULL)
@@ -273,14 +253,15 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-	peer3 = enet_host_connect(client2, &address2, 2, 0);
+		
+	peer3 = enet_host_connect(client, &address, 2, 0);
 		if (peer3 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client2);
+		enet_host_flush(client);
 	}
 	/******************* enet core *********************/
 
@@ -1325,30 +1306,6 @@ PlayerMoving* unpackPlayerMoving(BYTE* data)
 			case ENET_EVENT_TYPE_RECEIVE:
 				ProcessPacket(&event, peer);
 				enet_packet_destroy(event.packet);
-				break;
-			default:
-				cout << "WTF???" << endl;
-				break;
-			}
-		}
-		userLoop();
-		ENetEvent event2;
-		while (enet_host_service(client2, &event2, 0) > 0)
-		{
-			switch (event2.type)
-			{
-			case ENET_EVENT_TYPE_NONE:
-				cout << "No event???" << endl;
-				break;
-			case ENET_EVENT_TYPE_CONNECT:
-				WhenConnected();
-				break;
-			case ENET_EVENT_TYPE_DISCONNECT:
-				WhenDisconnected();
-				break;
-			case ENET_EVENT_TYPE_RECEIVE:
-				ProcessPacket(&event2, peer);
-				enet_packet_destroy(event2.packet);
 				break;
 			default:
 				cout << "WTF???" << endl;
