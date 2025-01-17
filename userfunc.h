@@ -131,7 +131,7 @@ string packet =
 
 
 string packet2 =
-"tankIDName|BOBSQUISH6\n"
+"tankIDName|BOBSQUISH3\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -161,7 +161,67 @@ string packet2 =
 "aat|2\n";
 
 string packet3 =
-"tankIDName|BOBSQUISH8\n"
+"tankIDName|BOBSQUISH4\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet4 =
+"tankIDName|BOBSQUISH5\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet5 =
+"tankIDName|BOBSQUISH6\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -190,8 +250,156 @@ string packet3 =
 "doorID|0\n"
 "aat|2\n";
 	
-	
-	
+string packet6 =
+"tankIDName|BOBSQUISH7\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";	
+
+string packet7 =
+"tankIDName|BOBSQUISH8\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet8 =
+"tankIDName|BOBSQUISH9\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet9 =
+"tankIDName|BOBSQUISH10\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";	
+
+string packet10 =
+"tankIDName|BOBSQUISH11\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
     // Cetak isi paket untuk debugging
     cout << packet;
 //	sleep(3);
@@ -205,6 +413,13 @@ string packet3 =
     SendPacket(2, packet, peer);
     SendPacket(2, packet2, peer2);
       SendPacket(2, packet3, peer3);
+      SendPacket(2, packet4, peer4);
+    SendPacket(2, packet5, peer5);
+      SendPacket(2, packet6, peer6);
+      SendPacket(2, packet7, peer7);
+    SendPacket(2, packet8, peer8);
+      SendPacket(2, packet9, peer9);
+      SendPacket(2, packet10, peer10);
 	currentWorld = "";
 }
 
@@ -560,6 +775,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowed = false;
 	}
+	if (bubbleText.find("!stop") != string::npos)
+	{
+		isFollowing = false;
+	}
 	if (bubbleText.find("!up") != string::npos) {
         MoveBotRaw(0, -1); // Gerak ke atas
     } else if (bubbleText.find("!down") != string::npos) {
@@ -585,6 +804,20 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer2);
     SendPacket(3, "action|quit_to_exit", peer3);
 		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer3);
+         SendPacket(3, "action|quit_to_exit", peer4);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer4);
+     SendPacket(3, "action|quit_to_exit", peer5);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer5);
+    SendPacket(3, "action|quit_to_exit", peer6);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer6);
+         SendPacket(3, "action|quit_to_exit", peer7);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer7);
+     SendPacket(3, "action|quit_to_exit", peer8);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer8);
+    SendPacket(3, "action|quit_to_exit", peer9);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer9);
+         SendPacket(3, "action|quit_to_exit", peer10);
+		SendPacket(3, "action|join_request\nname|" + bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go ")), peer10);
          
   worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
 	}
@@ -595,13 +828,31 @@ SendPacket(3, "action|quit_to_exit", peer);
 	if (bubbleText.find("!spk ") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
-	}
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer2);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer3);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer4);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer5);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer6);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer7);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer8);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer9);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer10);
+	
+}
 	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer2);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer3);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer4);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer5);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer6);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer7);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer8);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer9);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer10);
+
 
 	}
 }
@@ -707,9 +958,15 @@ void GrowtopiaBot::AtPlayerMoving(PlayerMoving* data)
         // Check for respawn conditions
         if ((data->characterState & 0x800) && (data->characterState & 0x100)) {
             SendPacket(2, "action|respawn", peer);
-
 SendPacket(2, "action|respawn", peer2);
 SendPacket(2, "action|respawn", peer3);
+SendPacket(2, "action|respawn", peer4);
+SendPacket(2, "action|respawn", peer5);
+SendPacket(2, "action|respawn", peer6);
+SendPacket(2, "action|respawn", peer7);
+SendPacket(2, "action|respawn", peer8);
+SendPacket(2, "action|respawn", peer9);
+SendPacket(2, "action|respawn", peer10);
         }
 
         // Update local objects position
@@ -730,7 +987,13 @@ SendPacket(2, "action|respawn", peer3);
         SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
-
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
@@ -749,7 +1012,13 @@ SendPacket(2, "action|respawn", peer3);
 		SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
-
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -773,7 +1042,14 @@ void GrowtopiaBot::InvisibleEffect(int count) {
                 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
-   // Debugging
+					SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+					   // Debugging
                 std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
             break;
@@ -808,6 +1084,13 @@ void GrowtopiaBot::MoveBotRandom(int repeatCount, int offsetX, int offsetY) {
                 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
+					SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
 					
                 // Debugging
                 std::cout << "Sent raw movement to X: " << data.x / 32 << ", Y: " << data.y / 32 << " (" << j + 1 << "/" << repeatCount << ")" << std::endl;
@@ -844,7 +1127,14 @@ void GrowtopiaBot::ActivateInvisEffect() {
                 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
-	
+					SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+						
                 // Debugging
                 std::cout << "Invis effect at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             }
@@ -876,7 +1166,14 @@ void GrowtopiaBot::MoveBotRaw(int deltaX, int deltaY) {
             SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
-
+					SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+					
             // Debugging
             std::cout << "Bot moved to X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
             break;
@@ -947,6 +1244,13 @@ void GrowtopiaBot::userLoop()
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
        
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
@@ -1018,6 +1322,13 @@ SendPacket(2, "action|respawn", peer2);
 			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
   SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
   SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+  SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
   
 	cout << "Send" << endl;
 			break;
