@@ -249,12 +249,12 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		ENetAddress address;
+		ENetAddress address2;
 
 		client2->checksum = enet_crc32;
 		enet_host_compress_with_range_coder(client2);
-		enet_address_set_host(&address, hostName.c_str());
-		address.port = port;
+		enet_address_set_host(&address2, hostName.c_str());
+		address2.port = port;
 		
 		/* Initiate the connection, allocating the two channels 0 and 1. */
 		peer = enet_host_connect(client, &address, 2, 0);
@@ -273,8 +273,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-		}
-	peer3 = enet_host_connect(client2, &address, 2, 0);
+	peer3 = enet_host_connect(client2, &address2, 2, 0);
 		if (peer3 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
