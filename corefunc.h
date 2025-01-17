@@ -218,7 +218,7 @@ public:
 	{
 		cout << "Connecting bot to " << hostName << ":" << port << endl;
 		client = enet_host_create(NULL /* create a client host */,
-			4 /* only allow 1 outgoing connection */,
+			5 /* only allow 1 outgoing connection */,
 			3 /* allow up 2 channels to be used, 0 and 1 */,
 			0 /* 56K modem with 56 Kbps downstream bandwidth */,
 			0 /* 56K modem with 14 Kbps upstream bandwidth */);
@@ -237,7 +237,7 @@ public:
 		address.port = port;
 
 		/* Initiate the connection, allocating the two channels 0 and 1. */
-		peer = enet_host_connect(client, &address, 2, 0);
+		peer = enet_host_connect(client, &address, 3, 0);
 		if (peer == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -245,7 +245,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-		peer2 = enet_host_connect(client, &address, 2, 0);
+		peer2 = enet_host_connect(client, &address, 3, 0);
 		if (peer2 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -254,7 +254,7 @@ public:
 		}
 		enet_host_flush(client);
 		
-	peer3 = enet_host_connect(client, &address, 2, 0);
+	peer3 = enet_host_connect(client, &address, 3, 0);
 		if (peer3 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
