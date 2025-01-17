@@ -253,6 +253,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
+		}
 /*	peer3 = enet_host_connect(client, &address, 2, 0);
 		if (peer3 == NULL)
 		{
