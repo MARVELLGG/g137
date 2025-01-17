@@ -435,6 +435,36 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		}
 		SendPacket(2, "action|input\n|text|There is " + std::to_string(i)+ " players.", peer);
 	}
+	if (bubbleText.find("!tp ") != std::string::npos) {
+    std::string name = bubbleText.substr(4); // Ambil nama setelah "!tp "
+    std::transform(name.begin(), name.end(), name.begin(), ::tolower); // Ubah nama ke huruf kecil
+
+    for (ObjectData& player : objects) {
+        if (!player.isGone) {
+            std::string playerName = player.name;
+            std::transform(playerName.begin(), playerName.end(), playerName.begin(), ::tolower); // Ubah nama pemain ke huruf kecil
+
+            if (playerName.find(name) == 0) { // Cocokkan nama
+                SendPacket(2, "action|input\n|text|Teleporting to " + player.name, peer);
+
+                // Update posisi bot ke posisi pemain
+                PlayerMoving data;
+                data.characterState = 0;
+                data.x = player.x;
+                data.y = player.y;
+                data.punchX = -1;
+                data.punchY = -1;
+
+                BYTE* raw = packPlayerMoving(&data);
+                SendPacketRaw(4, raw, 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+
+                std::cout << "Teleported to " << player.name << " at X: " << player.x / 32 << ", Y: " << player.y / 32 << std::endl;
+                break;
+            }
+        }
+    }
+}
+
 	if (bubbleText.find("!owner") != string::npos)
 	{	
 		for (ObjectData x : objects)
@@ -571,8 +601,8 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowing = false;
 	}
-	if (bubbleText.find("!tp ") != string::npos) {
-    size_t pos = bubbleText.find("!tp ") + 4; // Position after "!tp "
+	if (bubbleText.find("!st") != string::npos) {
+    size_t pos = bubbleText.find("!st ") + 4; // Position after "!tp "
     std::string coordinates = bubbleText.substr(pos);
     size_t spacePos = coordinates.find(" ");
 
