@@ -272,7 +272,7 @@ public:
     }
 }
 
-void sendPacketToAllRaw(int packetType, BYTE* data, int dataSize, int number, ENetPeer* /*peer*/, int flags) {
+void sendPacketToAllRaw(int packetType, void *data, size_t dataSize, void *number, ENetPeer* /*peer*/, int flags) {
     for (ENetPeer* peer : peers) {  // Iterasi semua peer dalam daftar peers
         if (peer != nullptr) {
             SendPacketRaw(packetType, data, dataSize, number, peer, flags);  // Kirim paket ke peer
