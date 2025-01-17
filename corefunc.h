@@ -42,9 +42,9 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	std::vector<ENetPeer*> peers;  // Vektor untuk menyimpan banyak peer
-	ENetHost *client;
-	int maxBots = 10;  // Jumlah bot default, bisa diatur manual
+	ENetPeer* peers[10];  // Array untuk menyimpan 10 peer
+    ENetHost *client;
+	int maxBots = 3;  // Jumlah bot default, bisa diatur manual
 	
 
 	int login_user = 0;
@@ -248,8 +248,8 @@ public:
                 cout << "No available peers for initiating an ENet connection for bot " << i << ".\n";
                 exit(EXIT_FAILURE);
             }
-            peers.push_back(peer);  // Menambahkan peer ke vektor
-            cout << "Bot " << i << " connected." << endl;
+            peers[i] = peer;  // Menambahkan ke array
+               cout << "Bot " << i << " connected." << endl;
         }
 
         enet_host_flush(client);  // Flush untuk memastikan koneksi
