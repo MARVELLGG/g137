@@ -1347,8 +1347,8 @@ PlayerMoving* unpackPlayerMoving(BYTE* data)
 				WhenDisconnected();
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
-				ProcessPacket(&event, peer);
-				enet_packet_destroy(event.packet);
+				ProcessPacket(&event2, peer);
+				enet_packet_destroy(event2.packet);
 				break;
 			default:
 				cout << "WTF???" << endl;
