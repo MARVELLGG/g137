@@ -131,7 +131,7 @@ string packet =
 
 
 string packet2 =
-"tankIDName|BOBSQUISH3\n"
+"tankIDName|BOBSQUISH6\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -203,7 +203,7 @@ string packet3 =
 // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
    // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
     SendPacket(2, packet, peer);
-    
+    SendPacket(2, packet2, peer2);
 	currentWorld = "";
 }
 
@@ -597,35 +597,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
    InvisibleEffect(6);
     }
 	
-	if (bubbleText.find("!stop") != string::npos)
-	{
-		isFollowing = false;
-	}
-	if (bubbleText.find("!st") != string::npos) {
-    size_t pos = bubbleText.find("!st ") + 4; // Position after "!tp "
-    std::string coordinates = bubbleText.substr(pos);
-    size_t spacePos = coordinates.find(" ");
-
-    if (spacePos != std::string::npos) {
-        // Extract numberx and numbery
-        std::string numberx = coordinates.substr(0, spacePos);
-        std::string numbery = coordinates.substr(spacePos + 1);
-
-        try {
-            float x = std::stof(numberx); // Convert to float
-            float y = std::stof(numbery); // Convert to float
-
-            // Call OnSetPos with the extracted coordinates
-            OnSetPos(x, y);
-        } catch (const std::exception& e) {
-            // Handle invalid input
-            SendPacket(3, "action|input\n|text|Invalid teleport coordinates!", peer);
-        }
-    } else {
-        // Handle missing coordinates
-        SendPacket(3, "action|input\n|text|Usage: !tp numberx numbery", peer);
-    }
-}
+	
 if (bubbleText.find("!go ") != string::npos)
 	{
 SendPacket(3, "action|quit_to_exit", peer);
@@ -967,6 +939,8 @@ void GrowtopiaBot::userLoop()
             timeFromWorldEnter=0;
         } else {
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
+       
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }

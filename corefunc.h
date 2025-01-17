@@ -42,6 +42,8 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
+	ENetPeer *peer2;
+	ENetPeer *peer3;
 	ENetHost *client;
 
 	int login_user = 0;
@@ -237,6 +239,14 @@ public:
 		/* Initiate the connection, allocating the two channels 0 and 1. */
 		peer = enet_host_connect(client, &address, 2, 0);
 		if (peer == NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+		enet_host_flush(client);
+		peer2 = enet_host_connect(client, &address, 2, 0);
+		if (peer2 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
 			
