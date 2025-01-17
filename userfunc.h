@@ -143,16 +143,16 @@ string packet2 =
 "category|_-5100\n"
 "totalPlaytime|0\n"
 "klv|E75EE937333B83F25BC7A48FDBF86D18\n"
-"gid|a3ce687c-a505-41f8-b3d8-a9463f33f390\n"
+"gid|" + generateRid() + "\n"
 "tr|4322\n"
 "meta|InfinityPS_kFvwRUxwkrlqhrQi\n"
 "fhash|-716928004\n"
-"rid|021C872BC5D2F852097513BC62D2E618\n"
+"rid|" + generateRid() + "\n"
 "platformID|4\n"
 "deviceVersion|0\n"
 "country|id\n"
 "hash|1275125224\n"
-"mac|02:00:00:00:00:00\n"
+"mac|" + generateMac() + "\n"
 "wk|NONE0\n"
 "lmode|1\n"
 "user|1201591342\n"
@@ -172,17 +172,17 @@ string packet3 =
 "GDPR|2\n"
 "category|_-5100\n"
 "totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D18\n"
-"gid|a3ce687c-a505-41f8-b3d8-a9463f33f390\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
 "tr|4322\n"
 "meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
 "fhash|-716928004\n"
-"rid|021C872BC5D2F852097513BC62D2E618\n"
+"rid|" + generateRid() + "\n"
 "platformID|4\n"
 "deviceVersion|0\n"
 "country|id\n"
 "hash|1275125224\n"
-"mac|02:00:00:00:00:00\n"
+"mac|" + generateMac() + "\n"
 "wk|NONE0\n"
 "lmode|1\n"
 "user|-405210819\n"
@@ -204,7 +204,7 @@ string packet3 =
    // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
     SendPacket(2, packet, peer);
     SendPacket(2, packet2, peer2);
-    SendPacket(2, packet3, peer3);
+      SendPacket(2, packet3, peer3);
 	currentWorld = "";
 }
 

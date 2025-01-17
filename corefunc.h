@@ -205,8 +205,7 @@ public:
 			enet_peer_send(peer, 0, p);
 		}
 	}
-	delete (char*)packetData;
-}
+	}
 
 	
 	// Connect with default value
@@ -237,7 +236,7 @@ public:
 		address.port = port;
 
 		/* Initiate the connection, allocating the two channels 0 and 1. */
-		peer = enet_host_connect(client, &address, 3, 0);
+		peer = enet_host_connect(client, &address, 5, 0);
 		if (peer == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -245,7 +244,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-		peer2 = enet_host_connect(client, &address, 3, 0);
+		peer2 = enet_host_connect(client, &address, 5, 0);
 		if (peer2 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -254,7 +253,7 @@ public:
 		}
 		enet_host_flush(client);
 		
-	peer3 = enet_host_connect(client, &address, 3, 0);
+	peer3 = enet_host_connect(client, &address, 5, 0);
 		if (peer3 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
