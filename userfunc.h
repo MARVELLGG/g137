@@ -1245,14 +1245,14 @@ void GrowtopiaBot::userLoop()
         {
             // Pilih peer secara acak dari daftar peer
             srand(time(0));  // Inisialisasi seed untuk random
-            int randomPeerIndex = rand() % 10 + 1;  // Pilih peer1 sampai peer10 secara acak
+            int randomPeerIndex = rand() % 8 + 1;  // Pilih peer1 sampai peer10 secara acak
 
             // Keluar dari dunia dengan peer acak
-            SendPacket(3, "action|quit_to_exit", getPeerByIndex(randomPeerIndex));
+         SendPacket(3, "action|join_request\nname|" + worldName, getPeerByIndex(randomPeerIndex));
+         
+   SendPacket(3, "action|quit_to_exit", getPeerByIndex(randomPeerIndex));
 
-            // Masuk kembali ke dunia dengan peer acak
-            SendPacket(3, "action|join_request\nname|" + worldName, getPeerByIndex(randomPeerIndex));
-
+       
             cout << currentWorld << "; " << worldName << endl;
         }
         timeFromWorldEnter = 0;
@@ -1266,7 +1266,7 @@ void GrowtopiaBot::userLoop()
         srand(time(0));  // Seed untuk random number generator
         int randomPeer = rand() % 10 + 1; // Pilih peer1 sampai peer10 secara acak
         string message = "Hello, this is a test message!";
-        SendPacket(2, "action|input\n|text|/msg BOBSQUISH4 " + colorstr2(message), getPeerByIndex(randomPeer));
+        SendPacket(2, "action|input\n|text|/msg BOBSQUISH14 " + colorstr2(message), getPeerByIndex(randomPeer));
     }
 
     return;

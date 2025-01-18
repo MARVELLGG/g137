@@ -300,7 +300,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-	peer8 = enet_host_connect(client, &address, 10, 0);
+/*	peer8 = enet_host_connect(client, &address, 10, 0);
 		if (peer8 == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -324,7 +324,7 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-	}
+*/	}
 	/******************* enet core *********************/
 
 
