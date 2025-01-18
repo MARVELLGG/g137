@@ -25,8 +25,6 @@
 #include <regex>
 #include <iterator>
 #include <algorithm>
-#include <ctime>
-#include <cstdlib>
 
 #include "utilsfunc.h"
 #include "corefunc.h"
@@ -1235,62 +1233,70 @@ vector<string> explode(const string &delimiter, const string &str)
 
 void GrowtopiaBot::userLoop()
 {
-    if (timeFromWorldEnter > 200 && currentWorld != worldName)
+	
+    
+    if(timeFromWorldEnter>200 && currentWorld!=worldName)
     {
-        if (worldName == "" || worldName == "-")
+        if(worldName==""||worldName=="-")
         {
-            timeFromWorldEnter = 0;
-        }
-        else
-        {
-            // Pilih peer secara acak dari daftar peer
-            srand(time(0));  // Inisialisasi seed untuk random
-            int randomPeerIndex = rand() % 8 + 1;  // Pilih peer1 sampai peer10 secara acak
-
-            // Keluar dari dunia dengan peer acak
-         SendPacket(3, "action|join_request\nname|" + worldName, getPeerByIndex(randomPeerIndex));
-         
-   SendPacket(3, "action|quit_to_exit", getPeerByIndex(randomPeerIndex));
-
-       
+            timeFromWorldEnter=0;
+        } else {
+            SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
+         SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
+       SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
+      
             cout << currentWorld << "; " << worldName << endl;
+            objects.clear();
         }
-        timeFromWorldEnter = 0;
+        timeFromWorldEnter=0;
     }
     timeFromWorldEnter++;
-
-    counter++;
-    if ((counter % 1800) == 0)
-    {
-        // Kirim pesan "/msg" ke pemain lain secara acak (random peer)
-        srand(time(0));  // Seed untuk random number generator
-        int randomPeer = rand() % 10 + 1; // Pilih peer1 sampai peer10 secara acak
-        string message = "Hello, this is a test message!";
-        SendPacket(2, "action|input\n|text|/msg BOBSQUISH14 " + colorstr2(message), getPeerByIndex(randomPeer));
-    }
-
+	counter++;
+	if ((counter % 1800) == 0)
+	{
+		string name = "";
+		float distance = std::numeric_limits<float>::infinity();
+		float ownerX;
+		float ownerY;
+		for (ObjectData x : objects)
+		{
+			if (x.netId == owner)
+			{
+				ownerX=x.x;
+				ownerY=x.y;
+			}
+		}
+		if (owner != -1)
+		{
+            for (ObjectData x : objects)
+			{
+				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
+				{
+					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
+               name = x.name;
+				}
+                if(x.netId==owner && x.isGone)
+                    goto NO_OWNER_MESSAGE;
+			}
+			if (distance == std::numeric_limits<float>::infinity())
+			{
+				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
+			}
+			else {
+				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
+            }
+		}
+	}
+    NO_OWNER_MESSAGE:
     return;
 }
-
-// Fungsi untuk mendapatkan peer berdasarkan index
-ENetPeer* GrowtopiaBot::getPeerByIndex(int index)
-{
-    switch (index)
-    {
-        case 1: return peer;
-        case 2: return peer2;
-        case 3: return peer3;
-        case 4: return peer4;
-        case 5: return peer5;
-        case 6: return peer6;
-        case 7: return peer7;
-        case 8: return peer8;
-        case 9: return peer9;
-        case 10: return peer10;
-        default: return nullptr;  // Jika index tidak valid
-    }
-}
-
 
 
 void GrowtopiaBot::userInit() {
