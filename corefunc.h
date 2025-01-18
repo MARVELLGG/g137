@@ -317,7 +317,6 @@ public:
 		enet_host_flush(client);
 		
 	}
-	}
 	/******************* enet core *********************/
 
 
