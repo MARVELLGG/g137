@@ -400,6 +400,126 @@ string packet10 =
 "doorID|0\n"
 "aat|2\n";
 
+string packet11 =
+"tankIDName|BOBSQUISH12\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet12 =
+"tankIDName|BOBSQUISH13\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet13 =
+"tankIDName|BOBSQUISH14\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet14 =
+"tankIDName|BOBSQUISH15\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
     // Cetak isi paket untuk debugging
     cout << packet;
 //	sleep(3);
@@ -420,6 +540,10 @@ string packet10 =
     SendPacket(2, packet8, peer8);
       SendPacket(2, packet9, peer9);
       SendPacket(2, packet10, peer10);
+      SendPacket(2, packet11, peer11);
+      SendPacket(2, packet12, peer12);
+      SendPacket(2, packet13, peer13);
+      SendPacket(2, packet14, peer14);
 	currentWorld = "";
 }
 
