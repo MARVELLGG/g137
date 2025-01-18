@@ -51,6 +51,10 @@ public:
 	ENetPeer *peer8;
 	ENetPeer *peer9;
 	ENetPeer *peer10;
+	ENetPeer *peer11;
+ENetPeer *peer12;
+ENetPeer *peer13;
+ENetPeer *peer14;
 	ENetHost *client;
 
 	int login_user = 0;
@@ -314,6 +318,36 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
+	peer11 = enet_host_connect(client, &address, 10, 0);
+		if (peer11== NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+	peer12 = enet_host_connect(client, &address, 10, 0);
+		if (peer12 == NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+	peer13 = enet_host_connect(client, &address, 10, 0);
+		if (peer13 == NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+	peer14 = enet_host_connect(client, &address, 10, 0);
+		if (peer14 == NULL)
+		{
+			cout << "No available peers for initiating an ENet connection.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+		enet_host_flush(client);
+		
 		
 	}
 	/******************* enet core *********************/

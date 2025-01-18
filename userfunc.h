@@ -1252,9 +1252,20 @@ void GrowtopiaBot::userLoop()
             SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
+            // Tunggu hingga benar-benar masuk ke dunia
+            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
+            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
+        }
+    }
 
-
-string name = "BOBSQUISH2";
+    // Bot sudah masuk ke dunia, kirim pesan spam
+    if (currentWorld == worldName)
+    {
+        string name = "BOBSQUISH2";
         string msg = "Message From Bot Only tested";
 
         // Spam pesan ke semua peer
@@ -1268,16 +1279,11 @@ string name = "BOBSQUISH2";
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
-        
-            // Tunggu hingga benar-benar masuk ke dunia
-            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
-            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
-        }
-    }
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
 
-    // Bot sudah masuk ke dunia, kirim pesan spam
-    if (currentWorld == worldName)
-    {
         cout << currentWorld << "; " << worldName << endl;
         objects.clear();
 
