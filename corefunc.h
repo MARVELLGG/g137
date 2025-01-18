@@ -220,41 +220,30 @@ public:
 		connectClient(SERVER_HOST, SERVER_PORT);
 	}
 
-	void connectClient(string hostName, int port) {
-    // Daftar IP lokal
-    string localIPs[] = {
-        "192.168.1.8",
-        "192.168.1.4",
-    };
+	void connectClient(string hostName, int port)
+	{
+		cout << "Connecting bot to " << hostName << ":" << port << endl;
+		client = enet_host_create(NULL /* create a client host */,
+			10 /* only allow 1 outgoing connection */,
+			10 /* allow up 2 channels to be used, 0 and 1 */,
+			0 /* 56K modem with 56 Kbps downstream bandwidth */,
+			0 /* 56K modem with 14 Kbps upstream bandwidth */);
+		client->usingNewPacket = false;
+		if (client == NULL)
+		{
+			cout << "An error occurred while trying to create an ENet client host.\n";
+			
+			exit(EXIT_FAILURE);
+		}
+		ENetAddress address;
 
-    // Iterasi melalui setiap IP lokal
-    for (const string& localIP : localIPs) {
-        cout << "Connecting bot to " << hostName << ":" << port << " using IP: " << localIP << endl;
+		client->checksum = enet_crc32;
+		enet_host_compress_with_range_coder(client);
+		enet_address_set_host(&address, hostName.c_str());
+		address.port = port;
 
-        // Bind ke IP lokal tertentu
-        ENetAddress bindAddress;
-        enet_address_set_host(&bindAddress, localIP.c_str());
-        bindAddress.port = 0;  // Pilih port random untuk koneksi keluar
-
-        // Buat ENetHost untuk setiap IP lokal
-        ENetHost* client = enet_host_create(&bindAddress, 10 /* max connections */, 10 /* max channels */, 0, 0);
-        
-        // Cek apakah host berhasil dibuat
-        if (client == NULL) {
-            cout << "Failed to create ENetHost for IP: " << localIP << endl;
-            continue;  // Coba IP lain jika gagal
-        }
-
-        client->usingNewPacket = false;
-        client->checksum = enet_crc32;
-        enet_host_compress_with_range_coder(client);
-
-        // Buat koneksi ke server
-        ENetAddress address;
-        enet_address_set_host(&address, hostName.c_str());
-        address.port = port;
-
-        peer = enet_host_connect(client, &address, 2, 0);
+		/* Initiate the connection, allocating the two channels 0 and 1. */
+		peer = enet_host_connect(client, &address, 2, 0);
         if (peer == NULL)
 		{
 			cout << "No available peers for initiating an ENet connection.\n";
@@ -326,7 +315,6 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		enet_host_flush(client);
-		cout << "Bot connected using IP: " << localIP << " with multiple peers." << endl;
 		
 	}
 	}
