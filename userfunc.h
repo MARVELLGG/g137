@@ -1233,80 +1233,95 @@ vector<string> explode(const string &delimiter, const string &str)
 
 void GrowtopiaBot::userLoop()
 {
-	
-    
-    if(timeFromWorldEnter>200 && currentWorld!=worldName)
+    if (timeFromWorldEnter > 200 && currentWorld != worldName)
     {
-        if(worldName==""||worldName=="-")
+        if (worldName == "" || worldName == "-")
         {
-            timeFromWorldEnter=0;
-        } else {
+            timeFromWorldEnter = 0;
+        }
+        else
+        {
+            // Mengirim permintaan bergabung ke semua peer
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
-         SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
-       SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
-      string name = "BOBSQUISH2"
-      string msg = "Message From Bot Only tested"
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
-            SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
-               SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
-              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
-              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
-              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
-            SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
-               SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
-              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
-              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
+            SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
 
-            cout << currentWorld << "; " << worldName << endl;
-            objects.clear();
+            // Tunggu hingga benar-benar masuk ke dunia
+            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
+            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
         }
-        timeFromWorldEnter=0;
     }
-    timeFromWorldEnter++;
-	counter++;
-	if ((counter % 1800) == 0)
-	{
-		string name = "";
-		float distance = std::numeric_limits<float>::infinity();
-		float ownerX;
-		float ownerY;
-		for (ObjectData x : objects)
-		{
-			if (x.netId == owner)
-			{
-				ownerX=x.x;
-				ownerY=x.y;
-			}
-		}
-		if (owner != -1)
-		{
-            for (ObjectData x : objects)
-			{
-				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
-				{
-					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
-               name = x.name;
-				}
-                if(x.netId==owner && x.isGone)
-                    goto NO_OWNER_MESSAGE;
-			}
-			if (distance == std::numeric_limits<float>::infinity())
-			{
-				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
-			}
-			else {
-				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
+
+    // Bot sudah masuk ke dunia, kirim pesan spam
+    if (currentWorld == worldName)
+    {
+        string name = "BOBSQUISH2";
+        string msg = "Message From Bot Only tested";
+
+        // Spam pesan ke semua peer
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
+
+        cout << currentWorld << "; " << worldName << endl;
+        objects.clear();
+
+        timeFromWorldEnter = 0;  // Reset timer setelah masuk ke dunia
+    }
+
+    timeFromWorldEnter++; // Increment time
+    counter++; // Increment counter
+
+    if ((counter % 1800) == 0)
+    {
+        string name = "";
+        float distance = std::numeric_limits<float>::infinity();
+        float ownerX;
+        float ownerY;
+        for (ObjectData x : objects)
+        {
+            if (x.netId == owner)
+            {
+                ownerX = x.x;
+                ownerY = x.y;
             }
-		}
-	}
-    NO_OWNER_MESSAGE:
+        }
+        if (owner != -1)
+        {
+            for (ObjectData x : objects)
+            {
+                if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
+                {
+                    distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just don't calculate square root = faster
+                    name = x.name;
+                }
+                if (x.netId == owner && x.isGone)
+                    goto NO_OWNER_MESSAGE;
+            }
+            if (distance == std::numeric_limits<float>::infinity())
+            {
+                SendPacket(2, "action|input\n|text|There are no other players:(", peer);
+            }
+            else {
+                SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
+            }
+        }
+    }
+NO_OWNER_MESSAGE:
     return;
 }
 
