@@ -1273,7 +1273,7 @@ void GrowtopiaBot::userLoop()
 }
 
 // Fungsi untuk mendapatkan peer berdasarkan index
-void GrowtopiaBot::getPeerByIndex(int index)
+ENetPeer* GrowtopiaBot::getPeerByIndex(int index)
 {
     switch (index)
     {
