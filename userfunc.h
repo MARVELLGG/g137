@@ -1253,16 +1253,8 @@ void GrowtopiaBot::userLoop()
             SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
 
-            // Tunggu hingga benar-benar masuk ke dunia
-            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
-            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
-        }
-    }
 
-    // Bot sudah masuk ke dunia, kirim pesan spam
-    if (currentWorld == worldName)
-    {
-        string name = "BOBSQUISH2";
+string name = "BOBSQUISH2";
         string msg = "Message From Bot Only tested";
 
         // Spam pesan ke semua peer
@@ -1276,7 +1268,16 @@ void GrowtopiaBot::userLoop()
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
+        
+            // Tunggu hingga benar-benar masuk ke dunia
+            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
+            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
+        }
+    }
 
+    // Bot sudah masuk ke dunia, kirim pesan spam
+    if (currentWorld == worldName)
+    {
         cout << currentWorld << "; " << worldName << endl;
         objects.clear();
 
