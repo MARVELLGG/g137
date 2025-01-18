@@ -151,6 +151,7 @@ public:
 	void OnAddNotification(string image, string message, string audio, int val1);
 	void AtApplyTileDamage(int x, int y, int damge);
 	void AtApplyLock(int x, int y, int itemId);
+	void getPeerByIndex(int index);
 	void AtPlayerMoving(PlayerMoving* data);
 	void AtAvatarSetIconState(int netID, int state);
 	void WhenConnected();
