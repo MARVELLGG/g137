@@ -250,7 +250,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 		peer2 = enet_host_connect(client, &address, 10, 0);
 		if (peer2 == NULL)
 		{
@@ -258,7 +257,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer3 = enet_host_connect(client, &address, 10, 0);
 		if (peer3 == NULL)
 		{
@@ -266,7 +264,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer4 = enet_host_connect(client, &address, 10, 0);
 		if (peer4 == NULL)
 		{
@@ -274,7 +271,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer5 = enet_host_connect(client, &address, 10, 0);
 		if (peer5 == NULL)
 		{
@@ -282,7 +278,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer6 = enet_host_connect(client, &address, 10, 0);
 		if (peer6 == NULL)
 		{
@@ -290,7 +285,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer7 = enet_host_connect(client, &address, 10, 0);
 		if (peer7 == NULL)
 		{
@@ -298,7 +292,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer8 = enet_host_connect(client, &address, 10, 0);
 		if (peer8 == NULL)
 		{
@@ -306,7 +299,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer9 = enet_host_connect(client, &address, 10, 0);
 		if (peer9 == NULL)
 		{
@@ -314,7 +306,6 @@ public:
 			
 			exit(EXIT_FAILURE);
 		}
-		enet_host_flush(client);
 	peer10 = enet_host_connect(client, &address, 10, 0);
 		if (peer10 == NULL)
 		{

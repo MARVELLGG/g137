@@ -1251,7 +1251,19 @@ void GrowtopiaBot::userLoop()
          SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
        SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
-      
+      string name = "BOBSQUISH2"
+      string msg = "Message From Bot Only tested"
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
+            SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
+               SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
+              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
+              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
+              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
+            SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
+               SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
+              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
+              SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
+
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
