@@ -1380,14 +1380,15 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
-            // Tunggu hingga benar-benar masuk ke dunia
+       msgloop();    
+ // Tunggu hingga benar-benar masuk ke dunia
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
         }
         if (currentWorld == worldName)
         {
-       msgloop();
+   
         timeFromWorldEnter=0;
     }
     timeFromWorldEnter++;
@@ -1433,7 +1434,7 @@ NO_OWNER_MESSAGE:
 
 
 void GrowtopiaBot::msgloop() {
-	string name = "BOBSQUISH2";
+	string name = "BOBSQUISH16";
         string msg = "Message From Bot Only tested";
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
