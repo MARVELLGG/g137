@@ -1368,14 +1368,18 @@ void GrowtopiaBot::userLoop()
             // Mengirim permintaan bergabung ke semua peer
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
+sleep(2)
             SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
+sleep(2)
             SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
+sleep(3)
             SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
+sleep(5)
 SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
