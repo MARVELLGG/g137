@@ -1388,7 +1388,7 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
         }
         if (currentWorld == worldName)
         {
-        objects.clear();
+        
         timeFromWorldEnter=0;
     }
     timeFromWorldEnter++;
