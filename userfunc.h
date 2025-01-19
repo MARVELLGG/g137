@@ -1381,9 +1381,10 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
             // Tunggu hingga benar-benar masuk ke dunia
-objects.clear();
+
 msgloop();
             cout << currentWorld << "; " << worldName << endl;
+            objects.clear();
             return;
         }
         }
