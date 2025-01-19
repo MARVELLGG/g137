@@ -50,7 +50,7 @@ int main() {
             std::getline(cin, userInput);
             if (!userInput.empty()) {
                 bot.SendPacket(2, userInput, bot.peer);
-		 
+		        
                 cout << "Paket dikirim: " << userInput << endl;
             }
         }
@@ -60,6 +60,7 @@ int main() {
     while (true) {
         bot.eventLoop();
         bot.userLoop();
+        bot.msgloop();
         std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Hindari penggunaan CPU tinggi
     }
 

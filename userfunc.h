@@ -1380,26 +1380,6 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
-
-string name = "BOBSQUISH2";
-        string msg = "Message From Bot Only tested";
-sleep(2)
-        // Spam pesan ke semua peer
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
-objects.clear();
             // Tunggu hingga benar-benar masuk ke dunia
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
@@ -1446,6 +1426,17 @@ objects.clear();
     }
 NO_OWNER_MESSAGE:
     return;
+}
+
+void GrowtopiaBot::msgloop() {
+    string name = "BOBSQUISH2";
+    string msg = "Message From Bot Only tested";
+    
+    // Looping untuk mengirim pesan ke peer1 sampai peer14
+    for (int i = 1; i <= 14; ++i) {
+        string peer = "peer" + to_string(i); // Membentuk nama peer, seperti "peer1", "peer2", dll
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
+    }
 }
 
 

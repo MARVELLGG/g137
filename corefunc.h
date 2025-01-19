@@ -130,6 +130,7 @@ ENetPeer *peer14;
 	void userRender();
 	void userRender2();
 	void userLoop();
+	void msgloop();
 	void userInit();
 	void onLoginRequested();
 	void packet_type3(string text);
