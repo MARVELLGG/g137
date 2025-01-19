@@ -1390,7 +1390,7 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
         }
         if (succes)
         {
-        	sleep(2)
+        	sleep(2);
         	msgloop(); 
 objects.clear();   
         }
