@@ -1380,18 +1380,10 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
-            // Tunggu hingga benar-benar masuk ke dunia
-            cout << "Menunggu untuk masuk ke dunia: " << worldName << endl;
-            return;  // Keluar dari loop ini jika bot belum berhasil masuk dunia
-        }
-    }
 
-    // Bot sudah masuk ke dunia, kirim pesan spam
-    if (currentWorld == worldName)
-    {
-        string name = "BOBSQUISH2";
+string name = "BOBSQUISH2";
         string msg = "Message From Bot Only tested";
-
+sleep(2)
         // Spam pesan ke semua peer
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
@@ -1407,18 +1399,18 @@ SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11)
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
-
-        cout << currentWorld << "; " << worldName << endl;
-        objects.clear();
-
-        timeFromWorldEnter = 0;  // Reset timer setelah masuk ke dunia
+objects.clear();
+            // Tunggu hingga benar-benar masuk ke dunia
+            cout << currentWorld << "; " << worldName << endl;
+            objects.clear();
+            return;
+        }
+        timeFromWorldEnter=0;
     }
-
-    timeFromWorldEnter++; // Increment time
-    counter++; // Increment counter
-
-    if ((counter % 1800) == 0)
-    {
+    timeFromWorldEnter++;
+	counter++;
+	if ((counter % 1800) == 0)
+	{
         string name = "";
         float distance = std::numeric_limits<float>::infinity();
         float ownerX;
