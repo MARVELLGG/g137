@@ -1382,17 +1382,15 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
-      succes = true;
  // Tunggu hingga benar-benar masuk ke dunia
             cout << currentWorld << "; " << worldName << endl;
-
-        }
-        }
-        if (succes)
-        {
-        	sleep(2);
-        	msgloop(); 
 objects.clear();   
+        }
+        }
+        
+        if (currentWorld == worldName)
+        {
+        	msgloop();
         }
         
     timeFromWorldEnter++;
