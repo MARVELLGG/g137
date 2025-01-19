@@ -1362,6 +1362,8 @@ void GrowtopiaBot::userLoop()
         if (worldName == "" || worldName == "-")
         {
             timeFromWorldEnter = 0;
+            msgloop();    
+            
         }
         else
         {
@@ -1384,14 +1386,9 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
  // Tunggu hingga benar-benar masuk ke dunia
             cout << currentWorld << "; " << worldName << endl;
             objects.clear();
-     msgloop();    
-   }
         }
-        if (currentWorld == worldName)
-        {
-   
-        timeFromWorldEnter=0;
-    }
+        }
+        
     timeFromWorldEnter++;
 	counter++;
 	if ((counter % 1800) == 0)
