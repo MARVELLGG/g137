@@ -1428,20 +1428,25 @@ NO_OWNER_MESSAGE:
     return;
 }
 
+
 void GrowtopiaBot::msgloop() {
-    string name = "BOBSQUISH2";
-    string msg = "Message From Bot Only tested";
-
-    // Daftar pointer ke ENetPeer yang berisi semua peer yang terhubung
-    ENetPeer* peers[] = {peer1, peer2, peer3, peer4, peer5, peer6, peer7, peer8, peer9, peer10, peer11, peer12, peer13, peer14};
-
-    // Looping untuk mengirim pesan ke setiap peer
-    for (int i = 0; i < 14; ++i) {
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peers[i]);
-    }
-}
-
-
+	string name = "BOBSQUISH2";
+        string msg = "Message From Bot Only tested";
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
+SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
+   }
 
 void GrowtopiaBot::userInit() {
 	connectClient();
