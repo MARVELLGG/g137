@@ -1383,52 +1383,53 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
- // Tunggu hingga benar-benar masuk ke dunia
-            cout << currentWorld << "; " << worldName << endl;
-objects.clear();   
+cout << currentWorld << "; " << worldName << endl;
+            objects.clear();
         }
-        }
-        
+        timeFromWorldEnter=0;
+        msgloop();
+    }
     timeFromWorldEnter++;
 	counter++;
 	if ((counter % 1800) == 0)
 	{
-        string name = "";
-        float distance = std::numeric_limits<float>::infinity();
-        float ownerX;
-        float ownerY;
-        for (ObjectData x : objects)
-        {
-            if (x.netId == owner)
-            {
-                ownerX = x.x;
-                ownerY = x.y;
-            }
-        }
-        if (owner != -1)
-        {
+		string name = "";
+		float distance = std::numeric_limits<float>::infinity();
+		float ownerX;
+		float ownerY;
+		for (ObjectData x : objects)
+		{
+			if (x.netId == owner)
+			{
+				ownerX=x.x;
+				ownerY=x.y;
+			}
+		}
+		if (owner != -1)
+		{
             for (ObjectData x : objects)
-            {
-                if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
-                {
-                    distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just don't calculate square root = faster
-                    name = x.name;
-                }
-                if (x.netId == owner && x.isGone)
+			{
+				if (((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)) < distance && x.netId != owner && !x.isGone)
+				{
+					distance = ((x.x - ownerX)*(x.x - ownerX)) + ((x.y - ownerY)*(x.y - ownerY)); // just dont calculate squere root = faster
+               name = x.name;
+				}
+                if(x.netId==owner && x.isGone)
                     goto NO_OWNER_MESSAGE;
+			}
+			if (distance == std::numeric_limits<float>::infinity())
+			{
+				SendPacket(2, "action|input\n|text|There are no other players:(", peer);
+			}
+			else {
+				SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
             }
-            if (distance == std::numeric_limits<float>::infinity())
-            {
-                SendPacket(2, "action|input\n|text|There are no other players:(", peer);
-            }
-            else {
-                SendPacket(2, "action|input\n|text|Closest player is " + name + " with distance " + std::to_string(sqrt(distance)), peer);
-            }
-        }
-    }
-NO_OWNER_MESSAGE:
+		}
+	}
+    NO_OWNER_MESSAGE:
     return;
 }
+
 
 
 void GrowtopiaBot::msgloop() {
