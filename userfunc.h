@@ -1387,7 +1387,6 @@ cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
         timeFromWorldEnter=0;
-        msgloop();
     }
     timeFromWorldEnter++;
 	counter++;
