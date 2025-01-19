@@ -102,7 +102,7 @@ void GrowtopiaBot::onLoginRequested()
 string packet = 
 "tankIDName|" + uname + "\n"
 "tankIDPass|" + upass + "\n"
-"requestedName|TESTED\n"
+"requestedName|\n"
 "f|1\n"
 "protocol|212\n"
 "game_version|5.02\n"
@@ -1381,7 +1381,7 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
             // Tunggu hingga benar-benar masuk ke dunia
-
+objects.clear();
 msgloop();
             cout << currentWorld << "; " << worldName << endl;
             return;
