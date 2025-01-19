@@ -1367,6 +1367,7 @@ void GrowtopiaBot::userLoop()
         }
         else
         {
+        	
             // Mengirim permintaan bergabung ke semua peer
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
             SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
@@ -1388,7 +1389,7 @@ objects.clear();
         }
         }
         
-        if (worldName)
+        if (worldName == INDONESIA2)
         {
         	msgloop();
         }
