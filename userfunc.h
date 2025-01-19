@@ -1388,7 +1388,7 @@ objects.clear();
         }
         }
         
-        if (currentWorld == worldName)
+        if (worldName)
         {
         	msgloop();
         }
