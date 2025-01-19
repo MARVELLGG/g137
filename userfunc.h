@@ -1389,7 +1389,7 @@ objects.clear();
         }
         }
         
-        if (worldName == INDONESIA2)
+        if (worldName == "INDONESIA2")
         {
         	msgloop();
         }
