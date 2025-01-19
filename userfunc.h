@@ -1431,13 +1431,16 @@ NO_OWNER_MESSAGE:
 void GrowtopiaBot::msgloop() {
     string name = "BOBSQUISH2";
     string msg = "Message From Bot Only tested";
-    
-    // Looping untuk mengirim pesan ke peer1 sampai peer14
-    for (int i = 1; i <= 14; ++i) {
-        string peer = "peer" + to_string(i); // Membentuk nama peer, seperti "peer1", "peer2", dll
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
+
+    // Daftar pointer ke ENetPeer yang berisi semua peer yang terhubung
+    ENetPeer* peers[] = {peer1, peer2, peer3, peer4, peer5, peer6, peer7, peer8, peer9, peer10, peer11, peer12, peer13, peer14};
+
+    // Looping untuk mengirim pesan ke setiap peer
+    for (int i = 0; i < 14; ++i) {
+        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peers[i]);
     }
 }
+
 
 
 void GrowtopiaBot::userInit() {
