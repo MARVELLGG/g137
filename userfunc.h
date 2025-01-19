@@ -1389,11 +1389,6 @@ objects.clear();
         }
         }
         
-        if (worldName == "INDONESIA2")
-        {
-        	msgloop();
-        }
-        
     timeFromWorldEnter++;
 	counter++;
 	if ((counter % 1800) == 0)
