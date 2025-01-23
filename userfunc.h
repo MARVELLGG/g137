@@ -17,6 +17,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "json.hpp"
 #include <sstream>
+#include <curl/curl.h>
 #include <vector>
 #include <limits>
 #include <math.h>
@@ -547,6 +548,46 @@ string packet14 =
 	currentWorld = "";
 }
 
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* out)
+{
+    size_t totalSize = size * nmemb;
+    out->append((char*)contents, totalSize);
+    return totalSize;
+}
+
+string GrowtopiaBot::FindItemAPI(const string& itemName)
+{
+    CURL* curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    if (curl) {
+        std::string url = "https://growtopia.fandom.com/api/v1/SearchSuggestions/List?query=" + itemName;
+
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+
+        if (res == CURLE_OK) {
+            // Parse JSON hasil dari API
+            Json::Value jsonData;
+            Json::Reader jsonReader;
+            if (jsonReader.parse(readBuffer, jsonData)) {
+                if (jsonData["items"].size() > 0) {
+                    // Ambil nama item pertama dari hasil pencarian
+                    std::string foundItem = jsonData["items"][0]["title"].asString();
+                    return foundItem;
+                }
+            }
+        }
+    }
+
+    return ""; // Jika API gagal atau tidak menemukan hasil
+}
+
 void GrowtopiaBot::packet_type3(string text)
 {
 	dbgPrint("Some text is here: " + text);
@@ -769,6 +810,20 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 		}
 		}
 	}
+    if (bubbleText.find("!finditem ") != string::npos) {
+        // Ambil nama item setelah "!finditem "
+        string itemName = bubbleText.substr(bubbleText.find("!finditem ") + 10);
+
+        // Panggil API Growtopia untuk mencari item
+        string apiResult = FindItemAPI(itemName);
+
+        // Periksa hasil API dan kirim respons ke game
+        if (!apiResult.empty()) {
+            SendPacket(2, "action|input\n|text|Item found: " + apiResult, peer);
+        } else {
+            SendPacket(2, "action|input\n|text|Item not found: " + itemName, peer);
+        }
+    }
 	if (bubbleText.find("!playercount") != string::npos)
 	{
 		int i=0;
