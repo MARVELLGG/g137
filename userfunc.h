@@ -25,7 +25,8 @@
 #include <regex>
 #include <iterator>
 #include <algorithm>
-
+#include <curl/curl.h>
+#include <json/json.h>
 #include "utilsfunc.h"
 #include "corefunc.h"
 #include "userfunc.h"
@@ -1026,21 +1027,6 @@ string packet30 =
       SendPacket(2, packet13, peer13);
       SendPacket(2, packet14, peer14);
           SendPacket(2, packet15, peer15);
-    SendPacket(2, packet16, peer16);
-    SendPacket(2, packet17, peer17);
-    SendPacket(2, packet18, peer18);
-    SendPacket(2, packet19, peer19);
-    SendPacket(2, packet20, peer20);
-    SendPacket(2, packet21, peer21);
-    SendPacket(2, packet22, peer22);
-    SendPacket(2, packet23, peer23);
-    SendPacket(2, packet24, peer24);
-    SendPacket(2, packet25, peer25);
-    SendPacket(2, packet26, peer26);
-    SendPacket(2, packet27, peer27);
-    SendPacket(2, packet28, peer28);
-    SendPacket(2, packet29, peer29);
-    SendPacket(2, packet30, peer30);
     
 	currentWorld = "";
 }
@@ -1117,6 +1103,47 @@ void GrowtopiaBot::OnSetFreezeState(int state)
 {
 
 }
+
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* out)
+{
+    size_t totalSize = size * nmemb;
+    out->append((char*)contents, totalSize);
+    return totalSize;
+}
+
+string GrowtopiaBot::FindItemAPI(const string& itemName)
+{
+    CURL* curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    if (curl) {
+        std::string url = "https://growtopia.fandom.com/api/v1/SearchSuggestions/List?query=" + itemName;
+
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+
+        if (res == CURLE_OK) {
+            // Parse JSON hasil dari API
+            Json::Value jsonData;
+            Json::Reader jsonReader;
+            if (jsonReader.parse(readBuffer, jsonData)) {
+                if (jsonData["items"].size() > 0) {
+                    // Ambil nama item pertama dari hasil pencarian
+                    std::string foundItem = jsonData["items"][0]["title"].asString();
+                    return foundItem;
+                }
+            }
+        }
+    }
+
+    return ""; // Jika API gagal atau tidak menemukan hasil
+}
+
 
 void GrowtopiaBot::OnRemove(string data) // "netID|x\n"
 {
@@ -1331,6 +1358,21 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowing = true;
 	}
+	if (bubbleText.find("!finditem ") != string::npos) {
+        // Ambil nama item setelah "!finditem "
+        string itemName = bubbleText.substr(bubbleText.find("!finditem ") + 10);
+
+        // Panggil API Growtopia untuk mencari item
+        string apiResult = FindItemAPI(itemName);
+
+        // Periksa hasil API dan kirim respons ke game
+        if (!apiResult.empty()) {
+            SendPacket(2, "action|input\n|text|Item found: " + apiResult, peer);
+        } else {
+            SendPacket(2, "action|input\n|text|Item not found: " + itemName, peer);
+        }
+    }
+}
 	if (bubbleText.find("!netid ") != string::npos) {
         string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
         try {
@@ -1464,21 +1506,6 @@ SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk "
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer13);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer14);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer15);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer16);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer17);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer18);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer19);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer20);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer21);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer22);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer23);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer24);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer25);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer26);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer27);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer28);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer29);
-SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer30);
 
 }
 	
@@ -1499,22 +1526,6 @@ SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer13);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer14);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer15);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer16);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer17);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer18);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer19);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer20);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer21);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer22);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer23);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer24);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer25);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer26);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer27);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer28);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer29);
-SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer30);
-
 	}
 }
 
@@ -1633,21 +1644,6 @@ SendPacket(2, "action|respawn", peer12);
 SendPacket(2, "action|respawn", peer13);
 SendPacket(2, "action|respawn", peer14);
 SendPacket(2, "action|respawn", peer15);
-SendPacket(2, "action|respawn", peer16);
-SendPacket(2, "action|respawn", peer17);
-SendPacket(2, "action|respawn", peer18);
-SendPacket(2, "action|respawn", peer19);
-SendPacket(2, "action|respawn", peer20);
-SendPacket(2, "action|respawn", peer21);
-SendPacket(2, "action|respawn", peer22);
-SendPacket(2, "action|respawn", peer23);
-SendPacket(2, "action|respawn", peer24);
-SendPacket(2, "action|respawn", peer25);
-SendPacket(2, "action|respawn", peer26);
-SendPacket(2, "action|respawn", peer27);
-SendPacket(2, "action|respawn", peer28);
-SendPacket(2, "action|respawn", peer29);
-SendPacket(2, "action|respawn", peer30);
 
         }
 
@@ -1681,22 +1677,7 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer12, ENET_PACKET_FLAG_RELIABL
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer16, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer17, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer18, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer19, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer20, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer21, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer22, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer23, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer24, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer25, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer26, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer27, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer28, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer29, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer30, ENET_PACKET_FLAG_RELIABLE);
-    }
+
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)
@@ -1717,22 +1698,7 @@ SendPacket(2, "action|respawn", peer12);
 SendPacket(2, "action|respawn", peer13);
 SendPacket(2, "action|respawn", peer14);
 SendPacket(2, "action|respawn", peer15);
-SendPacket(2, "action|respawn", peer16);
-SendPacket(2, "action|respawn", peer17);
-SendPacket(2, "action|respawn", peer18);
-SendPacket(2, "action|respawn", peer19);
-SendPacket(2, "action|respawn", peer20);
-SendPacket(2, "action|respawn", peer21);
-SendPacket(2, "action|respawn", peer22);
-SendPacket(2, "action|respawn", peer23);
-SendPacket(2, "action|respawn", peer24);
-SendPacket(2, "action|respawn", peer25);
-SendPacket(2, "action|respawn", peer26);
-SendPacket(2, "action|respawn", peer27);
-SendPacket(2, "action|respawn", peer28);
-SendPacket(2, "action|respawn", peer29);
-SendPacket(2, "action|respawn", peer30);
-		}
+	}
 		for (int i = 0; i < objects.size(); i++)
 			if (objects.at(i).isLocal) {
 				objects.at(i).x = data->x;
@@ -1753,21 +1719,6 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer12, ENET_PACKET_FLAG_RELIABL
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer16, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer17, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer18, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer19, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer20, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer21, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer22, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer23, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer24, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer25, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer26, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer27, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer28, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer29, ENET_PACKET_FLAG_RELIABLE);
-SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer30, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -2009,21 +1960,6 @@ SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer15); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer16); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer17); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer18); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer19); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer20); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer21); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer22); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer23); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer24); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer25); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer26); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer27); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer28); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer29); // MARRKS
-SendPacket(3, "action|join_request\nname|" + worldName, peer30); // MARRKS
 cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }

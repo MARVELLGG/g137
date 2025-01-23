@@ -56,21 +56,6 @@ ENetPeer *peer12;
 ENetPeer *peer13;
 ENetPeer *peer14;
 ENetPeer *peer15;
-ENetPeer *peer16;
-ENetPeer *peer17;
-ENetPeer *peer18;
-ENetPeer *peer19;
-ENetPeer *peer20;
-ENetPeer *peer21;
-ENetPeer *peer22;
-ENetPeer *peer23;
-ENetPeer *peer24;
-ENetPeer *peer25;
-ENetPeer *peer26;
-ENetPeer *peer27;
-ENetPeer *peer28;
-ENetPeer *peer29;
-ENetPeer *peer30;
 
 
 	ENetHost *client;
@@ -153,6 +138,7 @@ ENetPeer *peer30;
 	void onLoginRequested();
 	void packet_type3(string text);
 	void packet_type6(string text);
+	string FindItemAPI(const string& itemName)
 	void packet_unknown(ENetPacket* packet);
 	void OnSendToServer(string address, int port, int userId, int token);
 	void OnConsoleMessage(string message);
@@ -353,96 +339,6 @@ ENetPeer *peer30;
     enet_host_flush(client);
     peer15 = enet_host_connect(client, &address, 10, 0);
     if (peer15 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer16 = enet_host_connect(client, &address, 10, 0);
-    if (peer16 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer17 = enet_host_connect(client, &address, 10, 0);
-    if (peer17 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer18 = enet_host_connect(client, &address, 10, 0);
-    if (peer18 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer19 = enet_host_connect(client, &address, 10, 0);
-    if (peer19 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer20 = enet_host_connect(client, &address, 10, 0);
-    if (peer20 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer21 = enet_host_connect(client, &address, 10, 0);
-    if (peer21 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer22 = enet_host_connect(client, &address, 10, 0);
-    if (peer22 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer23 = enet_host_connect(client, &address, 10, 0);
-    if (peer23 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer24 = enet_host_connect(client, &address, 10, 0);
-    if (peer24 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer25 = enet_host_connect(client, &address, 10, 0);
-    if (peer25 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer26 = enet_host_connect(client, &address, 10, 0);
-    if (peer26 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer27 = enet_host_connect(client, &address, 10, 0);
-    if (peer27 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer28 = enet_host_connect(client, &address, 10, 0);
-    if (peer28 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer29 = enet_host_connect(client, &address, 10, 0);
-    if (peer29 == NULL)
-    {
-        cout << "No available peers for initiating an ENet connection.\n";
-        exit(EXIT_FAILURE);
-    }
-    peer30 = enet_host_connect(client, &address, 10, 0);
-    if (peer30 == NULL)
     {
         cout << "No available peers for initiating an ENet connection.\n";
         exit(EXIT_FAILURE);
