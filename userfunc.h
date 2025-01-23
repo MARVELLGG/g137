@@ -26,7 +26,7 @@
 #include <regex>
 #include <iterator>
 #include <algorithm>
-
+#include <nlohmann/json.hpp>
 #include "utilsfunc.h"
 #include "corefunc.h"
 #include "userfunc.h"
