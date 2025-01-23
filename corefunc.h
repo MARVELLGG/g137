@@ -144,6 +144,7 @@ ENetPeer *peer14;
 	void OnSpawn(string data);
 	void MoveBotRaw(int deltaX, int deltaY);
 	void ActivateInvisEffect();
+	string FindItemAPI(const string& itemName)
     void InvisibleEffect(int count);
     void MoveBotRandom(int repeatCount, int offsetX, int offsetY);
 	void OnAction(string command);
