@@ -1093,7 +1093,7 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
         cout << "Found message!" << endl;
     }
     
-    if (message.find("`` left, `w") != string::npos)
+  /*  if (message.find("`` left, `w") != string::npos)
 	{
 		string::size_type loc = message.find("`` left,", 0);
 		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just left"), peer);
@@ -1103,7 +1103,7 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 		string::size_type loc = message.find("`` entered,", 0);
 		SendPacket(2, "action|input\n|text|" + colorstr2(message.substr(3, loc) + " just joined"), peer);
 	}
-    
+   */ 
     cout << "------------------------" << endl;
 }
 
@@ -1265,6 +1265,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
            std::to_string(static_cast<int>(x.x)) + ":" + 
            std::to_string(static_cast<int>(x.y)) + ".", peer3);
         }
+    }
     }
 	if (bubbleText.find("!playercount") != string::npos)
 	{
