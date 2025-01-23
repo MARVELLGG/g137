@@ -548,14 +548,12 @@ string packet14 =
 	currentWorld = "";
 }
 
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* out)
-{
-    size_t totalSize = size * nmemb;
-    out->append((char*)contents, totalSize);
-    return totalSize;
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
 }
 
-string GrowtopiaBot::FindItemAPI(const string& itemName)
+std::string GrowtopiaBot::FindItemAPI(const std::string& itemName)
 {
     CURL* curl;
     CURLcode res;
@@ -573,14 +571,17 @@ string GrowtopiaBot::FindItemAPI(const string& itemName)
 
         if (res == CURLE_OK) {
             // Parse JSON hasil dari API
-            Json::Value jsonData;
-            Json::Reader jsonReader;
-            if (jsonReader.parse(readBuffer, jsonData)) {
-                if (jsonData["items"].size() > 0) {
+            try {
+                nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+                
+                if (jsonData.contains("items") && jsonData["items"].is_array() && !jsonData["items"].empty()) {
                     // Ambil nama item pertama dari hasil pencarian
-                    std::string foundItem = jsonData["items"][0]["title"].asString();
+                    std::string foundItem = jsonData["items"][0]["title"];
                     return foundItem;
                 }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Error parsing JSON: " << e.what() << std::endl;
             }
         }
     }
