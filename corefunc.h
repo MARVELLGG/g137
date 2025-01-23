@@ -42,19 +42,37 @@ using json = nlohmann::json;
 class GrowtopiaBot {
 public:
 	ENetPeer *peer;
-	ENetPeer *peer2;
-	ENetPeer *peer3;
-	ENetPeer *peer4;
-	ENetPeer *peer5;
-	ENetPeer *peer6;
-	ENetPeer *peer7;
-	ENetPeer *peer8;
-	ENetPeer *peer9;
-	ENetPeer *peer10;
-	ENetPeer *peer11;
+ENetPeer *peer2;
+ENetPeer *peer3;
+ENetPeer *peer4;
+ENetPeer *peer5;
+ENetPeer *peer6;
+ENetPeer *peer7;
+ENetPeer *peer8;
+ENetPeer *peer9;
+ENetPeer *peer10;
+ENetPeer *peer11;
 ENetPeer *peer12;
 ENetPeer *peer13;
 ENetPeer *peer14;
+ENetPeer *peer15;
+ENetPeer *peer16;
+ENetPeer *peer17;
+ENetPeer *peer18;
+ENetPeer *peer19;
+ENetPeer *peer20;
+ENetPeer *peer21;
+ENetPeer *peer22;
+ENetPeer *peer23;
+ENetPeer *peer24;
+ENetPeer *peer25;
+ENetPeer *peer26;
+ENetPeer *peer27;
+ENetPeer *peer28;
+ENetPeer *peer29;
+ENetPeer *peer30;
+
+
 	ENetHost *client;
 
 	int login_user = 0;
@@ -144,7 +162,6 @@ ENetPeer *peer14;
 	void OnSpawn(string data);
 	void MoveBotRaw(int deltaX, int deltaY);
 	void ActivateInvisEffect();
-	std::string FindItemAPI(const string& itemName);
     void InvisibleEffect(int count);
     void MoveBotRandom(int repeatCount, int offsetX, int offsetY);
 	void OnAction(string command);
@@ -227,131 +244,213 @@ ENetPeer *peer14;
 	}
 
 	void connectClient(string hostName, int port)
-	{
-		cout << "Connecting bot to " << hostName << ":" << port << endl;
-		client = enet_host_create(NULL /* create a client host */,
-			15 /* only allow 1 outgoing connection */,
-			10 /* allow up 2 channels to be used, 0 and 1 */,
-			0 /* 56K modem with 56 Kbps downstream bandwidth */,
-			0 /* 56K modem with 14 Kbps upstream bandwidth */);
-		client->usingNewPacket = false;
-		if (client == NULL)
-		{
-			cout << "An error occurred while trying to create an ENet client host.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		ENetAddress address;
+{
+    cout << "Connecting bot to " << hostName << ":" << port << endl;
+    client = enet_host_create(NULL /* create a client host */,
+        31/* only allow 1 outgoing connection */,
+        10 /* allow up 2 channels to be used, 0 and 1 */,
+        0 /* 56K modem with 56 Kbps downstream bandwidth */,
+        0 /* 56K modem with 14 Kbps upstream bandwidth */);
+    client->usingNewPacket = false;
+    if (client == NULL)
+    {
+        cout << "An error occurred while trying to create an ENet client host.\n";
+        exit(EXIT_FAILURE);
+    }
+    ENetAddress address;
 
-		client->checksum = enet_crc32;
-		enet_host_compress_with_range_coder(client);
-		enet_address_set_host(&address, hostName.c_str());
-		address.port = port;
+    client->checksum = enet_crc32;
+    enet_host_compress_with_range_coder(client);
+    enet_address_set_host(&address, hostName.c_str());
+    address.port = port;
 
-		/* Initiate the connection, allocating the two channels 0 and 1. */
-		peer = enet_host_connect(client, &address, 2, 0);
-        if (peer == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		peer2 = enet_host_connect(client, &address, 10, 0);
-		if (peer2 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer3 = enet_host_connect(client, &address, 10, 0);
-		if (peer3 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer4 = enet_host_connect(client, &address, 10, 0);
-		if (peer4 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer5 = enet_host_connect(client, &address, 10, 0);
-		if (peer5 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer6 = enet_host_connect(client, &address, 10, 0);
-		if (peer6 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer7 = enet_host_connect(client, &address, 10, 0);
-		if (peer7 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer8 = enet_host_connect(client, &address, 10, 0);
-		if (peer8 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer9 = enet_host_connect(client, &address, 10, 0);
-		if (peer9 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer10 = enet_host_connect(client, &address, 10, 0);
-		if (peer10 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		enet_host_flush(client);
-	peer11 = enet_host_connect(client, &address, 10, 0);
-		if (peer11== NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer12 = enet_host_connect(client, &address, 10, 0);
-		if (peer12 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer13 = enet_host_connect(client, &address, 10, 0);
-		if (peer13 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-	peer14 = enet_host_connect(client, &address, 10, 0);
-		if (peer14 == NULL)
-		{
-			cout << "No available peers for initiating an ENet connection.\n";
-			
-			exit(EXIT_FAILURE);
-		}
-		enet_host_flush(client);
-		
-		
-	}
+    /* Initiate the connection, allocating the two channels 0 and 1. */
+    peer = enet_host_connect(client, &address, 2, 0);
+    if (peer == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer2 = enet_host_connect(client, &address, 10, 0);
+    if (peer2 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer3 = enet_host_connect(client, &address, 10, 0);
+    if (peer3 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer4 = enet_host_connect(client, &address, 10, 0);
+    if (peer4 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer5 = enet_host_connect(client, &address, 10, 0);
+    if (peer5 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer6 = enet_host_connect(client, &address, 10, 0);
+    if (peer6 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer7 = enet_host_connect(client, &address, 10, 0);
+    if (peer7 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer8 = enet_host_connect(client, &address, 10, 0);
+    if (peer8 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer9 = enet_host_connect(client, &address, 10, 0);
+    if (peer9 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer10 = enet_host_connect(client, &address, 10, 0);
+    if (peer10 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    enet_host_flush(client);
+    peer11 = enet_host_connect(client, &address, 10, 0);
+    if (peer11 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer12 = enet_host_connect(client, &address, 10, 0);
+    if (peer12 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer13 = enet_host_connect(client, &address, 10, 0);
+    if (peer13 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer14 = enet_host_connect(client, &address, 10, 0);
+    if (peer14 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    enet_host_flush(client);
+    peer15 = enet_host_connect(client, &address, 10, 0);
+    if (peer15 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer16 = enet_host_connect(client, &address, 10, 0);
+    if (peer16 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer17 = enet_host_connect(client, &address, 10, 0);
+    if (peer17 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer18 = enet_host_connect(client, &address, 10, 0);
+    if (peer18 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer19 = enet_host_connect(client, &address, 10, 0);
+    if (peer19 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer20 = enet_host_connect(client, &address, 10, 0);
+    if (peer20 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer21 = enet_host_connect(client, &address, 10, 0);
+    if (peer21 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer22 = enet_host_connect(client, &address, 10, 0);
+    if (peer22 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer23 = enet_host_connect(client, &address, 10, 0);
+    if (peer23 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer24 = enet_host_connect(client, &address, 10, 0);
+    if (peer24 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer25 = enet_host_connect(client, &address, 10, 0);
+    if (peer25 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer26 = enet_host_connect(client, &address, 10, 0);
+    if (peer26 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer27 = enet_host_connect(client, &address, 10, 0);
+    if (peer27 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer28 = enet_host_connect(client, &address, 10, 0);
+    if (peer28 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer29 = enet_host_connect(client, &address, 10, 0);
+    if (peer29 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+    peer30 = enet_host_connect(client, &address, 10, 0);
+    if (peer30 == NULL)
+    {
+        cout << "No available peers for initiating an ENet connection.\n";
+        exit(EXIT_FAILURE);
+    }
+
+    enet_host_flush(client);
+}
+
 	/******************* enet core *********************/
 
 

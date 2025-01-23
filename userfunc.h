@@ -17,7 +17,6 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "json.hpp"
 #include <sstream>
-#include <curl/curl.h>
 #include <vector>
 #include <limits>
 #include <math.h>
@@ -26,7 +25,7 @@
 #include <regex>
 #include <iterator>
 #include <algorithm>
-#include <nlohmann/json.hpp>
+
 #include "utilsfunc.h"
 #include "corefunc.h"
 #include "userfunc.h"
@@ -521,6 +520,487 @@ string packet14 =
 "doorID|0\n"
 "aat|2\n";
 
+string packet15 =
+"tankIDName|BOBSQUISH16\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet16 =
+"tankIDName|BOBSQUISH17\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet17 =
+"tankIDName|BOBSQUISH18\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet18 =
+"tankIDName|BOBSQUISH19\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet19 =
+"tankIDName|BOBSQUISH20\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet20 =
+"tankIDName|BOBSQUISH21\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet21 =
+"tankIDName|BOBSQUISH22\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet22 =
+"tankIDName|BOBSQUISH23\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet23 =
+"tankIDName|BOBSQUISH24\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet24 =
+"tankIDName|BOBSQUISH25\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet25 =
+"tankIDName|BOBSQUISH26\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet26 =
+"tankIDName|BOBSQUISH27\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet27 =
+"tankIDName|BOBSQUISH28\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet28 =
+"tankIDName|BOBSQUISH29\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet29 =
+"tankIDName|BOBSQUISH30\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet30 =
+"tankIDName|BOBSQUISH31\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+
     // Cetak isi paket untuk debugging
     cout << packet;
 //	sleep(3);
@@ -545,48 +1025,24 @@ string packet14 =
       SendPacket(2, packet12, peer12);
       SendPacket(2, packet13, peer13);
       SendPacket(2, packet14, peer14);
+          SendPacket(2, packet15, peer15);
+    SendPacket(2, packet16, peer16);
+    SendPacket(2, packet17, peer17);
+    SendPacket(2, packet18, peer18);
+    SendPacket(2, packet19, peer19);
+    SendPacket(2, packet20, peer20);
+    SendPacket(2, packet21, peer21);
+    SendPacket(2, packet22, peer22);
+    SendPacket(2, packet23, peer23);
+    SendPacket(2, packet24, peer24);
+    SendPacket(2, packet25, peer25);
+    SendPacket(2, packet26, peer26);
+    SendPacket(2, packet27, peer27);
+    SendPacket(2, packet28, peer28);
+    SendPacket(2, packet29, peer29);
+    SendPacket(2, packet30, peer30);
+    
 	currentWorld = "";
-}
-
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-
-std::string GrowtopiaBot::FindItemAPI(const std::string& itemName)
-{
-    CURL* curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    curl = curl_easy_init();
-    if (curl) {
-        std::string url = "https://growtopia.fandom.com/api/v1/SearchSuggestions/List?query=" + itemName;
-
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-
-        if (res == CURLE_OK) {
-            // Parse JSON hasil dari API
-            try {
-                nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-                
-                if (jsonData.contains("items") && jsonData["items"].is_array() && !jsonData["items"].empty()) {
-                    // Ambil nama item pertama dari hasil pencarian
-                    std::string foundItem = jsonData["items"][0]["title"];
-                    return foundItem;
-                }
-            }
-            catch (const std::exception& e) {
-                std::cerr << "Error parsing JSON: " << e.what() << std::endl;
-            }
-        }
-    }
-
-    return ""; // Jika API gagal atau tidak menemukan hasil
 }
 
 void GrowtopiaBot::packet_type3(string text)
@@ -808,21 +1264,6 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
            SendPacket(2, "action|input\n|text|Owner pos is " + 
            std::to_string(static_cast<int>(x.x)) + ":" + 
            std::to_string(static_cast<int>(x.y)) + ".", peer3);
-		}
-		}
-	}
-    if (bubbleText.find("!finditem ") != string::npos) {
-        // Ambil nama item setelah "!finditem "
-        string itemName = bubbleText.substr(bubbleText.find("!finditem ") + 10);
-
-        // Panggil API Growtopia untuk mencari item
-        string apiResult = FindItemAPI(itemName);
-
-        // Periksa hasil API dan kirim respons ke game
-        if (!apiResult.empty()) {
-            SendPacket(2, "action|input\n|text|Item found: " + apiResult, peer);
-        } else {
-            SendPacket(2, "action|input\n|text|Item not found: " + itemName, peer);
         }
     }
 	if (bubbleText.find("!playercount") != string::npos)
@@ -1017,7 +1458,27 @@ SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk "
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer8);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer9);
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer10);
-	
+	SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer11);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer12);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer13);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer14);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer15);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer16);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer17);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer18);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer19);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer20);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer21);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer22);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer23);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer24);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer25);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer26);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer27);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer28);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer29);
+SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer30);
+
 }
 	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
@@ -1032,7 +1493,26 @@ SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer8);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer9);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer10);
-
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer11);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer12);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer13);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer14);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer15);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer16);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer17);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer18);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer19);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer20);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer21);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer22);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer23);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer24);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer25);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer26);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer27);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer28);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer29);
+SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer30);
 
 	}
 }
@@ -1147,6 +1627,27 @@ SendPacket(2, "action|respawn", peer7);
 SendPacket(2, "action|respawn", peer8);
 SendPacket(2, "action|respawn", peer9);
 SendPacket(2, "action|respawn", peer10);
+SendPacket(2, "action|respawn", peer11);
+SendPacket(2, "action|respawn", peer12);
+SendPacket(2, "action|respawn", peer13);
+SendPacket(2, "action|respawn", peer14);
+SendPacket(2, "action|respawn", peer15);
+SendPacket(2, "action|respawn", peer16);
+SendPacket(2, "action|respawn", peer17);
+SendPacket(2, "action|respawn", peer18);
+SendPacket(2, "action|respawn", peer19);
+SendPacket(2, "action|respawn", peer20);
+SendPacket(2, "action|respawn", peer21);
+SendPacket(2, "action|respawn", peer22);
+SendPacket(2, "action|respawn", peer23);
+SendPacket(2, "action|respawn", peer24);
+SendPacket(2, "action|respawn", peer25);
+SendPacket(2, "action|respawn", peer26);
+SendPacket(2, "action|respawn", peer27);
+SendPacket(2, "action|respawn", peer28);
+SendPacket(2, "action|respawn", peer29);
+SendPacket(2, "action|respawn", peer30);
+
         }
 
         // Update local objects position
@@ -1174,6 +1675,26 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer11, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer12, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer16, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer17, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer18, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer19, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer20, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer21, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer22, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer23, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer24, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer25, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer26, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer27, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer28, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer29, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer30, ENET_PACKET_FLAG_RELIABLE);
     }
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
@@ -1183,6 +1704,33 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABL
 			SendPacket(2, "action|respawn", peer);
 SendPacket(2, "action|respawn", peer2);
 SendPacket(2, "action|respawn", peer3);
+SendPacket(2, "action|respawn", peer4);
+SendPacket(2, "action|respawn", peer5);
+SendPacket(2, "action|respawn", peer6);
+SendPacket(2, "action|respawn", peer7);
+SendPacket(2, "action|respawn", peer8);
+SendPacket(2, "action|respawn", peer9);
+SendPacket(2, "action|respawn", peer10);
+SendPacket(2, "action|respawn", peer11);
+SendPacket(2, "action|respawn", peer12);
+SendPacket(2, "action|respawn", peer13);
+SendPacket(2, "action|respawn", peer14);
+SendPacket(2, "action|respawn", peer15);
+SendPacket(2, "action|respawn", peer16);
+SendPacket(2, "action|respawn", peer17);
+SendPacket(2, "action|respawn", peer18);
+SendPacket(2, "action|respawn", peer19);
+SendPacket(2, "action|respawn", peer20);
+SendPacket(2, "action|respawn", peer21);
+SendPacket(2, "action|respawn", peer22);
+SendPacket(2, "action|respawn", peer23);
+SendPacket(2, "action|respawn", peer24);
+SendPacket(2, "action|respawn", peer25);
+SendPacket(2, "action|respawn", peer26);
+SendPacket(2, "action|respawn", peer27);
+SendPacket(2, "action|respawn", peer28);
+SendPacket(2, "action|respawn", peer29);
+SendPacket(2, "action|respawn", peer30);
 		}
 		for (int i = 0; i < objects.size(); i++)
 			if (objects.at(i).isLocal) {
@@ -1199,6 +1747,26 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer11, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer12, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer16, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer17, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer18, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer19, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer20, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer21, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer22, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer23, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer24, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer25, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer26, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer27, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer28, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer29, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer30, ENET_PACKET_FLAG_RELIABLE);
 	}
 }
 
@@ -1426,19 +1994,35 @@ void GrowtopiaBot::userLoop()
         	
             // Mengirim permintaan bergabung ke semua peer
             SendPacket(3, "action|join_request\nname|" + worldName, peer); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
-            SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer2); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer3); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer4); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer5); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer6); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer7); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer8); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer9); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer10); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer11); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer12); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer13); // MARRKS
 SendPacket(3, "action|join_request\nname|" + worldName, peer14); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer15); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer16); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer17); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer18); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer19); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer20); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer21); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer22); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer23); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer24); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer25); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer26); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer27); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer28); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer29); // MARRKS
+SendPacket(3, "action|join_request\nname|" + worldName, peer30); // MARRKS
 cout << currentWorld << "; " << worldName << endl;
             objects.clear();
         }
