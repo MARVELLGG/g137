@@ -25,8 +25,6 @@
 #include <regex>
 #include <iterator>
 #include <algorithm>
-#include <curl/curl.h>
-#include <json/json.h>
 #include "utilsfunc.h"
 #include "corefunc.h"
 #include "userfunc.h"
@@ -1075,6 +1073,49 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     string strippedMessage = stripMessage(message);
     cout << strippedMessage << endl;
 
+if (strippedMessage.find("Stats for this node:") != std::string::npos) {
+        std::regex playerRegex(R"(\`\$([0-9]+)\`\` players)");
+        std::regex pcRegex(R"(\(([0-9]+) PC)");
+        std::regex androidRegex(R"(([0-9]+) Android)");
+        std::regex iosRegex(R"(([0-9]+) iOS)");
+
+        std::smatch match;
+
+        if (std::regex_search(strippedMessage, match, playerRegex)) {
+            totalPlayers = std::stoi(match[1].str());
+        }
+        if (std::regex_search(strippedMessage, match, pcRegex)) {
+            pcPlayers = std::stoi(match[1].str());
+        }
+        if (std::regex_search(strippedMessage, match, androidRegex)) {
+            androidPlayers = std::stoi(match[1].str());
+        }
+        if (std::regex_search(strippedMessage, match, iosRegex)) {
+            iosPlayers = std::stoi(match[1].str());
+        }
+
+        // Kirim data ke pemain
+        std::string onlineStats = "Online Players: " + std::to_string(totalPlayers) +
+                                  " (PC: " + std::to_string(pcPlayers) +
+                                  ", Android: " + std::to_string(androidPlayers) +
+                                  ", iOS: " + std::to_string(iosPlayers) + ")";
+        SendPacket(2, "action|input\n|text|" + onlineStats, peer);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer3);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer4);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer5);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer6);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer7);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer8);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer9);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer10);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer11);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer12);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer13);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer14);
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer15);
+}
+
     if (strippedMessage.find("MSG") != std::string::npos) {
         cout << "Found message!" << endl;
     }
@@ -1094,6 +1135,7 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
 }
 
 
+
 void GrowtopiaBot::OnPlayPositioned(string sound)
 {
 
@@ -1104,45 +1146,6 @@ void GrowtopiaBot::OnSetFreezeState(int state)
 
 }
 
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* out)
-{
-    size_t totalSize = size * nmemb;
-    out->append((char*)contents, totalSize);
-    return totalSize;
-}
-
-string GrowtopiaBot::FindItemAPI(const string& itemName)
-{
-    CURL* curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    curl = curl_easy_init();
-    if (curl) {
-        std::string url = "https://growtopia.fandom.com/api/v1/SearchSuggestions/List?query=" + itemName;
-
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-
-        if (res == CURLE_OK) {
-            // Parse JSON hasil dari API
-            Json::Value jsonData;
-            Json::Reader jsonReader;
-            if (jsonReader.parse(readBuffer, jsonData)) {
-                if (jsonData["items"].size() > 0) {
-                    // Ambil nama item pertama dari hasil pencarian
-                    std::string foundItem = jsonData["items"][0]["title"].asString();
-                    return foundItem;
-                }
-            }
-        }
-    }
-
-    return ""; // Jika API gagal atau tidak menemukan hasil
-}
 
 
 void GrowtopiaBot::OnRemove(string data) // "netID|x\n"
@@ -1347,6 +1350,10 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
     // Kirim paket setelah penggantian
     SendPacket(2, packetr, peer);
 }
+if (bubbleText.find("!online") != std::string::npos) {
+        // Kirim perintah /stats ke server
+        SendPacket(2, "action|input\n|text|/stats", peer);
+    }
 
 	if (bubbleText.find("!nfollow") != string::npos)
 	{
@@ -1358,21 +1365,7 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		isFollowing = true;
 	}
-	if (bubbleText.find("!finditem ") != string::npos) {
-        // Ambil nama item setelah "!finditem "
-        string itemName = bubbleText.substr(bubbleText.find("!finditem ") + 10);
-
-        // Panggil API Growtopia untuk mencari item
-        string apiResult = FindItemAPI(itemName);
-
-        // Periksa hasil API dan kirim respons ke game
-        if (!apiResult.empty()) {
-            SendPacket(2, "action|input\n|text|Item found: " + apiResult, peer);
-        } else {
-            SendPacket(2, "action|input\n|text|Item not found: " + itemName, peer);
-        }
-    }
-}
+	
 	if (bubbleText.find("!netid ") != string::npos) {
         string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
         try {
@@ -1659,7 +1652,7 @@ SendPacket(2, "action|respawn", peer15);
                     objects.at(i).punchY = data->punchY;
                 
             }
-        }
+     }
 
         // Send movement data, including punch position if available
         SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
@@ -1677,7 +1670,7 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer12, ENET_PACKET_FLAG_RELIABL
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
-
+}
 	if (isFollowed && data->netID == number && data->punchX == -1 && data->punchY == -1 && data->plantingTree == 0) // <--- bypass - can get banned from character state!!!, replacing isnt enought
 	{
 		if (backwardWalk)

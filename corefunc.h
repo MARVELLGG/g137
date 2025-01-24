@@ -74,6 +74,10 @@ ENetPeer *peer15;
 	int owner = -1;
     int number = -1;
 	string ownerUsername;
+     int totalPlayers = 0;
+int pcPlayers = 0;
+int androidPlayers = 0;
+int iosPlayers = 0;
 
 	struct ObjectData
 	{
@@ -138,7 +142,6 @@ ENetPeer *peer15;
 	void onLoginRequested();
 	void packet_type3(string text);
 	void packet_type6(string text);
-	string FindItemAPI(const string& itemName)
 	void packet_unknown(ENetPacket* packet);
 	void OnSendToServer(string address, int port, int userId, int token);
 	void OnConsoleMessage(string message);
