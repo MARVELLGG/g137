@@ -802,9 +802,9 @@ int iosPlayers = 0;
 				//pSrc += 4;
 			}
 		}
-		if (action == "OnSesjskr")
+		if (action == "OnSendToServer")
 		{
-			
+			OnSendToServer(((OnSendToServerStruct*)dataStruct)->address, ((OnSendToServerStruct*)dataStruct)->port, ((OnSendToServerStruct*)dataStruct)->userId, ((OnSendToServerStruct*)dataStruct)->token);
 		}
 		else if (action == "OnConsoleMessage")
 		{
@@ -1388,7 +1388,7 @@ PlayerMoving* unpackPlayerMoving(BYTE* data)
 				WhenConnected();
 				break;
 			case ENET_EVENT_TYPE_DISCONNECT:
-				WhenDisconnected();
+				WhenDisconnected();	
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
 				ProcessPacket(&event, peer);
