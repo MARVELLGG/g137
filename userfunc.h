@@ -1066,7 +1066,7 @@ void GrowtopiaBot::OnSendToServer(string address, int port, int userId, int toke
 {
 	login_user = userId;
 	login_token = token;
-	connectClient(address, port);
+	connectClient(SERVER_HOST, SERVER_PORT);
 }
 
 void GrowtopiaBot::OnConsoleMessage(string message) {
