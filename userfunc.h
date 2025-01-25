@@ -1033,6 +1033,7 @@ SendPacket(2, "protocol|212\nltoken|GUEST_ACCOUNT\nplatformID|4", currentPeer);
     */
 	currentWorld = "";
 }
+}
 
 void GrowtopiaBot::packet_type3(string text)
 {
