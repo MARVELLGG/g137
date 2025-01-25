@@ -1067,12 +1067,6 @@ void GrowtopiaBot::packet_unknown(ENetPacket* packet)
 	dbgPrint("Packet size is " + std::to_string(packet->dataLength));
 }
 
-void GrowtopiaBot::OnSendToServer(string address, int port, int userId, int token)
-{
-	login_user = userId;
-	login_token = token;
-	connectClient(SERVER_HOST, SERVER_PORT);
-}
 
 void GrowtopiaBot::OnSendToServer(string address, int port, int userId, int token)
 {
