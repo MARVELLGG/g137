@@ -24,6 +24,7 @@
 #include <iostream>
 #include <regex>
 #include <iterator>
+#include <curl/curl.h>
 #include <algorithm>
 #include "utilsfunc.h"
 #include "corefunc.h"
@@ -1188,6 +1189,34 @@ SendPacket(3, "action|quit_to_exit", peer);
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
+	
+	if (bubbleText.find("!translate") != std::string::npos) {
+        // Memproses input setelah !translate
+        std::istringstream ss(bubbleText.substr(bubbleText.find("!translate") + 11));
+        std::string fromLang;
+        std::string toLang;
+        std::string text;
+
+        // Mengambil bahasa sumber, bahasa tujuan, dan teks untuk diterjemahkan
+        ss >> fromLang >> toLang;
+        std::getline(ss, text);
+        text = text.substr(1); // Menghapus spasi ekstra
+
+        if (fromLang.empty() || toLang.empty() || text.empty()) {
+            std::string errorMessage = "Usage: !translate <source_lang> <target_lang> <text_to_translate>";
+                  SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
+           return;
+        }
+
+        // Mendapatkan terjemahan
+        std::string translatedText = Translate(text, fromLang, toLang);
+        std::cout << "Translated Text: " << translatedText << std::endl;
+
+        // Mengirimkan hasil terjemahan ke semua peer menggunakan SendPacket
+        
+            SendPacket(2, "action|input\n|text|" + translatedText, peer); // Ganti "SendPacket" sesuai dengan bot Anda
+        }
+    }
 	if (bubbleText.find("!spk ") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
@@ -1207,6 +1236,7 @@ SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk "
 SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer15);
 
 }
+
 	
 	if (bubbleText.find("!about") != string::npos || bubbleText.find("!help") != string::npos)
 	{
@@ -1226,6 +1256,48 @@ SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer14);
 SendPacket(2, "action|input\n|text|This is bot from Growtopia Noobs. Modified BY BOBSQUISH", peer15);
 	}
+}
+
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
+// Fungsi untuk melakukan translasi menggunakan Google Translate API
+std::string Translate(const std::string& text, const std::string& fromLang, const std::string& toLang) {
+    CURL* curl;
+    CURLcode res;
+    std::string response;
+
+    // Encode teks input agar sesuai dengan URL
+    std::string encodedText = std::regex_replace(text, std::regex(" "), "+");
+
+    std::string url = "http://translate.googleapis.com/translate_a/single?client=gtx&sl=" + fromLang + "&tl=" + toLang + "&dt=t&q=" + encodedText;
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+
+        if (res != CURLE_OK) {
+            return "Error: Failed to fetch translation.";
+        }
+    } else {
+        return "Error: Failed to initialize CURL.";
+    }
+
+    // Parsing hasil API untuk mengambil teks terjemahan pertama
+    std::regex regexPattern("\"(.*?)\"");
+    std::smatch match;
+    if (std::regex_search(response, match, regexPattern)) {
+        return match.str(1); // Hasil terjemahan
+    }
+
+    return "Error: Translation not found.";
 }
 
 void GrowtopiaBot::SetRespawnPos(int respawnPos)
