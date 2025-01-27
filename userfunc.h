@@ -94,6 +94,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
+
 // Fungsi untuk melakukan translasi menggunakan Google Translate API
 std::string Translate(const std::string& text, const std::string& fromLang, const std::string& toLang) {
     CURL* curl;
@@ -103,6 +104,7 @@ std::string Translate(const std::string& text, const std::string& fromLang, cons
     // Encode teks input agar sesuai dengan URL
     std::string encodedText = std::regex_replace(text, std::regex(" "), "+");
 
+    // URL API
     std::string url = "http://translate.googleapis.com/translate_a/single?client=gtx&sl=" + fromLang + "&tl=" + toLang + "&dt=t&q=" + encodedText;
 
     curl = curl_easy_init();
@@ -121,8 +123,12 @@ std::string Translate(const std::string& text, const std::string& fromLang, cons
         return "Error: Failed to initialize CURL.";
     }
 
+    // Debug: Cetak respons untuk memverifikasi formatnya
+    std::cout << "Response: " << response << std::endl;
+
     // Parsing hasil API untuk mengambil teks terjemahan pertama
-    std::regex regexPattern("\"(.*?)\"");
+    // Regex untuk menangkap hasil terjemahan pertama dalam array
+    std::regex regexPattern("\\[\\[\"(.*?)\"");  // Mencari teks yang ada dalam tanda kutip pertama
     std::smatch match;
     if (std::regex_search(response, match, regexPattern)) {
         return match.str(1); // Hasil terjemahan
@@ -130,6 +136,9 @@ std::string Translate(const std::string& text, const std::string& fromLang, cons
 
     return "Error: Translation not found.";
 }
+
+
+
 
 void GrowtopiaBot::onLoginRequested()
 {
