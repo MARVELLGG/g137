@@ -1190,7 +1190,7 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
 	
-	if (bubbleText.find("!translate") != std::string::npos) {
+	if (bubbleText.find("!translate") != string::npos) {
         // Memproses input setelah !translate
         std::istringstream ss(bubbleText.substr(bubbleText.find("!translate") + 11));
         std::string fromLang;
@@ -1216,7 +1216,7 @@ SendPacket(3, "action|quit_to_exit", peer);
         
             SendPacket(2, "action|input\n|text|" + translatedText, peer); // Ganti "SendPacket" sesuai dengan bot Anda
         }
-    }
+    
 	if (bubbleText.find("!spk ") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
