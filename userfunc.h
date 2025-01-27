@@ -1232,9 +1232,17 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
 	
-	if (bubbleText.find("!translate") != string::npos) {
+	if (bubbleText.find("!translate") != std::string::npos) {
         // Memproses input setelah !translate
-        std::istringstream ss(bubbleText.substr(bubbleText.find("!translate") + 11));
+        size_t pos = bubbleText.find("!translate");
+        
+        if (pos == std::string::npos || pos + 11 >= bubbleText.length()) {
+            std::string errorMessage = "Usage: !translate <source_lang> <target_lang> <text_to_translate>";
+            SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
+            return;
+        }
+
+        std::istringstream ss(bubbleText.substr(pos + 11));
         std::string fromLang;
         std::string toLang;
         std::string text;
@@ -1242,23 +1250,29 @@ SendPacket(3, "action|quit_to_exit", peer);
         // Mengambil bahasa sumber, bahasa tujuan, dan teks untuk diterjemahkan
         ss >> fromLang >> toLang;
         std::getline(ss, text);
-        text = text.substr(1); // Menghapus spasi ekstra
+        if (!text.empty() && text[0] == ' ') {
+            text = text.substr(1); // Menghapus spasi ekstra di awal
+        }
 
+        // Validasi input
         if (fromLang.empty() || toLang.empty() || text.empty()) {
             std::string errorMessage = "Usage: !translate <source_lang> <target_lang> <text_to_translate>";
-                  SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
-           return;
+            SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
+            return;
         }
 
         // Mendapatkan terjemahan
         std::string translatedText = Translate(text, fromLang, toLang);
-        std::cout << "Translated Text: " << translatedText << std::endl;
 
-        // Mengirimkan hasil terjemahan ke semua peer menggunakan SendPacket
-        
-            SendPacket(2, "action|input\n|text|" + translatedText, peer); // Ganti "SendPacket" sesuai dengan bot Anda
+        if (translatedText.find("Error") != std::string::npos) {
+            SendPacket(2, "action|input\n|text|Translation error occurred.", peer);
+        } else {
+            // Mengirimkan hasil terjemahan ke semua peer menggunakan SendPacket
+            for (auto& p : peers) {
+                SendPacket(2, "action|input\n|text|" + translatedText, p);
+            }
         }
-    
+    }    
 	if (bubbleText.find("!spk ") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
