@@ -60,8 +60,10 @@ ENetPeer *peer15;
 
 	ENetHost *client;
 
+
 	int login_user = 0;
-	int login_token = 0;
+std::string login_token;
+
 
 	string currentWorld;
 	int timeFromWorldEnter = 0; // in 10mss...
@@ -143,7 +145,7 @@ int iosPlayers = 0;
 	void packet_type3(string text);
 	void packet_type6(string text);
 	void packet_unknown(ENetPacket* packet);
-	void OnSendToServer(string address, int port, int userId, int token);
+	void OnSendToServer(string address, int port, int userId, string token);
 	void OnConsoleMessage(string message);
 	void OnPlayPositioned(string sound);
 	void OnSetFreezeState(int state);
@@ -431,7 +433,7 @@ int iosPlayers = 0;
 		string address;
 		int port;
 		int userId;
-		int token;
+		string token;
 	};
 
 	struct OnConsoleMessageStruct

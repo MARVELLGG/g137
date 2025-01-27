@@ -669,335 +669,6 @@ string packet19 =
 "doorID|0\n"
 "aat|2\n";
 
-string packet20 =
-"tankIDName|BOBSQUISH21\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet21 =
-"tankIDName|BOBSQUISH22\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet22 =
-"tankIDName|BOBSQUISH23\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet23 =
-"tankIDName|BOBSQUISH24\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet24 =
-"tankIDName|BOBSQUISH25\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet25 =
-"tankIDName|BOBSQUISH26\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet26 =
-"tankIDName|BOBSQUISH27\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet27 =
-"tankIDName|BOBSQUISH28\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet28 =
-"tankIDName|BOBSQUISH29\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet29 =
-"tankIDName|BOBSQUISH30\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet30 =
-"tankIDName|BOBSQUISH31\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
 
 
     // Cetak isi paket untuk debugging
@@ -1010,15 +681,13 @@ string packet30 =
     // Kirim paket login
 // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ0tkR0Z1YTBsRVVHRnpjM3d4TWpNME5UWTNPQXB5WlhGMVpYTjBaV1JPWVcxbGZBcG1mREVLY0hKdmRHOWpiMng4TWpFeUNtZGhiV1ZmZG1WeWMybHZibncxTGpBeUNtTmlhWFJ6ZkRFd01qUUtjR3hoZVdWeVgyRm5aWHcyQ2tkRVVGSjhNZ3BqWVhSbFoyOXllWHhIVWs5WFRVbE9SVk5mTXpVNE5ncDBiM1JoYkZCc1lYbDBhVzFsZkRBS2EyeDJmRGt3UlVVek9USkVNa1k1UkRoQ1F6azVOMFZGUVRReE1UYzFSa05FT1VSQkNtZHBaSHhoTTJObE5qZzNZeTFoTlRBMUxUUXhaamd0WWpOa09DMWhPVFEyTTJZek0yWXpPVEFLZEhKOE5ETXlNZ3B0WlhSaGZFbHVabWx1YVhSNVVGTmZTSHBwWm10NlJuVnJSbGx1ZG01YVNncG1hR0Z6YUh3dE56RTJPVEk0TURBMENuSnBaSHd3TWpFMU5UVXdRVGd4T0RZNE5UZEVNRGczTkRjME1UZzNRVVJEUkVSQlJncHdiR0YwWm05eWJVbEVmRFFLWkdWMmFXTmxWbVZ5YzJsdmJud3dDbU52ZFc1MGNubDhhV1FLYUdGemFId3hNamMxTVRJMU1qSTBDbTFoWTN3d01qb3dNRG93TURvd01Eb3dNRG93TUFwM2EzeE9UMDVGTUFvPSZncm93SWQ9Qk9CU1FVSVNIJnBhc3N3b3JkPTEyMzQ1Njc4\nplatformID|4", peer);
    // SendPacket(2, "protocol|212\nltoken|X3Rva2VuPWRHRnVhMGxFVG1GdFpYeENUMEpUVVZWSlUwZ3pDblJoYm10SlJGQmhjM044TVRJek5EVTJOemdLY21WeGRXVnpkR1ZrVG1GdFpYd0tabnd4Q25CeWIzUnZZMjlzZkRJeE1ncG5ZVzFsWDNabGNuTnBiMjU4TlM0d01ncGpZbWwwYzN3d0NuQnNZWGxsY2w5aFoyVjhOUXBIUkZCU2ZESUtZMkYwWldkdmNubDhYeTAxTVRBd0NuUnZkR0ZzVUd4aGVYUnBiV1Y4TUFwcmJIWjhSVGMxUlVVNU16Y3pNek5DT0ROR01qVkNRemRCTkRoR1JFSkdPRFpFTVRnS1oybGtmR0V6WTJVMk9EZGpMV0UxTURVdE5ERm1PQzFpTTJRNExXRTVORFl6WmpNelpqTTVNQXAwY253ME16SXlDbTFsZEdGOFNXNW1hVzVwZEhsUVUxOXJSblozVWxWNGQydHliSEZvY2xGcENtWm9ZWE5vZkMwM01UWTVNamd3TURRS2NtbGtmREF5TVVNNE56SkNRelZFTWtZNE5USXdPVGMxTVROQ1F6WXlSREpGTmpFNENuQnNZWFJtYjNKdFNVUjhOQXBrWlhacFkyVldaWEp6YVc5dWZEQUtZMjkxYm5SeWVYeHBaQXBvWVhOb2ZERXlOelV4TWpVeU1qUUtiV0ZqZkRBeU9qQXdPakF3T2pBd09qQXdPakF3Q25kcmZFNVBUa1V3Q2c9PSZncm93SWQ9Qk9CU1FVSVNIMyZwYXNzd29yZD0xMjM0NTY3OA==\nplatformID|4", peer);
-for (ENetPeer* currentPeer = client->peers; currentPeer < &client->peers[client->peerCount]; ++currentPeer) {
-        if (currentPeer->state != ENET_PEER_STATE_CONNECTED || currentPeer->data == NULL) continue;
 
 
-SendPacket(2, "protocol|212\nltoken|GUEST_ACCOUNT\nplatformID|4", currentPeer);
-   /* SendPacket(2, packet, peer);
+//SendPacket(2, "protocol|212\nltoken|GUEST_ACCOUNT\nplatformID|4", currentPeer);
+    SendPacket(2, packet, peer);
     SendPacket(2, packet2, peer2);
       SendPacket(2, packet3, peer3);
-      SendPacket(2, packet4, peer4);
+    /*  SendPacket(2, packet4, peer4);
     SendPacket(2, packet5, peer5);
       SendPacket(2, packet6, peer6);
       SendPacket(2, packet7, peer7);
@@ -1033,7 +702,7 @@ SendPacket(2, "protocol|212\nltoken|GUEST_ACCOUNT\nplatformID|4", currentPeer);
     */
 	currentWorld = "";
 }
-}
+
 
 void GrowtopiaBot::packet_type3(string text)
 {
@@ -1068,11 +737,27 @@ void GrowtopiaBot::packet_unknown(ENetPacket* packet)
 }
 
 
-void GrowtopiaBot::OnSendToServer(string address, int port, int userId, int token)
+
+void GrowtopiaBot::OnSendToServer(string address, int port, int userId, string token)
 {
-	login_user = userId;
-	login_token = token;
-	//connectClient(SERVER_HOST, SERVER_PORT);
+    // Pisahkan token dengan pemisah "|"
+    std::vector<std::string> parts;
+    std::stringstream ss(token);
+    std::string item;
+
+    while (std::getline(ss, item, '|'))
+    {
+        parts.push_back(item);
+    }
+
+    // Jika ada setidaknya 2 bagian, ambil bagian awal dan akhir
+    if (parts.size() >= 2)
+    {
+        login_token = parts[0] + "|" + parts.back(); // Simpan langsung ke login_token
+    }
+
+    // Simpan userId
+    login_user = userId;
 }
 
 void GrowtopiaBot::OnConsoleMessage(string message) {
@@ -1107,7 +792,7 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
                                   ", Android: " + std::to_string(androidPlayers) +
                                   ", iOS: " + std::to_string(iosPlayers) + ")";
         SendPacket(2, "action|input\n|text|" + onlineStats, peer);
-    SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
+   /* SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer3);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer4);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer5);
@@ -1121,6 +806,7 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
     SendPacket(2, "action|input\n|text|" + onlineStats, peer13);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer14);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer15);
+*/
 }
 
     if (strippedMessage.find("MSG") != std::string::npos) {
@@ -1333,6 +1019,19 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 	{
 		respawn();
 	}
+	if (bubbleText.find("!serverinfo") != std::string::npos)
+    {
+        if (!login_token.empty())
+        {
+            // Kirim informasi server yang disimpan
+            SendPacket(2, "action|input\n|text|`2Server Info IP And Port`0: " + login_token, peer);
+        }
+        else
+        {
+            // Jika belum ada informasi server, berikan pesan error
+            SendPacket(2, "action|input\n|text|Server info not available.", peer);
+        }
+    }
 	if (bubbleText.find("player_chat= ") != string::npos) {
     // Ambil string setelah "!packet "
 		if (netID != owner) {
