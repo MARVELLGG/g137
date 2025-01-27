@@ -1268,11 +1268,10 @@ SendPacket(3, "action|quit_to_exit", peer);
             SendPacket(2, "action|input\n|text|Translation error occurred.", peer);
         } else {
             // Mengirimkan hasil terjemahan ke semua peer menggunakan SendPacket
-            for (auto& p : peers) {
-                SendPacket(2, "action|input\n|text|" + translatedText, p);
+                  SendPacket(2, "action|input\n|text|" + translatedText, peer);
             }
         }
-    }    
+        
 	if (bubbleText.find("!spk ") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|" + bubbleText.substr(bubbleText.find("!spk ") + 5, bubbleText.length() - bubbleText.find("!spk ")), peer);
