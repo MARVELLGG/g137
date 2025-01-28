@@ -844,12 +844,12 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     cout << strippedMessage << endl;
 
 if (strippedMessage.find("Stats for this node:") != std::string::npos) {
-    std::regex playerRegex(R"([0-9]+) players)");
+    std::regex playerRegex(R"(([0-9]+) players)");
     std::regex pcRegex(R"(\(([0-9]+) PC)");
     std::regex androidRegex(R"(([0-9]+) Android)");
     std::regex iosRegex(R"(([0-9]+) iOS)");
     std::regex maxPlayersRegex(R"(Max-Players: \$(\d+)/(\d+))");
-  std::regex worldsActiveRegex(R"(\([0-9]+) Worlds active)");
+  std::regex worldsActiveRegex(R"(\$([0-9]+) Worlds active)");
     std::regex serverLoadRegex(R"(Server Load: ([0-9]+))");
 
     std::smatch match;
@@ -870,9 +870,9 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
 
     // Extract max players
         if (std::regex_search(strippedMessage, match, maxPlayersRegex)) {
-    maxPlayers = std::stoi(match[1].str());
-    maxPlayersLimit = std::stoi(match[2].str());
-}
+        maxPlayersCurrent = std::stoi(match[1].str());
+        maxPlayersLimit = std::stoi(match[2].str());
+    }
 
     // Extract worlds active
     if (std::regex_search(strippedMessage, match, worldsActiveRegex)) {
