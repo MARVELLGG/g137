@@ -1329,19 +1329,32 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
 	
-	if (bubbleText.find("!translate") != string::npos)
-        std::string params = bubbleText.substr(10); // Mengambil teks setelah "!translate "
-        size_t delimiterPos = params.find(" to "); // Mencari pemisah " to "
-        
-        if (delimiterPos != std::string::npos) {
-            std::string sourceText = params.substr(0, delimiterPos);
-            std::string targetLang = params.substr(delimiterPos + 4); // Mengambil bahasa target setelah " to "
+	if (bubbleText.find("!translate") != std::string::npos) {
+        std::cout << "Translate command received!" << std::endl;
 
-            // Panggil API untuk menerjemahkan
-            std::string translatedText = Translate(sourceText, targetLang);
-            SendPacket(2, "action|input\n|text|" + translatedText, peer);
+        // Ambil bagian setelah "!translate" untuk mendapatkan perintah
+        std::string command = bubbleText.substr(10); // Mengambil teks setelah "!translate "
+
+        // Pisahkan perintah untuk mendapatkan bahasa target dan teks
+        std::stringstream ss(command);
+        std::string targetLang;
+        std::getline(ss, targetLang, ' '); // Ambil bahasa target sebelum spasi
+
+        // Ambil teks yang akan diterjemahkan setelah bahasa target
+        std::string textToTranslate = command.substr(targetLang.length() + 1);
+
+        if (targetLang.empty() || textToTranslate.empty()) {
+            // Jika tidak ada bahasa target atau teks untuk diterjemahkan
+            SendPacket(2, "action|input\n|text|Format salah! Gunakan format: !translate <target_language> <text>", peer);
         } else {
-            SendPacket(2, "action|input\n|text|Format salah! Gunakan format: !translate <teks> to <bahasa>", peer);
+            // Menerjemahkan teks menggunakan API
+            std::string translatedText = Translate(textToTranslate, targetLang);
+
+            // Mengirim pesan terjemahan ke pemain yang melakukan perintah
+            std::string translationMessage = "Terjemahan: " + translatedText;
+            SendPacket(2, "action|input\n|text|" + translationMessage, peer);
+
+            std::cout << "Translation message sent!" << std::endl;
         }
     }
         
