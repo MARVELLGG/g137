@@ -80,6 +80,10 @@ std::string login_token;
 int pcPlayers = 0;
 int androidPlayers = 0;
 int iosPlayers = 0;
+int maxPlayersCurrent = 0, maxPlayersLimit = 0;
+  int worldsActive = 0;
+  int serverLoad = 0;
+  
 
 	struct ObjectData
 	{

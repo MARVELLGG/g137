@@ -844,33 +844,59 @@ void GrowtopiaBot::OnConsoleMessage(string message) {
     cout << strippedMessage << endl;
 
 if (strippedMessage.find("Stats for this node:") != std::string::npos) {
-        std::regex playerRegex(R"(\`\$([0-9]+)\`\` players)");
-        std::regex pcRegex(R"(\(([0-9]+) PC)");
-        std::regex androidRegex(R"(([0-9]+) Android)");
-        std::regex iosRegex(R"(([0-9]+) iOS)");
+    std::regex playerRegex(R"([0-9]+) players)");
+    std::regex pcRegex(R"(\(([0-9]+) PC)");
+    std::regex androidRegex(R"(([0-9]+) Android)");
+    std::regex iosRegex(R"(([0-9]+) iOS)");
+    std::regex maxPlayersRegex(R"(Max-Players: \$(\d+)/(\d+))");
+  std::regex worldsActiveRegex(R"(\([0-9]+) Worlds active)");
+    std::regex serverLoadRegex(R"(Server Load: ([0-9]+))");
 
-        std::smatch match;
+    std::smatch match;
 
-        if (std::regex_search(strippedMessage, match, playerRegex)) {
-            totalPlayers = std::stoi(match[1].str());
-        }
-        if (std::regex_search(strippedMessage, match, pcRegex)) {
-            pcPlayers = std::stoi(match[1].str());
-        }
-        if (std::regex_search(strippedMessage, match, androidRegex)) {
-            androidPlayers = std::stoi(match[1].str());
-        }
-        if (std::regex_search(strippedMessage, match, iosRegex)) {
-            iosPlayers = std::stoi(match[1].str());
-        }
+    // Extract player data
+    if (std::regex_search(strippedMessage, match, playerRegex)) {
+        totalPlayers = std::stoi(match[1].str());
+    }
+    if (std::regex_search(strippedMessage, match, pcRegex)) {
+        pcPlayers = std::stoi(match[1].str());
+    }
+    if (std::regex_search(strippedMessage, match, androidRegex)) {
+        androidPlayers = std::stoi(match[1].str());
+    }
+    if (std::regex_search(strippedMessage, match, iosRegex)) {
+        iosPlayers = std::stoi(match[1].str());
+    }
 
-        // Kirim data ke pemain
-        std::string onlineStats = "Online Players: " + std::to_string(totalPlayers) +
-                                  " (PC: " + std::to_string(pcPlayers) +
-                                  ", Android: " + std::to_string(androidPlayers) +
-                                  ", iOS: " + std::to_string(iosPlayers) + ")";
-        SendPacket(2, "action|input\n|text|" + onlineStats, peer);
-   /* SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
+    // Extract max players
+        if (std::regex_search(strippedMessage, match, maxPlayersRegex)) {
+    maxPlayers = std::stoi(match[1].str());
+    maxPlayersLimit = std::stoi(match[2].str());
+}
+
+    // Extract worlds active
+    if (std::regex_search(strippedMessage, match, worldsActiveRegex)) {
+        worldsActive = std::stoi(match[1].str());
+    }
+
+    // Extract server load
+    if (std::regex_search(strippedMessage, match, serverLoadRegex)) {
+        serverLoad = std::stoi(match[1].str());
+    }
+
+    // Create the updated stats message
+    std::string onlineStats = "Online Players: " + std::to_string(totalPlayers) +
+                              " (PC: " + std::to_string(pcPlayers) +
+                              ", Android: " + std::to_string(androidPlayers) +
+                              ", iOS: " + std::to_string(iosPlayers) + ")" +
+                              " Max Players: " + std::to_string(maxPlayersCurrent) + "/" + std::to_string(maxPlayersLimit) +
+                              ", Worlds Active: " + std::to_string(worldsActive) +
+                              ", Server Load: " + std::to_string(serverLoad);
+
+    // Send the data to the players
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer);
+    /* Uncomment and repeat for additional peers
+    SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer3);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer4);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer5);
@@ -884,8 +910,9 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
     SendPacket(2, "action|input\n|text|" + onlineStats, peer13);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer14);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer15);
-*/
+    */
 }
+
 
     if (strippedMessage.find("MSG") != std::string::npos) {
         cout << "Found message!" << endl;
