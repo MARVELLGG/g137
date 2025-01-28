@@ -1092,16 +1092,13 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
 
                 // Mengirim pesan cuaca dalam bahasa Indonesia
                 std::string weatherMessage = 
-                    "*Cuaca Kota " + cityName + "*, " +
-                "*Cuaca:* " + weatherMain + ", " +
+                 "*Cuaca:* " + weatherMain + ", " +
                 "*Deskripsi:* " + weatherDesc + ", " +
                 "*Suhu:* " + std::to_string(temp) + " °C, " +
                 "*Terasa Seperti:* " + std::to_string(feelsLike) + " °C, " +
                 "*Tekanan:* " + std::to_string(pressure) + " hPa, " +
                 "*Kelembapan:* " + std::to_string(humidity) + "%, " +
-                "*Angin:* " + std::to_string(windSpeed) + " Km/h, " +
-                "*Bujur:* " + std::to_string(lon) + ", *Lintang:* " + std::to_string(lat) + ", " +
-                "*Negara:* " + country;
+               "*Negara:* " + country;
 
                 // Mengirimkan hasil ke chat
                 SendPacket(2, "action|input\n|text|" + weatherMessage, peer);
