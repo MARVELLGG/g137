@@ -94,18 +94,10 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-
-// Fungsi untuk melakukan translasi menggunakan Google Translate API
-std::string Translate(const std::string& text, const std::string& fromLang, const std::string& toLang) {
+std::string SendGetRequest(const std::string& url) {
     CURL* curl;
     CURLcode res;
     std::string response;
-
-    // Encode teks input agar sesuai dengan URL
-    std::string encodedText = std::regex_replace(text, std::regex(" "), "+");
-
-    // URL API
-    std::string url = "http://translate.googleapis.com/translate_a/single?client=gtx&sl=" + fromLang + "&tl=" + toLang + "&dt=t&q=" + encodedText;
 
     curl = curl_easy_init();
     if (curl) {
@@ -113,6 +105,53 @@ std::string Translate(const std::string& text, const std::string& fromLang, cons
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
+
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+
+        if (res != CURLE_OK) {
+            return "Error: Failed to fetch data.";
+        }
+    } else {
+        return "Error: Failed to initialize cURL.";
+    }
+
+    return response;
+}
+
+
+// Fungsi untuk melakukan translasi menggunakan Google Translate API
+std::string Translate(const std::string& text, const std::string& targetLang, const std::string& sourceLang = "auto") {
+    CURL* curl;
+    CURLcode res;
+    std::string response;
+
+    curl = curl_easy_init();
+    if (curl) {
+        // URL untuk LibreTranslate API
+        std::string url = "https://libretranslate.com/translate";
+
+        // Data JSON untuk POST
+        std::string postData = "{"
+            "\"q\": \"" + text + "\","
+            "\"source\": \"" + sourceLang + "\","
+            "\"target\": \"" + targetLang + "\","
+            "\"format\": \"text\","
+            "\"alternatives\": 3,"
+            "\"api_key\": \"\""
+        "}";
+
+        struct curl_slist* headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+
+        // Mengatur opsi cURL
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData.c_str());
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+
+        // Melakukan request
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
 
@@ -120,24 +159,11 @@ std::string Translate(const std::string& text, const std::string& fromLang, cons
             return "Error: Failed to fetch translation.";
         }
     } else {
-        return "Error: Failed to initialize CURL.";
+        return "Error: Failed to initialize cURL.";
     }
 
-    // Debug: Cetak respons untuk memverifikasi formatnya
-    std::cout << "Response: " << response << std::endl;
-
-    // Parsing hasil API untuk mengambil teks terjemahan pertama
-    // Regex untuk menangkap hasil terjemahan pertama dalam array
-    std::regex regexPattern("\\[\\[\"(.*?)\"");  // Mencari teks yang ada dalam tanda kutip pertama
-    std::smatch match;
-    if (std::regex_search(response, match, regexPattern)) {
-        return match.str(1); // Hasil terjemahan
-    }
-
-    return "Error: Translation not found.";
+    return response;
 }
-
-
 
 
 void GrowtopiaBot::onLoginRequested()
@@ -1016,12 +1042,74 @@ void GrowtopiaBot::SetHasAccountSecured(int state)
 
 }
 
+
+
 void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int number)
 {
 	std::cout << "Received netID: " << netID << std::endl;  // Cek nilai netID di sini
 	if (netID != owner) {
    return;
         }
+    
+    if (bubbleText.find("!weather") == 0) {
+    std::string location = bubbleText.substr(9); // Mengambil lokasi setelah "!weather "
+    if (location.empty()) {
+        SendPacket(2, "action|input\n|text|Silakan masukkan nama lokasi. Contoh: !weather Jakarta", peer);
+    } else {
+        // URL API
+        std::string apiKey = "060a6bcfa19809c2cd4d97a212b19273"; // API key Anda
+        std::string apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=" + apiKey + "&lang=id";
+
+        // Mengirim permintaan ke API
+        std::string response = SendGetRequest(apiUrl);
+
+        if (response.find("\"cod\":200") != std::string::npos) { // Jika permintaan berhasil
+            // Parsing data JSON manual
+            size_t namePos = response.find("\"name\":\"");
+            size_t weatherPos = response.find("\"main\":\"");
+            size_t descPos = response.find("\"description\":\"");
+            size_t tempPos = response.find("\"temp\":");
+            size_t feelsLikePos = response.find("\"feels_like\":");
+            size_t pressurePos = response.find("\"pressure\":");
+            size_t humidityPos = response.find("\"humidity\":");
+            size_t windSpeedPos = response.find("\"speed\":");
+            size_t lonPos = response.find("\"lon\":");
+            size_t latPos = response.find("\"lat\":");
+            size_t countryPos = response.find("\"country\":\"");
+
+            // Mengambil data dari JSON
+            std::string cityName = response.substr(namePos + 8, response.find("\"", namePos + 8) - (namePos + 8));
+            std::string weatherMain = response.substr(weatherPos + 8, response.find("\"", weatherPos + 8) - (weatherPos + 8));
+            std::string weatherDesc = response.substr(descPos + 15, response.find("\"", descPos + 15) - (descPos + 15));
+            float temp = std::stof(response.substr(tempPos + 7, response.find(",", tempPos) - (tempPos + 7)));
+            float feelsLike = std::stof(response.substr(feelsLikePos + 14, response.find(",", feelsLikePos) - (feelsLikePos + 14)));
+            int pressure = std::stoi(response.substr(pressurePos + 11, response.find(",", pressurePos) - (pressurePos + 11)));
+            int humidity = std::stoi(response.substr(humidityPos + 11, response.find(",", humidityPos) - (humidityPos + 11)));
+            float windSpeed = std::stof(response.substr(windSpeedPos + 8, response.find(",", windSpeedPos) - (windSpeedPos + 8)));
+            float lon = std::stof(response.substr(lonPos + 6, response.find(",", lonPos) - (lonPos + 6)));
+            float lat = std::stof(response.substr(latPos + 6, response.find(",", latPos) - (latPos + 6)));
+            std::string country = response.substr(countryPos + 11, response.find("\"", countryPos + 11) - (countryPos + 11));
+
+            // Mengirim pesan cuaca dalam bahasa Indonesia
+            std::string weatherMessage = 
+                "*Cuaca Kota " + cityName + "*, " +
+"*Cuaca:* " + weatherMain + ", " +
+"*Deskripsi:* " + weatherDesc + ", " +
+"*Suhu:* " + std::to_string(temp) + " °C, " +
+"*Terasa Seperti:* " + std::to_string(feelsLike) + " °C, " +
+"*Tekanan:* " + std::to_string(pressure) + " hPa, " +
+"*Kelembapan:* " + std::to_string(humidity) + "%, " +
+"*Angin:* " + std::to_string(windSpeed) + " Km/h, " +
+"*Bujur:* " + std::to_string(lon) + ", *Lintang:* " + std::to_string(lat) + ", " +
+"*Negara:* " + country;
+
+
+            SendPacket(2, "action|input\n|text|" + weatherMessage, peer);
+        } else {
+            SendPacket(2, "action|input\n|text|Gagal mengambil data cuaca untuk lokasi " + location + ". Periksa kembali nama lokasi Anda.", peer);
+        }
+    }
+}
     
 	cout << bubbleText << endl;
 	if (bubbleText.find("!pos") != string::npos)
