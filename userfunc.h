@@ -848,8 +848,8 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
     std::regex pcRegex(R"(\(([0-9]+) PC)");
     std::regex androidRegex(R"(([0-9]+) Android)");
     std::regex iosRegex(R"(([0-9]+) iOS)");
-    std::regex maxPlayersRegex(R"(Max-Players: \$(\d+)/(\d+))");
-  std::regex worldsActiveRegex(R"(\$([0-9]+) Worlds active)");
+    std::regex maxPlayersRegex(R"(Max-Players: ([0-9]+)/([0-9]+))");
+  std::regex worldsActiveRegex(R"(([0-9]+) Worlds active)");
     std::regex serverLoadRegex(R"(Server Load: ([0-9]+))");
 
     std::smatch match;
