@@ -1259,7 +1259,7 @@ if (bubbleText.find("!online") != std::string::npos) {
         string message = "Hello, all players! This is a broadcast message.";
 
         // Buat paket yang berisi pesan
-            packet = enet_packet_create(NULL, 0, ENET_PACKET_FLAG_Reliable);     
+            ENetPacket* packet = enet_packet_create(NULL, 0, ENET_PACKET_FLAG_RELIABLE);     
     enet_peer_queue_outgoing_packet(peer, 0, packet);
    cout << "Broadcast message sent!" << endl;
 	}
