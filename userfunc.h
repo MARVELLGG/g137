@@ -1051,65 +1051,65 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
    return;
         }
     
-    if (bubbleText.find("!weather") == 0) {
-    std::string location = bubbleText.substr(9); // Mengambil lokasi setelah "!weather "
-    if (location.empty()) {
-        SendPacket(2, "action|input\n|text|Silakan masukkan nama lokasi. Contoh: !weather Jakarta", peer);
-    } else {
-        // URL API
-        std::string apiKey = "060a6bcfa19809c2cd4d97a212b19273"; // API key Anda
-        std::string apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=" + apiKey + "&lang=id";
-
-        // Mengirim permintaan ke API
-        std::string response = SendGetRequest(apiUrl);
-
-        if (response.find("\"cod\":200") != std::string::npos) { // Jika permintaan berhasil
-            // Parsing data JSON manual
-            size_t namePos = response.find("\"name\":\"");
-            size_t weatherPos = response.find("\"main\":\"");
-            size_t descPos = response.find("\"description\":\"");
-            size_t tempPos = response.find("\"temp\":");
-            size_t feelsLikePos = response.find("\"feels_like\":");
-            size_t pressurePos = response.find("\"pressure\":");
-            size_t humidityPos = response.find("\"humidity\":");
-            size_t windSpeedPos = response.find("\"speed\":");
-            size_t lonPos = response.find("\"lon\":");
-            size_t latPos = response.find("\"lat\":");
-            size_t countryPos = response.find("\"country\":\"");
-
-            // Mengambil data dari JSON
-            std::string cityName = response.substr(namePos + 8, response.find("\"", namePos + 8) - (namePos + 8));
-            std::string weatherMain = response.substr(weatherPos + 8, response.find("\"", weatherPos + 8) - (weatherPos + 8));
-            std::string weatherDesc = response.substr(descPos + 15, response.find("\"", descPos + 15) - (descPos + 15));
-            float temp = std::stof(response.substr(tempPos + 7, response.find(",", tempPos) - (tempPos + 7)));
-            float feelsLike = std::stof(response.substr(feelsLikePos + 14, response.find(",", feelsLikePos) - (feelsLikePos + 14)));
-            int pressure = std::stoi(response.substr(pressurePos + 11, response.find(",", pressurePos) - (pressurePos + 11)));
-            int humidity = std::stoi(response.substr(humidityPos + 11, response.find(",", humidityPos) - (humidityPos + 11)));
-            float windSpeed = std::stof(response.substr(windSpeedPos + 8, response.find(",", windSpeedPos) - (windSpeedPos + 8)));
-            float lon = std::stof(response.substr(lonPos + 6, response.find(",", lonPos) - (lonPos + 6)));
-            float lat = std::stof(response.substr(latPos + 6, response.find(",", latPos) - (latPos + 6)));
-            std::string country = response.substr(countryPos + 11, response.find("\"", countryPos + 11) - (countryPos + 11));
-
-            // Mengirim pesan cuaca dalam bahasa Indonesia
-            std::string weatherMessage = 
-                "*Cuaca Kota " + cityName + "*, " +
-"*Cuaca:* " + weatherMain + ", " +
-"*Deskripsi:* " + weatherDesc + ", " +
-"*Suhu:* " + std::to_string(temp) + " °C, " +
-"*Terasa Seperti:* " + std::to_string(feelsLike) + " °C, " +
-"*Tekanan:* " + std::to_string(pressure) + " hPa, " +
-"*Kelembapan:* " + std::to_string(humidity) + "%, " +
-"*Angin:* " + std::to_string(windSpeed) + " Km/h, " +
-"*Bujur:* " + std::to_string(lon) + ", *Lintang:* " + std::to_string(lat) + ", " +
-"*Negara:* " + country;
-
-
-            SendPacket(2, "action|input\n|text|" + weatherMessage, peer);
+    if (bubbleText.find("!weather") != string::npos) {
+        std::string location = bubbleText.substr(bubbleText.find("!weather") + 9); // Ambil lokasi setelah "!weather "
+        if (location.empty()) {
+            SendPacket(2, "action|input\n|text|Silakan masukkan nama lokasi. Contoh: !weather Jakarta", peer);
         } else {
-            SendPacket(2, "action|input\n|text|Gagal mengambil data cuaca untuk lokasi " + location + ". Periksa kembali nama lokasi Anda.", peer);
+            // URL API
+            std::string apiKey = "060a6bcfa19809c2cd4d97a212b19273"; // API key Anda
+            std::string apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=" + apiKey + "&lang=id";
+
+            // Mengirim permintaan ke API
+            std::string response = SendGetRequest(apiUrl);
+
+            if (response.find("\"cod\":200") != std::string::npos) { // Jika permintaan berhasil
+                // Parsing data JSON manual
+                size_t namePos = response.find("\"name\":\"");
+                size_t weatherPos = response.find("\"main\":\"");
+                size_t descPos = response.find("\"description\":\"");
+                size_t tempPos = response.find("\"temp\":");
+                size_t feelsLikePos = response.find("\"feels_like\":");
+                size_t pressurePos = response.find("\"pressure\":");
+                size_t humidityPos = response.find("\"humidity\":");
+                size_t windSpeedPos = response.find("\"speed\":");
+                size_t lonPos = response.find("\"lon\":");
+                size_t latPos = response.find("\"lat\":");
+                size_t countryPos = response.find("\"country\":\"");
+
+                // Mengambil data dari JSON
+                std::string cityName = response.substr(namePos + 8, response.find("\"", namePos + 8) - (namePos + 8));
+                std::string weatherMain = response.substr(weatherPos + 8, response.find("\"", weatherPos + 8) - (weatherPos + 8));
+                std::string weatherDesc = response.substr(descPos + 15, response.find("\"", descPos + 15) - (descPos + 15));
+                float temp = std::stof(response.substr(tempPos + 7, response.find(",", tempPos) - (tempPos + 7)));
+                float feelsLike = std::stof(response.substr(feelsLikePos + 14, response.find(",", feelsLikePos) - (feelsLikePos + 14)));
+                int pressure = std::stoi(response.substr(pressurePos + 11, response.find(",", pressurePos) - (pressurePos + 11)));
+                int humidity = std::stoi(response.substr(humidityPos + 11, response.find(",", humidityPos) - (humidityPos + 11)));
+                float windSpeed = std::stof(response.substr(windSpeedPos + 8, response.find(",", windSpeedPos) - (windSpeedPos + 8)));
+                float lon = std::stof(response.substr(lonPos + 6, response.find(",", lonPos) - (lonPos + 6)));
+                float lat = std::stof(response.substr(latPos + 6, response.find(",", latPos) - (latPos + 6)));
+                std::string country = response.substr(countryPos + 11, response.find("\"", countryPos + 11) - (countryPos + 11));
+
+                // Mengirim pesan cuaca dalam bahasa Indonesia
+                std::string weatherMessage = 
+                    "*Cuaca Kota " + cityName + "*, " +
+                "*Cuaca:* " + weatherMain + ", " +
+                "*Deskripsi:* " + weatherDesc + ", " +
+                "*Suhu:* " + std::to_string(temp) + " °C, " +
+                "*Terasa Seperti:* " + std::to_string(feelsLike) + " °C, " +
+                "*Tekanan:* " + std::to_string(pressure) + " hPa, " +
+                "*Kelembapan:* " + std::to_string(humidity) + "%, " +
+                "*Angin:* " + std::to_string(windSpeed) + " Km/h, " +
+                "*Bujur:* " + std::to_string(lon) + ", *Lintang:* " + std::to_string(lat) + ", " +
+                "*Negara:* " + country;
+
+                // Mengirimkan hasil ke chat
+                SendPacket(2, "action|input\n|text|" + weatherMessage, peer);
+            } else {
+                SendPacket(2, "action|input\n|text|Gagal mengambil data cuaca untuk lokasi " + location + ". Periksa kembali nama lokasi Anda.", peer);
+            }
         }
     }
-}
     
 	cout << bubbleText << endl;
 	if (bubbleText.find("!pos") != string::npos)
@@ -1329,45 +1329,21 @@ SendPacket(3, "action|quit_to_exit", peer);
 		SendPacket(2, "action|input\n|text|/dance", peer);
 	}
 	
-	if (bubbleText.find("!translate") != std::string::npos) {
-        // Memproses input setelah !translate
-        size_t pos = bubbleText.find("!translate");
+	if (bubbleText.find("!translate") != string::npos)
+        std::string params = bubbleText.substr(10); // Mengambil teks setelah "!translate "
+        size_t delimiterPos = params.find(" to "); // Mencari pemisah " to "
         
-        if (pos == std::string::npos || pos + 11 >= bubbleText.length()) {
-            std::string errorMessage = "Usage: !translate <source_lang> <target_lang> <text_to_translate>";
-            SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
-            return;
-        }
+        if (delimiterPos != std::string::npos) {
+            std::string sourceText = params.substr(0, delimiterPos);
+            std::string targetLang = params.substr(delimiterPos + 4); // Mengambil bahasa target setelah " to "
 
-        std::istringstream ss(bubbleText.substr(pos + 11));
-        std::string fromLang;
-        std::string toLang;
-        std::string text;
-
-        // Mengambil bahasa sumber, bahasa tujuan, dan teks untuk diterjemahkan
-        ss >> fromLang >> toLang;
-        std::getline(ss, text);
-        if (!text.empty() && text[0] == ' ') {
-            text = text.substr(1); // Menghapus spasi ekstra di awal
-        }
-
-        // Validasi input
-        if (fromLang.empty() || toLang.empty() || text.empty()) {
-            std::string errorMessage = "Usage: !translate <source_lang> <target_lang> <text_to_translate>";
-            SendPacket(2, "action|input\n|text|" + errorMessage, peer); // Kirim pesan kesalahan ke peer
-            return;
-        }
-
-        // Mendapatkan terjemahan
-        std::string translatedText = Translate(text, fromLang, toLang);
-
-        if (translatedText.find("Error") != std::string::npos) {
-            SendPacket(2, "action|input\n|text|Translation error occurred.", peer);
+            // Panggil API untuk menerjemahkan
+            std::string translatedText = Translate(sourceText, targetLang);
+            SendPacket(2, "action|input\n|text|" + translatedText, peer);
         } else {
-            // Mengirimkan hasil terjemahan ke semua peer menggunakan SendPacket
-                  SendPacket(2, "action|input\n|text|" + translatedText, peer);
-            }
+            SendPacket(2, "action|input\n|text|Format salah! Gunakan format: !translate <teks> to <bahasa>", peer);
         }
+    }
         
 	if (bubbleText.find("!spk ") != string::npos)
 	{
