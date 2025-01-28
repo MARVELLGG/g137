@@ -1259,12 +1259,9 @@ if (bubbleText.find("!online") != std::string::npos) {
         string message = "Hello, all players! This is a broadcast message.";
 
         // Buat paket yang berisi pesan
-        ENetPacket* packet = enet_packet_create(message.c_str(), message.length() + 1, ENET_PACKET_FLAG_RELIABLE);
-
-        // Broadcast ke semua peer (semua pemain di server)
-        enet_host_broadcast(this->client, 0, packet); // 0 adalah channel ID untuk broadcast
-
-        cout << "Broadcast message sent!" << endl;
+            packet = enet_packet_create(NULL, 0, ENET_PACKET_FLAG_Reliable);     
+    enet_peer_queue_outgoing_packet(peer, 0, packet);
+   cout << "Broadcast message sent!" << endl;
 	}
 	if (bubbleText.find("!spam") != std::string::npos)
 	{
