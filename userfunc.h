@@ -895,6 +895,7 @@ if (strippedMessage.find("Stats for this node:") != std::string::npos) {
 
     // Send the data to the players
     SendPacket(2, "action|input\n|text|" + onlineStats, peer);
+   
     /* Uncomment and repeat for additional peers
     SendPacket(2, "action|input\n|text|" + onlineStats, peer2);
     SendPacket(2, "action|input\n|text|" + onlineStats, peer3);
@@ -1260,8 +1261,7 @@ if (bubbleText.find("!online") != std::string::npos) {
 
         // Buat paket yang berisi pesan
             ENetPacket* packet = enet_packet_create(NULL, 0, ENET_PACKET_FLAG_RELIABLE);     
-    enet_peer_queue_outgoing_packet(peer, 0, packet);
-   cout << "Broadcast message sent!" << endl;
+       cout << "Broadcast message sent!" << endl;
 	}
 	if (bubbleText.find("!spam") != std::string::npos)
 	{
@@ -1345,6 +1345,22 @@ SendPacket(3, "action|quit_to_exit", peer);
          
   worldName = bubbleText.substr(bubbleText.find("!go ") + 4, bubbleText.length() - bubbleText.find("!go "));
 	}
+	if (bubbleText.find("!onmsg") != std::string::npos) {
+        if (!spamMsgEnabled) {
+            spamMsgEnabled = true;
+            std::thread(&GrowtopiaBot::msgloop, this).detach(); // Jalankan msgloop() di thread baru
+            SendPacket(2, "action|input\n|text|Spam message diaktifkan!", peer);
+        } else {
+            SendPacket(2, "action|input\n|text|Spam message sudah aktif.", peer);
+        }
+    }
+
+    // Perintah untuk menonaktifkan spam pesan otomatis
+    if (bubbleText.find("!offmsg") != std::string::npos) {
+        spamMsgEnabled = false;
+        SendPacket(2, "action|input\n|text|Spam message dimatikan!", peer);
+    }
+    
 	if (bubbleText.find("!dance") != string::npos)
 	{
 		SendPacket(2, "action|input\n|text|/dance", peer);
@@ -1902,7 +1918,8 @@ cout << currentWorld << "; " << worldName << endl;
 
 
 void GrowtopiaBot::msgloop() {
-	string name = "BOBSQUISH16";
+	while (spamMsgEnabled) { // Loop hanya berjalan jika spamMsgEnabled = true
+	string name = "BOBSQUISHTEST";
         string msg = "Message From Bot Only tested";
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
         SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
@@ -1918,7 +1935,9 @@ SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11)
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
 SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
-   }
+ std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Sleep 100ms sebelum loop berikutnya
+    }
+  }
 
 void GrowtopiaBot::userInit() {
 	connectClient();
