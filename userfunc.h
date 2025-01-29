@@ -1918,26 +1918,31 @@ cout << currentWorld << "; " << worldName << endl;
 
 
 void GrowtopiaBot::msgloop() {
-	while (spamMsgEnabled) { // Loop hanya berjalan jika spamMsgEnabled = true
-	string name = "BOBSQUISHTEST";
+    while (spamMsgEnabled) {  
+        string name = "BOBSQUISHTEST";
         string msg = "Message From Bot Only tested";
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9); // MARRKS
-        SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13); // MARRKS
-SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14); // MARRKS
- std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Sleep 100ms sebelum loop berikutnya
+
+        // Pastikan peer valid sebelum mengirim pesan
+        if (peer) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer);
+        if (peer2) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2);
+        if (peer3) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer3);
+        if (peer4) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer4);
+        if (peer5) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer5);
+        if (peer6) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer6);
+        if (peer7) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer7);
+        if (peer8) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer8);
+        if (peer9) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer9);
+        if (peer10) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer10);
+        if (peer11) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer11);
+        if (peer12) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer12);
+        if (peer13) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer13);
+        if (peer14) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer14);
+
+        // Gunakan delay lebih lama agar tidak dianggap spam
+        std::this_thread::sleep_for(std::chrono::seconds(1)); // Delay 1 detik
     }
-  }
+}
+
 
 void GrowtopiaBot::userInit() {
 	connectClient();
