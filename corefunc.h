@@ -83,7 +83,7 @@ int iosPlayers = 0;
 int maxPlayersCurrent = 0, maxPlayersLimit = 0;
   int worldsActive = 0;
   int serverLoad = 0;
-  std::atomic<bool> spamMsgEnabled(false); // Variabel kontrol untuk on/off spam
+  bool spamMsgEnabled = false; // Variabel kontrol untuk on/off spam
   
 
 	struct ObjectData
