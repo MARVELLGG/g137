@@ -208,7 +208,7 @@ string packet =
 
 
 string packet2 =
-"tankIDName|BOBSQUISH3\n"
+"tankIDName|BOBSQUISH6\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -238,7 +238,7 @@ string packet2 =
 "aat|2\n";
 
 string packet3 =
-"tankIDName|BOBSQUISH4\n"
+"tankIDName|BOBSQUISH7\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -268,96 +268,6 @@ string packet3 =
 "aat|2\n";
 
 string packet4 =
-"tankIDName|BOBSQUISH5\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-
-string packet5 =
-"tankIDName|BOBSQUISH6\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";
-	
-string packet6 =
-"tankIDName|BOBSQUISH7\n"
-"tankIDPass|12345678\n"
-"requestedName|\n"
-"f|1\n"
-"protocol|212\n"
-"game_version|5.02\n"
-"cbits|0\n"
-"player_age|6\n"
-"GDPR|2\n"
-"category|_-5100\n"
-"totalPlaytime|0\n"
-"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
-"gid|" + generateRid() + "\n"
-"tr|4322\n"
-"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
-"fhash|-716928004\n"
-"rid|" + generateRid() + "\n"
-"platformID|4\n"
-"deviceVersion|0\n"
-"country|id\n"
-"hash|1275125224\n"
-"mac|" + generateMac() + "\n"
-"wk|NONE0\n"
-"lmode|1\n"
-"user|-405210819\n"
-"UUIDToken|-1\n"
-"doorID|0\n"
-"aat|2\n";	
-
-string packet7 =
 "tankIDName|BOBSQUISH8\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
@@ -387,7 +297,7 @@ string packet7 =
 "doorID|0\n"
 "aat|2\n";
 
-string packet8 =
+string packet5 =
 "tankIDName|BOBSQUISH9\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
@@ -416,8 +326,8 @@ string packet8 =
 "UUIDToken|-1\n"
 "doorID|0\n"
 "aat|2\n";
-
-string packet9 =
+	
+string packet6 =
 "tankIDName|BOBSQUISH10\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
@@ -447,7 +357,7 @@ string packet9 =
 "doorID|0\n"
 "aat|2\n";	
 
-string packet10 =
+string packet7 =
 "tankIDName|BOBSQUISH11\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
@@ -477,8 +387,98 @@ string packet10 =
 "doorID|0\n"
 "aat|2\n";
 
-string packet11 =
+string packet8 =
 "tankIDName|BOBSQUISH12\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet9 =
+"tankIDName|BOBSQUISH13\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";	
+
+string packet10 =
+"tankIDName|BOBSQUISH14\n"
+"tankIDPass|12345678\n"
+"requestedName|\n"
+"f|1\n"
+"protocol|212\n"
+"game_version|5.02\n"
+"cbits|0\n"
+"player_age|6\n"
+"GDPR|2\n"
+"category|_-5100\n"
+"totalPlaytime|0\n"
+"klv|E75EE937333B83F25BC7A48FDBF86D19\n"
+"gid|" + generateRid() + "\n"
+"tr|4322\n"
+"meta|InfinityPS_iuWsyLJhgeDoxTIA\n"
+"fhash|-716928004\n"
+"rid|" + generateRid() + "\n"
+"platformID|4\n"
+"deviceVersion|0\n"
+"country|id\n"
+"hash|1275125224\n"
+"mac|" + generateMac() + "\n"
+"wk|NONE0\n"
+"lmode|1\n"
+"user|-405210819\n"
+"UUIDToken|-1\n"
+"doorID|0\n"
+"aat|2\n";
+
+string packet11 =
+"tankIDName|BOBSQUISH15\n"
 "tankIDPass|12345678\n"
 "requestedName|\n"
 "f|1\n"
@@ -765,15 +765,15 @@ string packet19 =
     SendPacket(2, packet, peer);
     SendPacket(2, packet2, peer2);
       SendPacket(2, packet3, peer3);
-    /*  SendPacket(2, packet4, peer4);
+     SendPacket(2, packet4, peer4);
     SendPacket(2, packet5, peer5);
       SendPacket(2, packet6, peer6);
       SendPacket(2, packet7, peer7);
     SendPacket(2, packet8, peer8);
       SendPacket(2, packet9, peer9);
       SendPacket(2, packet10, peer10);
-      SendPacket(2, packet11, peer11);
-      SendPacket(2, packet12, peer12);
+     SendPacket(2, packet11, peer11);
+   /*   SendPacket(2, packet12, peer12);
       SendPacket(2, packet13, peer13);
       SendPacket(2, packet14, peer14);
           SendPacket(2, packet15, peer15);
@@ -1280,6 +1280,14 @@ if (bubbleText.find("!online") != std::string::npos) {
 	{
 		isFollowing = true;
 	}
+	if (bubbleText.find("!mspam") != string::npos)
+	{
+		isMoveSpam = true;
+	}
+	if (bubbleText.find("!mstop") != string::npos)
+	{
+		isMoveSpam = true;
+	}
 	
 	if (bubbleText.find("!netid ") != string::npos) {
         string numberStr = bubbleText.substr(bubbleText.find("!netid ") + 7);
@@ -1360,7 +1368,7 @@ if (bubbleText.find("!online") != std::string::npos) {
         ActivateInvisEffect();
    }
     if (bubbleText.find("!nazi") != string::npos) {
-   InvisibleEffect(6);
+   InvisibleEffect(15);
     }
 	
 	
@@ -1676,6 +1684,29 @@ SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer13, ENET_PACKET_FLAG_RELIABL
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer14, ENET_PACKET_FLAG_RELIABLE);
 SendPacketRaw(4, packPlayerMoving(data), 56, 0, peer15, ENET_PACKET_FLAG_RELIABLE);
 	}
+	    if (isMoveSpam) 
+{
+	std::vector<int> randomOffsets{ 32, 64, -32, -64, 0, 0 };
+	for (int i = 0; i < objects.size(); i++) {
+        if (objects.at(i).isLocal) {
+            PlayerMoving data;
+                // Tentukan posisi acak di sekitar bot
+                data.x = objects.at(i).x + 16 + randomOffsets[rand() % randomOffsets.size()];
+                data.y = objects.at(i).y + 16 + randomOffsets[rand() % randomOffsets.size()];
+                SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer2, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer3, ENET_PACKET_FLAG_RELIABLE);
+					SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer4, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer5, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer6, ENET_PACKET_FLAG_RELIABLE);
+			SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer7, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer8, ENET_PACKET_FLAG_RELIABLE);
+SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer9, ENET_PACKET_FLAG_RELIABLE);
+		SendPacketRaw(4, packPlayerMoving(&data), 56, 0, peer10, ENET_PACKET_FLAG_RELIABLE);
+					   // Debugging
+                std::cout << "Effect spawned at X: " << data.x / 32 << ", Y: " << data.y / 32 << std::endl;
+       }
+	
 }
 
 
@@ -1764,7 +1795,7 @@ void GrowtopiaBot::ActivateInvisEffect() {
     // Ambil objek bot lokal
     for (int i = 0; i < objects.size(); i++) {
         if (objects.at(i).isLocal) {
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 10; j++) {
                 // Generate koordinat acak
                 int randomX = random_[rand() % random_.size()];
                 int randomY = random_[rand() % random_.size()];

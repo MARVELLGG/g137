@@ -84,7 +84,7 @@ int maxPlayersCurrent = 0, maxPlayersLimit = 0;
   int worldsActive = 0;
   int serverLoad = 0;
   bool spamMsgEnabled = false; // Variabel kontrol untuk on/off spam
-  
+  string name;
 
 	struct ObjectData
 	{
@@ -117,6 +117,7 @@ int maxPlayersCurrent = 0, maxPlayersLimit = 0;
 
 	bool isFollowing = false;
 	bool isFollowed = false;
+	bool isMoveSpam = false;
 	bool backwardWalk = false;
 
 	int respawnX;
