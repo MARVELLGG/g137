@@ -89,11 +89,14 @@ string stripMessage(string msg) {
 	return result;
 }
 
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
+// Fungsi untuk menangkap data dari API response
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output) {
+    size_t totalSize = size * nmemb;
+    output->append((char*)contents, totalSize);
+    return totalSize;
 }
 
+// Fungsi untuk mengirim permintaan GET ke API
 std::string SendGetRequest(const std::string& url) {
     CURL* curl;
     CURLcode res;
@@ -104,21 +107,18 @@ std::string SendGetRequest(const std::string& url) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L); // Nonaktifkan SSL verification (opsional)
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L); // Ikuti redirect
 
         res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-
         if (res != CURLE_OK) {
-            return "Error: Failed to fetch data.";
+            std::cerr << "cURL Error: " << curl_easy_strerror(res) << std::endl;
         }
-    } else {
-        return "Error: Failed to initialize cURL.";
-    }
 
+        curl_easy_cleanup(curl);
+    }
     return response;
 }
-
 
 // Fungsi untuk melakukan translasi menggunakan Google Translate API
 std::string Translate(const std::string& text, const std::string& targetLang, const std::string& sourceLang = "auto") {
@@ -1155,6 +1155,50 @@ void GrowtopiaBot::OnTalkBubble(int netID, string bubbleText, int type, int numb
         }
     }
     }
+
+    // Perintah untuk mencari lokasi dari IP
+    if (bubbleText.find("!ipfind") != std::string::npos) {
+        std::string ip = bubbleText.substr(bubbleText.find("!ipfind") + 8);
+        
+        if (ip.empty()) {
+            SendPacket(2, "action|input\n|text|Silakan masukkan IP yang ingin dicari. Contoh: !ipfind 61.5.127.161", peer);
+        } else {
+            SendPacket(2, "action|input\n|text|Sedang mencari lokasi IP...", peer);
+            sleep(3); // Delay 3 detik agar terlihat seperti sedang memproses
+
+            std::string apiKey = "1191EDF97D2E991728D8E10E8C364730"; // API Key kamu
+            std::string apiUrl = "https://api.ip2location.io/?key=" + apiKey + "&ip=" + ip;
+            std::string response = SendGetRequest(apiUrl);
+
+            if (response.find("\"country_name\"") != std::string::npos) {
+                // Parsing manual JSON
+                size_t countryPos = response.find("\"country_name\":\"");
+                size_t regionPos = response.find("\"region_name\":\"");
+                size_t cityPos = response.find("\"city_name\":\"");
+                size_t latPos = response.find("\"latitude\":");
+                size_t lonPos = response.find("\"longitude\":");
+
+                std::string country = response.substr(countryPos + 15, response.find("\"", countryPos + 15) - (countryPos + 15));
+                std::string region = response.substr(regionPos + 14, response.find("\"", regionPos + 14) - (regionPos + 14));
+                std::string city = response.substr(cityPos + 12, response.find("\"", cityPos + 12) - (cityPos + 12));
+                float lat = std::stof(response.substr(latPos + 10, response.find(",", latPos) - (latPos + 10)));
+                float lon = std::stof(response.substr(lonPos + 11, response.find(",", lonPos) - (lonPos + 11)));
+
+                // Pesan hasil pencarian
+                std::string ipMessage =
+                    " *IP:* " + ip + ", " +
+                    " *Negara:* " + country + ", " +
+                    "*Wilayah:* " + region + ", " +
+                    "*Kota:* " + city + ", " +
+                    "*Koordinat:* " + std::to_string(lat) + ", " + std::to_string(lon);
+
+                SendPacket(2, "action|input\n|text|" + ipMessage, peer);
+            } else {
+                SendPacket(2, "action|input\n|text| Gagal menemukan lokasi untuk IP " + ip, peer);
+            }
+        }
+   }
+
 	if (bubbleText.find("!playercount") != string::npos)
 	{
 		int i=0;
@@ -1353,6 +1397,9 @@ SendPacket(3, "action|quit_to_exit", peer);
         } else {
             SendPacket(2, "action|input\n|text|Spam message sudah aktif.", peer);
         }
+    }
+    if (bubbleText.find("!set ") != std::string::npos) {
+      string name = bubbleText.substr(bubbleText.find("!set ") + 4, bubbleText.length() - bubbleText.find("!set "));
     }
 
     // Perintah untuk menonaktifkan spam pesan otomatis
@@ -1919,7 +1966,6 @@ cout << currentWorld << "; " << worldName << endl;
 
 void GrowtopiaBot::msgloop() {
     while (spamMsgEnabled) {  
-        string name = "BOBSQUISHTEST";
         string msg = "Message From Bot Only tested";
 
         // Pastikan peer valid sebelum mengirim pesan
