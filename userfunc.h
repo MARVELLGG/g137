@@ -1967,7 +1967,7 @@ cout << currentWorld << "; " << worldName << endl;
 void GrowtopiaBot::msgloop() {
     while (spamMsgEnabled) {  
         string msg = "Message From Bot Only tested";
-
+        name = "BOBSQUISH2";
         // Pastikan peer valid sebelum mengirim pesan
         if (peer) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer);
         if (peer2) SendPacket(2, "action|input\n|text|/msg " + name + " " + colorstr2(msg), peer2);
